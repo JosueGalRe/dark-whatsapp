@@ -16,8 +16,9 @@ Maintained fork of [[https://github.com/vednoc/dark-whatsapp][vednoc/dark-whatsa
 - Complete recolor through WhatsApp's own =--WDS-*= tokens, popovers included
 - Customizable base colors — light/dark color-schemes are supported
 - Private mode — blurring contacts and/or chat media until you hover over them
-- Compact mode for small windows — the chat list collapses to avatars with unread
-  badges and expands on hover or focus
+- Compact mode — the chat list collapses to a rail of avatars with unread badges
+  and floats over the chat on hover or focus. On at any window width by default;
+  =compact_mw= limits it to narrower windows.
 - Custom chat background: doodle opacity or your own image
 - Custom message bubble, seen icon and system message colors
 - Custom emoji opacity and styles for message tails

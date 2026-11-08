@@ -1,6 +1,18 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.0.1 [2026-11-08 Sun]
+Rework of compact mode, which was limited to small windows and jumped between
+states without any transition.
+
+*** Changed
+- Compact mode now applies at any window width. Set =compact_mw= to limit it.
+- The list opens over the chat with a clip and fade instead of resizing it, so
+  neither the messages nor the row under the cursor move
+- The unread badge stays on the avatar, open or closed
+- The "notifications are off" banner stays hidden in compact mode, since showing
+  it only when open would shift every row
+
 ** 4.0.0 [2026-11-08 Sun]
 WhatsApp Web moved to atomic classes and a semantic =--WDS-*= token set, and only
 98 of the theme's 528 variables were still around. This release remaps the colors

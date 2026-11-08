@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.0
+@version      4.0.1
 @license      MIT
 ==/UserStyle== */
 /*
@@ -18,8 +18,10 @@
   .dark:not(#z) {
     --ui-font: 'font_name', Segoe UI, Helvetica Neue, Helvetica, Lucida Grande, Arial, Ubuntu, Cantarell, Fira Sans, sans-serif;
     --r-avatars: 50%;
-    --c-m-hover: 0.2s;
-    --c-m-delay: 0.6s;
+    --c-m-hover: 0.1s;
+    --c-m-delay: 0.25s;
+    --c-m-open: inset(0 -290px 0 0);
+    --c-m-row: inset(0 calc(100% - 74px) 0 0 round 12px);
     --blur-contacts: 6px;
     --blur-in: 0.4s;
     --blur-out: 0.2s;
@@ -486,7 +488,7 @@
     max-width: var(--app-width);
     margin-inline: auto !important;
   }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 9999px) {
     .two,
     .three {
       min-width: 0 !important;
@@ -494,49 +496,108 @@
     [data-testid='drawer-middle'] {
       border-inline-start: none !important;
     }
+    [data-testid='chat-butterbar']:has(path[d^='M16.15 19H5']) {
+      display: none !important;
+    }
+    html[dir='rtl']:not(#z) {
+      --c-m-open: inset(0 0 0 -290px);
+      --c-m-row: inset(0 0 0 calc(100% - 74px) round 12px);
+    }
     .two > :has(> #side),
     .three > :has(> #side) {
-      flex: 0 0 80px !important;
-      max-width: 80px !important;
-      overflow: hidden;
-      transition: flex-basis 0s var(--c-m-delay), max-width 0s var(--c-m-delay);
+      flex: 0 0 96px !important;
+      min-width: 0 !important;
+      max-width: 96px !important;
+      overflow: visible !important;
+      clip-path: inset(0);
+      transition: clip-path 0.2s ease var(--c-m-delay);
     }
     .two > :has(> #side) > *,
     .three > :has(> #side) > * {
-      min-width: 350px;
+      width: 350px !important;
+      max-width: none !important;
+      background-color: var(--bg-1) !important;
+    }
+    .two > :has(> #side) + div,
+    .three > :has(> #side) + div {
+      border-inline-start: 1px solid var(--bg-4);
+    }
+    .two > :has(> #side)::after,
+    .three > :has(> #side)::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      inset-inline-start: 350px;
+      width: 1px;
+      pointer-events: none;
+      background-color: var(--bg-4);
+      box-shadow: 0 0 24px 6px rgba(0,0,0,0.4);
+    }
+    .two > :has(> #side) > :not(#side) > *,
+    .three > :has(> #side) > :not(#side) > *,
+    .two > :has(> #side) [data-testid='chat-list-search-container'],
+    .three > :has(> #side) [data-testid='chat-list-search-container'],
+    .two > :has(> #side) [role='tablist'],
+    .three > :has(> #side) [role='tablist'],
+    .two > :has(> #side) [data-testid='chatlist-e2e-message'],
+    .three > :has(> #side) [data-testid='chatlist-e2e-message'] {
+      opacity: 0;
+      transition: opacity 0.2s ease var(--c-m-delay);
+    }
+    .two > :has(> #side) [data-testid='cell-frame-container'],
+    .three > :has(> #side) [data-testid='cell-frame-container'] {
+      position: relative;
+      clip-path: var(--c-m-row);
+      transition: clip-path 0.2s ease var(--c-m-delay);
+    }
+    .two > :has(> #side) [data-testid='icon-unread-count'],
+    .three > :has(> #side) [data-testid='icon-unread-count'] {
+      position: absolute !important;
+      top: 8px;
+      inset-inline-start: 46px;
+      z-index: 1;
     }
     .two > :has(> #side):hover,
     .three > :has(> #side):hover,
     .two > :has(> #side):focus-within,
     .three > :has(> #side):focus-within {
-      flex-basis: 350px !important;
-      max-width: 350px !important;
+      clip-path: var(--c-m-open);
       transition-delay: var(--c-m-hover);
     }
-    .two > :has(> #side):not(:hover):not(:focus-within) [data-testid='chat-butterbar'],
-    .three > :has(> #side):not(:hover):not(:focus-within) [data-testid='chat-butterbar'],
-    .two > :has(> #side):not(:hover):not(:focus-within) [data-testid='chatlist-e2e-message'],
-    .three > :has(> #side):not(:hover):not(:focus-within) [data-testid='chatlist-e2e-message'] {
-      display: none !important;
+    .two > :has(> #side):hover > :not(#side) > *,
+    .three > :has(> #side):hover > :not(#side) > *,
+    .two > :has(> #side):focus-within > :not(#side) > *,
+    .three > :has(> #side):focus-within > :not(#side) > *,
+    .two > :has(> #side):hover [data-testid='chat-list-search-container'],
+    .three > :has(> #side):hover [data-testid='chat-list-search-container'],
+    .two > :has(> #side):focus-within [data-testid='chat-list-search-container'],
+    .three > :has(> #side):focus-within [data-testid='chat-list-search-container'],
+    .two > :has(> #side):hover [role='tablist'],
+    .three > :has(> #side):hover [role='tablist'],
+    .two > :has(> #side):focus-within [role='tablist'],
+    .three > :has(> #side):focus-within [role='tablist'],
+    .two > :has(> #side):hover [data-testid='chatlist-e2e-message'],
+    .three > :has(> #side):hover [data-testid='chatlist-e2e-message'],
+    .two > :has(> #side):focus-within [data-testid='chatlist-e2e-message'],
+    .three > :has(> #side):focus-within [data-testid='chatlist-e2e-message'] {
+      opacity: 1;
+      transition-delay: var(--c-m-hover);
     }
-    .two > :has(> #side):not(:hover):not(:focus-within) > :not(#side) > *,
-    .three > :has(> #side):not(:hover):not(:focus-within) > :not(#side) > *,
-    .two > :has(> #side):not(:hover):not(:focus-within) [data-testid='chat-list-search-container'],
-    .three > :has(> #side):not(:hover):not(:focus-within) [data-testid='chat-list-search-container'],
-    .two > :has(> #side):not(:hover):not(:focus-within) [role='tablist'],
-    .three > :has(> #side):not(:hover):not(:focus-within) [role='tablist'] {
-      opacity: 0;
-    }
-    .two > :has(> #side):not(:hover):not(:focus-within) [data-testid='cell-frame-container'],
-    .three > :has(> #side):not(:hover):not(:focus-within) [data-testid='cell-frame-container'] {
-      position: relative;
-    }
-    .two > :has(> #side):not(:hover):not(:focus-within) [data-testid='icon-unread-count'],
-    .three > :has(> #side):not(:hover):not(:focus-within) [data-testid='icon-unread-count'] {
-      position: absolute !important;
-      top: 8px;
-      left: 46px;
-      z-index: 1;
+    .two > :has(> #side):hover [data-testid='cell-frame-container'],
+    .three > :has(> #side):hover [data-testid='cell-frame-container'],
+    .two > :has(> #side):focus-within [data-testid='cell-frame-container'],
+    .three > :has(> #side):focus-within [data-testid='cell-frame-container'] {
+      clip-path: inset(0 0 0 0 round 12px);
+      transition-delay: var(--c-m-hover);
     }
 }
+}
+@media screen and (max-width: 9999px) and (prefers-reduced-motion: reduce) {
+  .two > :has(> #side),
+  .two > :has(> #side) *,
+  .three > :has(> #side),
+  .three > :has(> #side) * {
+    transition: none !important;
+  }
 }

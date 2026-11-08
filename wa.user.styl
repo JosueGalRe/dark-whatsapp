@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.0
+@version      4.0.1
 @license      MIT
 @preprocessor stylus
 
@@ -29,9 +29,9 @@
 @var text     app_width  'App width' 100%
 
 @var checkbox compact    'Compact mode' 1
-@var text     compact_mw 'Compact mode breakpoint' 900px
-@var text     compact_hi 'Compact mode hover-on delay' 0.2s
-@var text     compact_ho 'Compact mode hover-off delay' 0.6s
+@var text     compact_mw 'Compact mode: only below this window width' 9999px
+@var text     compact_hi 'Compact mode hover-on delay' 0.1s
+@var text     compact_ho 'Compact mode hover-off delay' 0.25s
 
 @var select   app_alerts 'Alerts' {
     'Show all                   *': 'show          ',
@@ -355,6 +355,8 @@ mix_base(amount) {
         /// Compact mode.
         --c-m-hover: compact_hi
         --c-m-delay: compact_ho
+        --c-m-open: unquote('inset(0 -290px 0 0)')
+        --c-m-row: unquote('inset(0 calc(100% - 74px) 0 0 round 12px)')
 
         /// Blurred contacts.
         --blur-contacts: chat_b_c_i
@@ -704,47 +706,105 @@ mix_base(amount) {
         margin-inline: auto i
     }
 
-    /// Feat -> Compact mode. Natively the list keeps 45% and pushes #main off-screen.
+    /// Feat -> Compact mode. The list stays an avatar rail in the layout and floats
+    /// over the chat when open: only clip-path and opacity animate, so neither the
+    /// messages nor the row under the cursor ever move.
     if (compact) {
         @media screen and (max-width: compact_mw) {
             /// WA's own 748px floor is what clips #main on small windows.
             .two, .three { min-width: 0 i }
 
-            /// This empty layer's divider marks the native 45% split, not ours.
+            /// This empty layer's divider marks the native split, not ours.
             [data-testid='drawer-middle'] { border-inline-start: none i }
 
-            .two > :has(> #side), .three > :has(> #side) {
-                flex: 0 0 80px i
-                max-width: 80px i
-                overflow: hidden
-                /// Stepped on purpose: the delay is the hover intent, no layout animation.
-                transition: flex-basis 0s var(--c-m-delay), max-width 0s var(--c-m-delay)
+            /// A permanent nag, and showing it only when open would shift every row.
+            [data-testid='chat-butterbar']:has(path[d^='M16.15 19H5']) { display: none i }
 
-                /// Keep the inner width so rows clip instead of reflowing.
-                > * { min-width: 350px }
+            html[dir='rtl']:not(#z) {
+                --c-m-open: unquote('inset(0 0 0 -290px)')
+                --c-m-row: unquote('inset(0 0 0 calc(100% - 74px) round 12px)')
+            }
+
+            .two > :has(> #side), .three > :has(> #side) {
+                flex: 0 0 96px i
+                min-width: 0 i
+                max-width: 96px i
+                overflow: visible i
+                clip-path: inset(0)
+                transition: clip-path 0.2s ease var(--c-m-delay)
+
+                > * {
+                    width: 350px i
+                    max-width: none i
+                    c: 0 0 bg1
+                }
+
+                /// The chat starts here now, not at WA's native split.
+                + div { border-inline-start: 1px solid bg4 }
+
+                /// Edge of the open list, past the rail so collapsing clips it away.
+                &::after {
+                    content: ''
+                    position: absolute
+                    top: 0
+                    bottom: 0
+                    inset-inline-start: 350px
+                    width: 1px
+                    pointer-events: none
+                    background-color: bg4
+                    box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.4)
+                }
+
+                /// Fades instead of leaving the layout: they stay focusable, and
+                /// focus is what opens the list from the keyboard.
+                > :not(#side) > *,
+                [data-testid='chat-list-search-container'],
+                [role='tablist'],
+                [data-testid='chatlist-e2e-message'] {
+                    opacity: 0
+                    transition: opacity 0.2s ease var(--c-m-delay)
+                }
+
+                /// Row highlight as a pill around the avatar.
+                [data-testid='cell-frame-container'] {
+                    position: relative
+                    clip-path: var(--c-m-row)
+                    transition: clip-path 0.2s ease var(--c-m-delay)
+                }
+
+                /// Same spot open or closed, so the badge never jumps.
+                [data-testid='icon-unread-count'] {
+                    position: absolute i
+                    top: 8px
+                    inset-inline-start: 46px
+                    z-index: 1
+                }
 
                 &:hover, &:focus-within {
-                    flex-basis: 350px i
-                    max-width: 350px i
+                    clip-path: var(--c-m-open)
                     transition-delay: var(--c-m-hover)
-                }
 
-                /// Collapsed rail: unread badge on the avatar, drop what can't fit.
-                &:not(:hover):not(:focus-within) {
-                    [data-testid='chat-butterbar'],
-                    [data-testid='chatlist-e2e-message'] { display: none i }
-                    /// Not hidden: they stay focusable, and focus is what expands the list.
                     > :not(#side) > *,
                     [data-testid='chat-list-search-container'],
-                    [role='tablist'] { opacity: 0 }
-                    [data-testid='cell-frame-container'] { position: relative }
-                    [data-testid='icon-unread-count'] {
-                        position: absolute i
-                        top: 8px
-                        left: 46px
-                        z-index: 1
+                    [role='tablist'],
+                    [data-testid='chatlist-e2e-message'] {
+                        opacity: 1
+                        transition-delay: var(--c-m-hover)
+                    }
+
+                    [data-testid='cell-frame-container'] {
+                        clip-path: inset(0 0 0 0 round 12px)
+                        transition-delay: var(--c-m-hover)
                     }
                 }
+
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .two > :has(> #side),
+                .two > :has(> #side) *,
+                .three > :has(> #side),
+                .three > :has(> #side) * { transition: none i }
             }
         }
     }
