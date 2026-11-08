@@ -1,6 +1,13 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.0 [2026-11-08 Sun]
+*** Added
+- WhatsApp default palette: sets no colors at all, so it keeps WhatsApp's own
+  colors, follows its light/dark setting and tracks its updates. Compact mode,
+  blur and the other features still apply; the color override options and the chat
+  background opacity don't.
+
 ** 4.1.0 [2026-11-08 Sun]
 *** Added
 - Palettes: Nord, Catppuccin Mocha, Catppuccin Latte, Dracula, Gruvbox Dark, Tokyo

@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.1.0
+@version      4.2.0
 @license      MIT
 ==/UserStyle== */
 /*
@@ -471,7 +471,7 @@
     scrollbar-color: var(--ac-2) transparent !important;
   }
   [data-animate-modal-popup] {
-    border: 1px solid var(--bg-5);
+    border: 1px solid var(--WDS-lines-outline-deemphasized);
   }
   #side img:not(.emoji),
   #main header img,
@@ -524,11 +524,11 @@
     .three > :has(> #side) > * {
       width: 350px !important;
       max-width: none !important;
-      background-color: var(--bg-1) !important;
+      background-color: var(--WDS-surface-default) !important;
     }
     .two > :has(> #side) + div,
     .three > :has(> #side) + div {
-      border-inline-start: 1px solid var(--bg-4);
+      border-inline-start: 1px solid var(--WDS-lines-divider);
     }
     .two > :has(> #side)::after,
     .three > :has(> #side)::after {
@@ -540,7 +540,7 @@
       inset-inline-start: 351px;
       width: 1px;
       pointer-events: none;
-      background-color: var(--bg-4);
+      background-color: var(--WDS-lines-divider);
       box-shadow: 0 0 24px 6px rgba(0,0,0,0.4);
     }
     .two > :has(> #side) [data-testid='drawer-title-body'],
@@ -596,7 +596,7 @@
       padding: 0 4px;
       font-size: 11px;
       border-radius: 9px;
-      color: var(--fg-3) !important;
+      color: var(--WDS-content-deemphasized) !important;
       background-color: var(--WDS-components-badge-muted) !important;
     }
     .two > :has(> #side):hover,

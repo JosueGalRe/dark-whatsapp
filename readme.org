@@ -16,6 +16,8 @@ Maintained fork of [[https://github.com/vednoc/dark-whatsapp][vednoc/dark-whatsa
 - Complete recolor through WhatsApp's own =--WDS-*= tokens, popovers included
 - Palettes: Nord, Catppuccin Mocha and Latte, Dracula, Gruvbox Dark, Tokyo Night,
   Rosé Pine, plus the original dark blue and dark gray
+- WhatsApp default — keeps WhatsApp's own colors and light/dark setting, with every
+  other feature on top
 - Customizable base colors — light/dark color-schemes are supported
 - Private mode — blurring contacts and/or chat media until you hover over them
 - Compact mode — the chat list collapses to a rail of avatars with unread badges

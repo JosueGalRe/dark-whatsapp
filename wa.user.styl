@@ -6,12 +6,13 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.1.0
+@version      4.2.0
 @license      MIT
 @preprocessor stylus
 
 @var select   theme      'Base color-scheme toggle' {
     'Custom colors   *': 'custom',
+    'WhatsApp default ': 'native',
     'Dark blue (old)  ': 'old',
     'Dark gray (new)  ': 'new',
     'Nord             ': 'nord',
@@ -154,7 +155,8 @@ rad() { border-radius: arguments }
 vendors = official
 
 /// Feat -> Base color-scheme toggle. #32
-if (theme == 'custom') {
+/// `native` sets no colors, but the generator below still needs these.
+if (theme == 'custom' || theme == 'native') {
     BG       = _bg
     FG       = _fg
     AC       = _ac
@@ -474,16 +476,18 @@ mix_base(amount) {
         --chat-bg-p:  chat_bg_p
         --chat-bg-r:  chat_bg_r
 
-        /// Startup splash. WA sets these inline on <html>, so only !important beats them.
-        --splashscreen-startup-background-plain: bg-0 i
-        --splashscreen-startup-background: bg-0 i
-        --splashscreen-startup-background-rgb: to_rgb(bg-0) i
-        --splashscreen-startup-content-deemphasized: fg-3 i
-        --splashscreen-startup-icon: fg-5 i
-        --splashscreen-primary-title: fg-1 i
-        --splashscreen-secondary-lighter: fg-3 i
-        --splashscreen-progress-primary: ac-0 i
-        --splashscreen-progress-background: bg-3 i
+        if (theme != 'native') {
+            /// Startup splash. WA sets these inline on <html>, so only !important beats them.
+            --splashscreen-startup-background-plain: bg-0 i
+            --splashscreen-startup-background: bg-0 i
+            --splashscreen-startup-background-rgb: to_rgb(bg-0) i
+            --splashscreen-startup-content-deemphasized: fg-3 i
+            --splashscreen-startup-icon: fg-5 i
+            --splashscreen-primary-title: fg-1 i
+            --splashscreen-secondary-lighter: fg-3 i
+            --splashscreen-progress-primary: ac-0 i
+            --splashscreen-progress-background: bg-3 i
+        }
 
         /// Override incoming message bubble colors.
         in_tone = dark(BG) ? 'bg-4' : 'bg-2'
@@ -521,162 +525,164 @@ mix_base(amount) {
         --msg-ack:     (ow_ack) ? _ack         : var(--b5-0)
         --msg-ack-rgb: (ow_ack) ? to_rgb(_ack) : var(--b5-0-rgb)
 
-        /// WA design tokens. Every current surface resolves through these; the
-        /// `.x…` theme classes on <html> set them, `:not(#z)` outranks those.
-        wds('background-wash-plain', 'bg-0')
-        wds('background-wash-inset', 'bg-0')
-        wds('background-elevated-wash-plain', 'bg-2')
-        wds('background-elevated-wash-inset', 'bg-2')
-        wds('surface-default', 'bg-1')
-        wds('surface-emphasized', 'bg-2')
-        wds('surface-elevated-default', 'bg-2')
-        wds('surface-elevated-emphasized', 'bg-3')
-        wds('surface-inverse', 'fg-1')
-        wds('content-default', 'fg-1')
-        wds('content-deemphasized', 'fg-dim')
-        wds('content-disabled', 'fg-5')
-        wds('content-inverse', 'bg-1')
-        wds('content-on-accent', 'on-ac')
-        wds('content-action-default', 'fg-1')
-        wds('lines-divider', 'bg-4')
-        wds('lines-outline-deemphasized', 'bg-5')
-        wds('lines-outline-default', 'fg-5')
-        wds('persistent-activity-indicator', 'ac-0')
-        wds('persistent-always-branded', 'ac-0')
-        wds('persistent-verified', 'b6-0')
-        wds('secondary-negative', 'b1-0')
-        wds('secondary-negative-deemphasized', 'b1-5')
-        wds('secondary-negative-emphasized', 'b1-1')
-        wds('secondary-positive', 'b4-0')
-        wds('secondary-positive-deemphasized', 'b4-5')
-        wds('secondary-warning', 'b3-0')
-        wds('secondary-warning-deemphasized', 'b3-5')
-        wds('components-filter-surface-selected', 'ac-4')
-        wds('components-surface-nav-bar', 'bg-0')
-        wds('systems-bubble-surface-system', 'msg-sys')
-        wds('systems-bubble-surface-business', 'bg-2')
-        wds('systems-bubble-surface-e2e', 'bg-2')
-        wds('systems-bubble-content-business', 'b5-0')
-        wds('systems-bubble-content-e2e', 'b3-0')
-        wds('systems-chat-surface-composer', dark(BG) ? 'bg-3' : 'bg-2')
-        wds('systems-chat-surface-tray', 'bg-1')
-        wds('systems-status-seen', 'fg-5')
+        if (theme != 'native') {
+            /// WA design tokens. Every current surface resolves through these; the
+            /// `.x…` theme classes on <html> set them, `:not(#z)` outranks those.
+            wds('background-wash-plain', 'bg-0')
+            wds('background-wash-inset', 'bg-0')
+            wds('background-elevated-wash-plain', 'bg-2')
+            wds('background-elevated-wash-inset', 'bg-2')
+            wds('surface-default', 'bg-1')
+            wds('surface-emphasized', 'bg-2')
+            wds('surface-elevated-default', 'bg-2')
+            wds('surface-elevated-emphasized', 'bg-3')
+            wds('surface-inverse', 'fg-1')
+            wds('content-default', 'fg-1')
+            wds('content-deemphasized', 'fg-dim')
+            wds('content-disabled', 'fg-5')
+            wds('content-inverse', 'bg-1')
+            wds('content-on-accent', 'on-ac')
+            wds('content-action-default', 'fg-1')
+            wds('lines-divider', 'bg-4')
+            wds('lines-outline-deemphasized', 'bg-5')
+            wds('lines-outline-default', 'fg-5')
+            wds('persistent-activity-indicator', 'ac-0')
+            wds('persistent-always-branded', 'ac-0')
+            wds('persistent-verified', 'b6-0')
+            wds('secondary-negative', 'b1-0')
+            wds('secondary-negative-deemphasized', 'b1-5')
+            wds('secondary-negative-emphasized', 'b1-1')
+            wds('secondary-positive', 'b4-0')
+            wds('secondary-positive-deemphasized', 'b4-5')
+            wds('secondary-warning', 'b3-0')
+            wds('secondary-warning-deemphasized', 'b3-5')
+            wds('components-filter-surface-selected', 'ac-4')
+            wds('components-surface-nav-bar', 'bg-0')
+            wds('systems-bubble-surface-system', 'msg-sys')
+            wds('systems-bubble-surface-business', 'bg-2')
+            wds('systems-bubble-surface-e2e', 'bg-2')
+            wds('systems-bubble-content-business', 'b5-0')
+            wds('systems-bubble-content-e2e', 'b3-0')
+            wds('systems-chat-surface-composer', dark(BG) ? 'bg-3' : 'bg-2')
+            wds('systems-chat-surface-tray', 'bg-1')
+            wds('systems-status-seen', 'fg-5')
 
-        /// Tokens WA also re-declares further down, see `#main:not(#z)`.
-        chat_tokens()
+            /// Tokens WA also re-declares further down, see `#main:not(#z)`.
+            chat_tokens()
 
-        /// Translucent tokens: state washes that have to sit on any surface.
-        wdsa('surface-highlight', 'fg-1', 0.08)
-        wdsa('surface-pressed', 'fg-1', 0.14)
-        wdsa('components-active-list-row', 'ac-0', 0.18)
-        wdsa('components-badge-muted', 'fg-1', 0.1)
-        wdsa('components-badge-muted-dot', 'fg-1', 0.1)
-        wdsa('components-outline-profile-photo', 'fg-1', 0.08)
-        wdsa('background-dimmer', 'bg-0', 0.6)
+            /// Translucent tokens: state washes that have to sit on any surface.
+            wdsa('surface-highlight', 'fg-1', 0.08)
+            wdsa('surface-pressed', 'fg-1', 0.14)
+            wdsa('components-active-list-row', 'ac-0', 0.18)
+            wdsa('components-badge-muted', 'fg-1', 0.1)
+            wdsa('components-badge-muted-dot', 'fg-1', 0.1)
+            wdsa('components-outline-profile-photo', 'fg-1', 0.08)
+            wdsa('background-dimmer', 'bg-0', 0.6)
 
-        /// Placeholder avatars: palette tone on its own dark mix.
-        wds('components-profile-photo-surface-brown', 'b2-4')
-        wds('components-profile-photo-content-brown', 'b2-0')
-        wds('components-profile-photo-surface-cobalt', 'b6-4')
-        wds('components-profile-photo-content-cobalt', 'b6-0')
-        wds('components-profile-photo-surface-gray', 'bg-4')
-        wds('components-profile-photo-content-gray', 'fg-3')
-        wds('components-profile-photo-surface-green', 'b4-4')
-        wds('components-profile-photo-content-green', 'b4-0')
-        wds('components-profile-photo-surface-orange', 'b2-4')
-        wds('components-profile-photo-content-orange', 'b2-0')
-        wds('components-profile-photo-surface-pink', 'b7-4')
-        wds('components-profile-photo-content-pink', 'b7-0')
-        wds('components-profile-photo-surface-purple', 'b8-4')
-        wds('components-profile-photo-content-purple', 'b8-0')
-        wds('components-profile-photo-surface-red', 'b1-4')
-        wds('components-profile-photo-content-red', 'b1-0')
-        wds('components-profile-photo-surface-sky-blue', 'b5-4')
-        wds('components-profile-photo-content-sky-blue', 'b5-0')
-        wds('components-profile-photo-surface-teal', 'b5-4')
-        wds('components-profile-photo-content-teal', 'b5-0')
-        wds('components-profile-photo-surface-yellow', 'b3-4')
-        wds('components-profile-photo-content-yellow', 'b3-0')
+            /// Placeholder avatars: palette tone on its own dark mix.
+            wds('components-profile-photo-surface-brown', 'b2-4')
+            wds('components-profile-photo-content-brown', 'b2-0')
+            wds('components-profile-photo-surface-cobalt', 'b6-4')
+            wds('components-profile-photo-content-cobalt', 'b6-0')
+            wds('components-profile-photo-surface-gray', 'bg-4')
+            wds('components-profile-photo-content-gray', 'fg-3')
+            wds('components-profile-photo-surface-green', 'b4-4')
+            wds('components-profile-photo-content-green', 'b4-0')
+            wds('components-profile-photo-surface-orange', 'b2-4')
+            wds('components-profile-photo-content-orange', 'b2-0')
+            wds('components-profile-photo-surface-pink', 'b7-4')
+            wds('components-profile-photo-content-pink', 'b7-0')
+            wds('components-profile-photo-surface-purple', 'b8-4')
+            wds('components-profile-photo-content-purple', 'b8-0')
+            wds('components-profile-photo-surface-red', 'b1-4')
+            wds('components-profile-photo-content-red', 'b1-0')
+            wds('components-profile-photo-surface-sky-blue', 'b5-4')
+            wds('components-profile-photo-content-sky-blue', 'b5-0')
+            wds('components-profile-photo-surface-teal', 'b5-4')
+            wds('components-profile-photo-content-teal', 'b5-0')
+            wds('components-profile-photo-surface-yellow', 'b3-4')
+            wds('components-profile-photo-content-yellow', 'b3-0')
 
-        /// Legacy WA variables still referenced by current CSS.
-        --gray-30: var(--bg-5)
-        --gray-700: var(--fg-4)
-        --teal-rgb: var(--ac-0-rgb)
-        --green-deep: var(--ac-2)
-        --green-deep-rgb: var(--ac-2-rgb)
-        --app-background-stripe: var(--bg-1)
-        --app-background-deeper: var(--bg-0)
-        --attach-media-drop-border: var(--fg-3)
-        --attach-media-drop-overlay: var(--bg-2)
-        --audio-progress-incoming: var(--b4-0)
-        --audio-progress-outgoing: var(--ac-2)
-        --audio-progress-played-incoming: var(--b6-0)
-        --audio-progress-played-outgoing: var(--b6-0)
-        --audio-track-incoming: var(--fg-4)
-        --audio-track-outgoing: var(--fg-4)
-        --avatar-background: var(--bg-1)
-        --avatar-border: var(--bg-3)
-        --background-default-rgb: var(--bg-2-rgb)
-        --background-default-hover-rgb: var(--bg-3-rgb)
-        --button-bubble: var(--ac-0)
-        --chevron-button-background: var(--bg-3)
-        --compose-panel-background-hover: var(--bg-4)
-        --danger-rgb: var(--b1-0-rgb)
-        --dropdown-background: var(--bg-2)
-        --empty-state-background: var(--bg-3)
-        --empty-state-icon: var(--fg-4)
-        --icon-disabled: var(--fg-5)
-        --icon-strong-rgb: var(--fg-1-rgb)
-        --intro-secondary: var(--fg-3)
-        --inverse-rgb: var(--fg-0-rgb)
-        --labels-icon: #f1f1f266
-        --link-rgb: var(--ac-0-rgb)
-        --media-editor-control-rgb: 28,49,63
-        --message-placeholder-icon: var(--fg-3)
-        --message-primary-rgb: var(--fg-1-rgb)
-        --message-selection-highlight: to_rgba('ac-0', 0.1)
-        --modal-backdrop-solid: var(--bg-0)
-        --notification-biz-background: var(--b5-5)
-        --notification-biz-text: var(--b5-0)
-        --overlay: var(--bg-0)
-        --overlay-rgb: var(--bg-0-rgb)
-        --panel-background: var(--bg-3)
-        --panel-background-rgb: var(--bg-3-rgb)
-        --panel-background-deep: var(--bg-2)
-        --panel-input-background: var(--bg-2)
-        --payment-status-failed: #ef697a
-        --payment-status-success: #40cf6c
-        --picker-background: var(--bg-2)
-        --primary-rgb: var(--fg-2-rgb)
-        --primary-strong-rgb: var(--fg-1-rgb)
-        --primary-stronger-rgb: var(--fg-0-rgb)
-        --product-image-button-background: var(--bg-4)
-        --product-thumb-background: var(--bg-3)
-        --product-thumb-background-deeper: var(--bg-2)
-        --progress-background: var(--bg-2)
-        --ptt-blue: var(--b6-0)
-        --ptt-gray: var(--fg-4)
-        --ptt-green: var(--b4-0)
-        --search-input-background: var(--bg-3)
-        --secondary-rgb: var(--fg-3-rgb)
-        --shadow-rgb: var(--sh-rgb)
-        --spinner-incoming: var(--fg-5)
-        --spinner-outgoing: var(--ac-5)
-        --startup-icon: var(--fg-3)
-        --status-background-rgb: var(--bg-1-rgb)
-        --status-primary-rgb: var(--fg-1-rgb)
-        --status-secondary: var(--fg-4)
-        --suspicious-background: #ef697acc
-        --text-muted: var(--fg-4)
-        --thumb-border-viewer-active-rgb: var(--fg-3-rgb)
-        --toast-background: to_rgba('bg-3', 0.96)
-        --tooltip-background: to_rgba('bg-4', 0.85)
-        --video-player-background: #000
-        --video-primary: #fff
-        --video-primary-rgb: 255,255,255
-        --voip-primary-rgb: 255,255,255
-        --reactions-tray-active-round-background: var(--bg-5)
-        --text-primary-strong: var(--fg-1)
+            /// Legacy WA variables still referenced by current CSS.
+            --gray-30: var(--bg-5)
+            --gray-700: var(--fg-4)
+            --teal-rgb: var(--ac-0-rgb)
+            --green-deep: var(--ac-2)
+            --green-deep-rgb: var(--ac-2-rgb)
+            --app-background-stripe: var(--bg-1)
+            --app-background-deeper: var(--bg-0)
+            --attach-media-drop-border: var(--fg-3)
+            --attach-media-drop-overlay: var(--bg-2)
+            --audio-progress-incoming: var(--b4-0)
+            --audio-progress-outgoing: var(--ac-2)
+            --audio-progress-played-incoming: var(--b6-0)
+            --audio-progress-played-outgoing: var(--b6-0)
+            --audio-track-incoming: var(--fg-4)
+            --audio-track-outgoing: var(--fg-4)
+            --avatar-background: var(--bg-1)
+            --avatar-border: var(--bg-3)
+            --background-default-rgb: var(--bg-2-rgb)
+            --background-default-hover-rgb: var(--bg-3-rgb)
+            --button-bubble: var(--ac-0)
+            --chevron-button-background: var(--bg-3)
+            --compose-panel-background-hover: var(--bg-4)
+            --danger-rgb: var(--b1-0-rgb)
+            --dropdown-background: var(--bg-2)
+            --empty-state-background: var(--bg-3)
+            --empty-state-icon: var(--fg-4)
+            --icon-disabled: var(--fg-5)
+            --icon-strong-rgb: var(--fg-1-rgb)
+            --intro-secondary: var(--fg-3)
+            --inverse-rgb: var(--fg-0-rgb)
+            --labels-icon: #f1f1f266
+            --link-rgb: var(--ac-0-rgb)
+            --media-editor-control-rgb: 28,49,63
+            --message-placeholder-icon: var(--fg-3)
+            --message-primary-rgb: var(--fg-1-rgb)
+            --message-selection-highlight: to_rgba('ac-0', 0.1)
+            --modal-backdrop-solid: var(--bg-0)
+            --notification-biz-background: var(--b5-5)
+            --notification-biz-text: var(--b5-0)
+            --overlay: var(--bg-0)
+            --overlay-rgb: var(--bg-0-rgb)
+            --panel-background: var(--bg-3)
+            --panel-background-rgb: var(--bg-3-rgb)
+            --panel-background-deep: var(--bg-2)
+            --panel-input-background: var(--bg-2)
+            --payment-status-failed: #ef697a
+            --payment-status-success: #40cf6c
+            --picker-background: var(--bg-2)
+            --primary-rgb: var(--fg-2-rgb)
+            --primary-strong-rgb: var(--fg-1-rgb)
+            --primary-stronger-rgb: var(--fg-0-rgb)
+            --product-image-button-background: var(--bg-4)
+            --product-thumb-background: var(--bg-3)
+            --product-thumb-background-deeper: var(--bg-2)
+            --progress-background: var(--bg-2)
+            --ptt-blue: var(--b6-0)
+            --ptt-gray: var(--fg-4)
+            --ptt-green: var(--b4-0)
+            --search-input-background: var(--bg-3)
+            --secondary-rgb: var(--fg-3-rgb)
+            --shadow-rgb: var(--sh-rgb)
+            --spinner-incoming: var(--fg-5)
+            --spinner-outgoing: var(--ac-5)
+            --startup-icon: var(--fg-3)
+            --status-background-rgb: var(--bg-1-rgb)
+            --status-primary-rgb: var(--fg-1-rgb)
+            --status-secondary: var(--fg-4)
+            --suspicious-background: #ef697acc
+            --text-muted: var(--fg-4)
+            --thumb-border-viewer-active-rgb: var(--fg-3-rgb)
+            --toast-background: to_rgba('bg-3', 0.96)
+            --tooltip-background: to_rgba('bg-4', 0.85)
+            --video-player-background: #000
+            --video-primary: #fff
+            --video-primary-rgb: 255,255,255
+            --voip-primary-rgb: 255,255,255
+            --reactions-tray-active-round-background: var(--bg-5)
+            --text-primary-strong: var(--fg-1)
+        }
 
         /// Generate DWA color variables.
         for _v in (bg fg ac b1 b2 b3 b4 b5 b6 b7 b8) {
@@ -704,13 +710,17 @@ mix_base(amount) {
     // Chat themes outrank :root in their subtree, so the theme has to be set there too.
     /// `.xoeyzqq` marks every such scope, popovers included. It's a build hash: if it
     /// changes, popovers go back to WA's accent, #main still holds.
-    #main:not(#z), .xoeyzqq:not(#z) {
-        chat_tokens()
+    if (theme != 'native') {
+        #main:not(#z), .xoeyzqq:not(#z) {
+            chat_tokens()
+        }
     }
 
     // Global styles.
     html > body {
-        c: fg0 0 bg0
+        if (theme != 'native') {
+            c: fg0 0 bg0
+        }
 
         /// Feat -> Custom font. Leave WA's own typeface alone unless one is set.
         if (ui_font != 'font_name') {
@@ -719,10 +729,12 @@ mix_base(amount) {
     }
 
     // Scrollbars.
-    * { scrollbar-color: ac2 t i }
+    if (theme != 'native') {
+        * { scrollbar-color: ac2 t i }
+    }
 
     // Modals. Elevated surfaces are close in tone to the dimmed app behind them.
-    [data-animate-modal-popup] { border: 1px solid bg5 }
+    [data-animate-modal-popup] { border: 1px solid var(--WDS-lines-outline-deemphasized) }
 
     // Feat -> Rounded corners for avatars, hide profile pictures.
     /// Group avatars can also be an SVG <image>, which border-radius can't reach.
@@ -760,7 +772,9 @@ mix_base(amount) {
     // Chat.
     /// Feat -> Chat background. The doodle is a mask over the foreground token.
     [data-testid^='conversation-background-'] {
-        opacity: 1 i
+        if (theme != 'native') {
+            opacity: 1 i
+        }
         if (!chat_bg) { display: none i }
         if (chat_image != none) {
             mask-image: none i
@@ -840,11 +854,11 @@ mix_base(amount) {
                 > * {
                     width: 350px i
                     max-width: none i
-                    c: 0 0 bg1
+                    c: 0 0 var(--WDS-surface-default)
                 }
 
                 /// The chat starts here now, not at WA's native split.
-                + div { border-inline-start: 1px solid bg4 }
+                + div { border-inline-start: 1px solid var(--WDS-lines-divider) }
 
                 /// Edge of the open list, past the rail so collapsing clips it away.
                 /// Behind the list, or its z-indexed parts cut it and the shadow into strips.
@@ -857,7 +871,7 @@ mix_base(amount) {
                     inset-inline-start: 351px
                     width: 1px
                     pointer-events: none
-                    background-color: bg4
+                    background-color: var(--WDS-lines-divider)
                     box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.4)
                 }
 
@@ -917,7 +931,7 @@ mix_base(amount) {
                     padding: 0 4px
                     font-size: 11px
                     rad: 9px
-                    c: fg3 0 var(--WDS-components-badge-muted)
+                    c: var(--WDS-content-deemphasized) 0 var(--WDS-components-badge-muted)
                 }
 
                 &:hover, &:focus-within {
