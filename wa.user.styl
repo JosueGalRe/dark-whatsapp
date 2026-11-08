@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.6
+@version      4.2.7
 @license      MIT
 @preprocessor stylus
 
@@ -475,6 +475,7 @@ mix_base(amount) {
         --c-m-hover: compact_hi
         --c-m-delay: compact_ho
         --c-m-open: unquote('inset(0 -290px 0 0)')
+        --c-m-drawer: unquote('inset(0 100% 0 0)')
         --c-m-row: unquote('inset(0 calc(100% - 74px) 0 0 round 12px)')
         --c-m-search: unquote('inset(2px calc(100% - 46px) 2px 6px round 20px)')
         --c-m-new: -263px
@@ -905,6 +906,7 @@ mix_base(amount) {
             /// `.dark` too: the variables are also set on <body>, which would shadow these.
             html[dir='rtl']:not(#z), html[dir='rtl'] .dark:not(#z) {
                 --c-m-open: unquote('inset(0 0 0 -290px)')
+                --c-m-drawer: unquote('inset(0 0 0 100%)')
                 --c-m-row: unquote('inset(0 0 0 calc(100% - 74px) round 12px)')
                 --c-m-search: unquote('inset(2px 6px 2px calc(100% - 46px) round 20px)')
                 --c-m-new: 263px
@@ -1053,6 +1055,41 @@ mix_base(amount) {
                 width: calc(100% - var(--navbar-width)) i
             }
 
+            /// One column for Calls, Status and the like: WA's 45% and the rest crush both of
+            /// them here. The list covers the empty state beside it, which adds nothing.
+            [data-testid='drawer-left']:has(> * > * > *) {
+                position: absolute
+                top: 0
+                bottom: 0
+                width: calc(100% - var(--navbar-width))
+                max-width: none i
+                clip-path: inset(-40px)
+                transition: width 0.2s ease, clip-path 0.2s ease var(--c-m-delay)
+                c: 0 0 var(--WDS-surface-default)
+            }
+
+            /// Its margin is what clears the navigation, so this one needs its own now.
+            [data-testid='drawer-left']:has(> * > * > *) + [data-testid='drawer-middle'] {
+                margin-inline-start: var(--navbar-width)
+            }
+
+            /// With something open, it floats over that from the navigation like the chat
+            /// list does, leaving room for the pointer to leave. Mouse focus stays behind on
+            /// the clicked row, so only :focus-visible holds it open.
+            [data-testid='drawer-left']:has(> * > * > *):not(:has(+ [data-testid='drawer-middle'] :is([data-testid='empty-state-drawer'], [data-testid='intro-panel']))) {
+                width: unquote('min(100% - var(--navbar-width), max(288px, 100% - var(--navbar-width) - 48px))')
+                clip-path: var(--c-m-drawer)
+                border-inline-end: 1px solid var(--WDS-lines-divider)
+                box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.4)
+            }
+            .two > header:hover ~ * > [data-testid='drawer-left'],
+            .three > header:hover ~ * > [data-testid='drawer-left'],
+            [data-testid='drawer-left']:hover,
+            [data-testid='drawer-left']:has(:focus-visible) {
+                clip-path: inset(-40px) i
+                transition-delay: var(--c-m-hover) i
+            }
+
             /// Only with the left drawer empty: Calls, New chat and the like render there,
             /// with the chat list left behind them.
             .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side),
@@ -1114,7 +1151,8 @@ mix_base(amount) {
             .two > :has(> #side) *,
             .three > :has(> #side),
             .three > :has(> #side) *,
-            .three > [data-testid='drawer-right'] { transition: none i }
+            .three > [data-testid='drawer-right'],
+            [data-testid='drawer-left'] { transition: none i }
         }
     }
 }

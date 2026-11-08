@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.6
+@version      4.2.7
 @license      MIT
 ==/UserStyle== */
 /*
@@ -21,6 +21,7 @@
     --c-m-hover: 0.1s;
     --c-m-delay: 0.25s;
     --c-m-open: inset(0 -290px 0 0);
+    --c-m-drawer: inset(0 100% 0 0);
     --c-m-row: inset(0 calc(100% - 74px) 0 0 round 12px);
     --c-m-search: inset(2px calc(100% - 46px) 2px 6px round 20px);
     --c-m-new: -263px;
@@ -539,6 +540,7 @@
     html[dir='rtl']:not(#z),
     html[dir='rtl'] .dark:not(#z) {
       --c-m-open: inset(0 0 0 -290px);
+      --c-m-drawer: inset(0 0 0 100%);
       --c-m-row: inset(0 0 0 calc(100% - 74px) round 12px);
       --c-m-search: inset(2px 6px 2px calc(100% - 46px) round 20px);
       --c-m-new: 263px;
@@ -708,6 +710,33 @@
     .three > [data-testid='drawer-right'] {
       width: calc(100% - var(--navbar-width)) !important;
     }
+    [data-testid='drawer-left']:has(> * > * > *) {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: calc(100% - var(--navbar-width));
+      max-width: none !important;
+      clip-path: inset(-40px);
+      transition: width 0.2s ease, clip-path 0.2s ease var(--c-m-delay);
+      background-color: var(--WDS-surface-default) !important;
+    }
+    [data-testid='drawer-left']:has(> * > * > *) + [data-testid='drawer-middle'] {
+      margin-inline-start: var(--navbar-width);
+    }
+    [data-testid='drawer-left']:has(> * > * > *):not(:has(+ [data-testid='drawer-middle'] :is([data-testid='empty-state-drawer'],
+    [data-testid='intro-panel']))) {
+      width: min(100% - var(--navbar-width), max(288px, 100% - var(--navbar-width) - 48px));
+      clip-path: var(--c-m-drawer);
+      border-inline-end: 1px solid var(--WDS-lines-divider);
+      box-shadow: 0 0 24px 6px rgba(0,0,0,0.4);
+    }
+    .two > header:hover ~ * > [data-testid='drawer-left'],
+    .three > header:hover ~ * > [data-testid='drawer-left'],
+    [data-testid='drawer-left']:hover,
+    [data-testid='drawer-left']:has(:focus-visible) {
+      clip-path: inset(-40px) !important;
+      transition-delay: var(--c-m-hover) !important;
+    }
     .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side),
     .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) {
       clip-path: var(--c-m-open);
@@ -782,7 +811,8 @@
     .two > :has(> #side) *,
     .three > :has(> #side),
     .three > :has(> #side) *,
-    .three > [data-testid='drawer-right'] {
+    .three > [data-testid='drawer-right'],
+    [data-testid='drawer-left'] {
       transition: none !important;
     }
 }

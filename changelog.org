@@ -1,6 +1,14 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.7 [2026-11-08 Sun]
+*** Fixed
+- Below 601px Calls, Status, Channels, Communities and your profile split into two
+  columns too narrow to read, with rows and headings broken letter by letter. They
+  now use one: the section's list takes the whole column until something is open,
+  then floats over it from the navigation like the chat list does.
+- New chat and the other left drawers get the same floating width there
+
 ** 4.2.6 [2026-11-08 Sun]
 *** Fixed
 - The right panel (contact and group info, message search and the like) got crushed
