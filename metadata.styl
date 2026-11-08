@@ -1,11 +1,11 @@
 /*! ==UserStyle==
 @name         Dark-WhatsApp Custom
 @description  Custom-compiled version of Dark-WhatsApp.
-@namespace    github.com/vednoc/dark-whatsapp
-@homepageURL  https://github.com/vednoc/dark-whatsapp
-@supportURL   https://github.com/vednoc/dark-whatsapp/issues
+@namespace    github.com/JosueGalRe/dark-whatsapp
+@homepageURL  https://github.com/JosueGalRe/dark-whatsapp
+@supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      3.7.0
+@version      4.0.0
 @license      MIT
 ==/UserStyle== */
 
@@ -40,22 +40,19 @@ _sc_a = 0%
 ui_font = 'font_name'
 
 // App width.
-app_width = 1396px
-
-// Fullscreen mode.
-fullscreen = 0
+app_width = 100%
 
 // Compact mode.
 compact = 1
 
 // Compact mode breakpoint.
-compact_mw = 720px
+compact_mw = 900px
 
 // Compact mode hover-on delay.
-compact_hi = 0.6s
+compact_hi = 0.2s
 
 // Compact mode hover-off delay.
-compact_ho = 1.2s
+compact_ho = 0.6s
 
 // Notification alerts.
 /// Options: show          --- Show all notifications
@@ -63,79 +60,17 @@ compact_ho = 1.2s
 ///          notifications --- Hide only notifications
 app_alerts = 'show'
 
-// Consistent drawer headers.
-app_header = 1
-
-// Rounded corners for various menus.
-radius_m = 4px
-
-// Rounded corners for input bar.
-radius_i = 24px
-
 // Rounded corners for avatars.
 /// Options: 0--50%, step by 1, 50% default value
 radius_a = 50%
 
-// App background.
-/// Options: 'bg-high' --- Theme image with 12px blur
-///          'bg-low'  --- Theme image with 6px blur
-///          'bg-none' --- Theme image without blur
-///          'custom'  --- Custom background image
-///          'default' --- Default stripe background
-///          'none'    --- No background image
-app_image = 'bg-high'
-
-// Custom app background image.
-image_url = url('https://images.unsplash.com/photo-1434569117012-ce134ee1a088?fit=crop&w=1280&h=720&q=80')
-
-// App background image opacity.
-/// Options: 0--1, step by 0.1, 0.4 default value
-bg_opacity = 0.4
-
-// App background image blur.
-/// Options: 0--50px, step by 1, 0px default value
-bg_blur = 0px
-
-// App background image hue.
-/// Options: 0--360deg, step by 1, 320deg default value
-bg_hue = 320deg
-
-// App background image inverted colors.
-/// Options: 0--1, step by 0.1, 0 default value
-bg_invert = 0
-
-// App background image size.
-bg_size = cover
-
-// App background image position.
-bg_pos = center
-
-// App background image repetition.
-bg_rep = no-repeat
-
 // Message tails.
-/// Options: 'default', 'minimal', 'rounded', 'fb-like'
+/// Options: 'default', 'minimal', 'rounded'
 tail_style = 'default'
-
-// Collapse messages when `fb-like` tail style is enabled.
-fb_compact = 1
 
 // Emoji non-hover opacity.
 /// Options: 0--1, step by 0.1, 0.8 default value
 emoji_o = 0.8
-
-// Reduce big emoji size.
-/// Options: 'default', 'medium', 'normal', 'small'
-emoji_b = 'default'
-
-// Animated emojis.
-emoji_a = 1
-
-// Emojis with kiss animation.
-emoji_k = '💋'
-
-// Emojis with pulse animation.
-emoji_p = '🤩' '😍' '☺️' '❣️' '♥️' '❤️'
 
 // Override seen message icon color.
 ow_ack = 0
@@ -155,29 +90,20 @@ ow_imsg = 0
 // Incoming message bubble color.
 _imsg = #16191e
 
-// Swap side for incoming message bubble.
-bubble_in = 0
-
 // Override outgoing message bubble color.
 ow_omsg = 0
 
 // Outgoing message bubble color.
 _omsg = #3b4250
 
-// Swap side for incoming message bubble.
-bubble_out = 0
-
-// Remove empty message headers for RTL messages.
-rtl_header = 1
-
-// Fix formatting for RTL messages.
-rtl_format = 1
-
 // Hide profile pictures.
 chat_h_p_p = 0
 
 // Blur contacts drawer.
 chat_b_c = 0
+
+// Blur contacts intensity.
+chat_b_c_i = 6px
 
 // Blur chat images/videos and other media.
 chat_b_img = 0
@@ -191,12 +117,12 @@ chat_b_out = 0.2s
 // Chat background image.
 chat_bg = 1
 
-// Custom chat background image.
-chat_image = url('https://web.whatsapp.com/img/bg-chat-tile_9e8a2898faedb7db9bf5638405cf81ae.png')
+// Custom chat background image: url(data:...) or *.whatsapp.net, CSP blocks other hosts.
+chat_image = none
 
 // Chat background image opacity.
-/// Options: 0--1, step by 0.01, 0.15 default value
-chat_bg_o = 0.15
+/// Options: 0--1, step by 0.01, 0.05 default value
+chat_bg_o = 0.05
 
 // Chat background image inverted colors.
 /// Options: 0--1, step by 0.01, 0.6 default value

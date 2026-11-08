@@ -1,12 +1,12 @@
 /* ==UserStyle==
 @name         Dark-WhatsApp
 @description  Dark and light, very customizable theme for WhatsApp.
-@namespace    github.com/vednoc/dark-whatsapp
-@homepageURL  https://github.com/vednoc/dark-whatsapp
-@supportURL   https://github.com/vednoc/dark-whatsapp/issues
-@updateURL    https://userstyles.world/api/style/4.user.css
+@namespace    github.com/JosueGalRe/dark-whatsapp
+@homepageURL  https://github.com/JosueGalRe/dark-whatsapp
+@supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
+@updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      3.7.2
+@version      4.0.0
 @license      MIT
 @preprocessor stylus
 
@@ -26,41 +26,20 @@
 @var range    _sc_a      'Adjust syntax color tones    ' [0,   0, 25,   1, '%']
 
 @var text     ui_font    'UI font' ''font_name''
-@var text     app_width  'App width' 1396px
-@var checkbox fullscreen 'Fullscreen mode' 0
+@var text     app_width  'App width' 100%
 
 @var checkbox compact    'Compact mode' 1
-@var text     compact_mw 'Compact mode breakpoint' 720px
-@var text     compact_hi 'Compact mode hover-on delay' 0.6s
-@var text     compact_ho 'Compact mode hover-off delay' 1.2s
+@var text     compact_mw 'Compact mode breakpoint' 900px
+@var text     compact_hi 'Compact mode hover-on delay' 0.2s
+@var text     compact_ho 'Compact mode hover-off delay' 0.6s
 
 @var select   app_alerts 'Alerts' {
     'Show all                   *': 'show          ',
     'Hide "Allow notifications"  ': 'notifications ',
     'Hide all                    ': 'hide          ',
 }
-@var checkbox app_header 'Consistent drawer headers' 1
 
-@var text     radius_m   'Rounded corners for menus' 4px
-@var text     radius_i   'Rounded corners for input area' 24px
 @var range    radius_a   'Rounded corners for avatars' [50, 0, 50, 1, '%']
-
-@var select   app_image  'App background' {
-    'Theme image with 12px blur   *': 'bg-high ',
-    'Theme image with 6px blur     ': 'bg-low  ',
-    'Theme image without blur      ': 'bg-none ',
-    'Custom background image       ': 'custom  ',
-    'Default background            ': 'default ',
-    'None                          ': 'none    ',
-}
-@var text     image_url  'App background image link' url('https://images.unsplash.com/photo-1434569117012-ce134ee1a088?fit=crop&w=1280&h=720&q=80')
-@var range    bg_opacity 'App background image opacity' [0.4, 0.0, 1, 0.01]
-@var range    bg_blur    'App background image blur size' [0, 0, 50, 1, 'px']
-@var range    bg_hue     'App background image hue' [320, 0, 360, 1, 'deg']
-@var range    bg_invert  'App background image invert colors' [0, 0.0, 1, 0.01]
-@var text     bg_size    'App background image size' cover
-@var text     bg_pos     'App background image position' center
-@var text     bg_rep     'App background image repeat' no-repeat
 
 @var select   tail_style 'Style for message bubble tails' {
     'Default  *': 'default ',
@@ -69,10 +48,6 @@
 }
 
 @var range    emoji_o    'Emoji opacity' [0.8, 0.0, 1, 0.01]
-@var range    emoji_b    'Reduce big emoji size' [48, 20, 48, 4, "px"]
-@var checkbox emoji_a    'Animate emojis' 1
-@var text     emoji_k    'Emojis with kiss animation' "'💋'"
-@var text     emoji_p    'Emojis with pulse animation' "'🤩' '😍' '☺️' '❣️' '♥️' '❤️'"
 
 @var checkbox ow_ack     'Override seen message icon color' 0
 @var color    _ack       'Seen message icon color' #ff6666
@@ -82,25 +57,24 @@
 
 @var checkbox ow_imsg    'Override incoming message bubble color' 0
 @var color    _imsg  'Incoming message bubble color' #16191e
-@var checkbox bubble_in  'Swap sides for incoming message bubbles' 0
 
 @var checkbox ow_omsg    'Override outgoing message bubble color' 0
 @var color    _omsg  'Outgoing message bubble color' #3b4250
-@var checkbox bubble_out 'Swap sides for outgoing message bubbles' 0
 
 @var checkbox chat_h_p_p 'Hide profile pictures' 0
 @var checkbox chat_b_c   'Blurred contacts' 0
+@var range    chat_b_c_i 'Blurred contacts intensity' [6, 2, 15, 1, 'px']
 @var checkbox chat_b_img 'Blurred media' 0
 @var text     chat_b_in  'Blurred media hover-on delay' 0.4s
 @var text     chat_b_out 'Blurred media hover-off delay' 0.2s
 
 @var checkbox chat_bg    'Chat background image' 1
-@var text     chat_image 'Chat background image link' url('https://web.whatsapp.com/img/bg-chat-tile_9e8a2898faedb7db9bf5638405cf81ae.png')
-@var range    chat_bg_o  'Chat background image opacity' [0.15, 0.0, 1, 0.01]
-@var range    chat_bg_iv 'Chat background image inverted colors' [0.6, 0.0, 1, 0.01]
-@var text     chat_bg_s  'Chat background image size' initial
-@var text     chat_bg_p  'Chat background image position' top left
-@var text     chat_bg_r  'Chat background image repeat' repeat
+@var text     chat_image 'Custom chat background: url(data:...) or *.whatsapp.net, CSP blocks other hosts' none
+@var range    chat_bg_o  'Chat background image opacity' [0.05, 0.0, 1, 0.01]
+@var range    chat_bg_iv 'Custom chat background inverted colors' [0.6, 0.0, 1, 0.01]
+@var text     chat_bg_s  'Custom chat background size' initial
+@var text     chat_bg_p  'Custom chat background position' top left
+@var text     chat_bg_r  'Custom chat background repeat' repeat
 
 @var color    _red       'Base red color              ' #f07178
 @var color    _orange    'Base orange color           ' #f78c6c
@@ -139,9 +113,31 @@ to_rgba(input, alpha) {
     unquote(s('rgba(var(--%s-rgb), %s)', unquote(input), alpha))
 }
 
-// SVG-friendly colors mixin.
-to_svg(input) {
-    s('\%23%s', unquote(substr(s('%s', input), 1, 6)))
+// WA design token mixins.
+/// WDS tokens come in pairs: `--WDS-x` and `--WDS-x-RGB`.
+wds(name, tone) {
+    --WDS-{name}: s('var(--%s)', unquote(tone))
+    --WDS-{name}-RGB: s('var(--%s-rgb)', unquote(tone))
+}
+wdsa(name, tone, alpha) {
+    --WDS-{name}: to_rgba(tone, alpha)
+    --WDS-{name}-RGB: s('var(--%s-rgb)', unquote(tone))
+}
+
+/// The tokens WA's chat themes set again on #main via a per-theme class.
+chat_tokens() {
+    wds('accent', 'ac-0')
+    wds('accent-deemphasized', 'ac-4')
+    wds('accent-emphasized', 'ac-em')
+    wds('content-action-emphasized', 'ac-tx')
+    wds('content-external-link', 'b5-0')
+    wds('content-read', 'msg-ack')
+    wds('systems-bubble-surface-incoming', 'msg-in-0')
+    wds('systems-bubble-surface-outgoing', 'msg-out-0')
+    wds('systems-bubble-content-deemphasized', 'fg-3')
+    wds('systems-chat-background-wallpaper', 'bg-1')
+    wdsa('systems-bubble-surface-overlay', 'bg-0', 0.25)
+    wdsa('systems-chat-foreground-wallpaper', 'fg-1', chat_bg_o)
 }
 
 // Rounded corners mixin.
@@ -191,6 +187,11 @@ SA = _sc_a
 IM = _imsg
 OM = _omsg
 
+// Tone base: dark palettes mix towards black, light ones towards the page.
+mix_base(amount) {
+    dark(BG) ? darken(BG, amount) : BG
+}
+
 // Color generator.
 /// NOTE: Scope the variables to avoid potential conflicts.
 /{
@@ -233,11 +234,11 @@ OM = _omsg
         },
         ac: {
             '0': mix(darken(BG,  0%), AC, 0%),
-            '1': mix(darken(BG, 40%), AC, a1),
-            '2': mix(darken(BG, 40%), AC, a2),
-            '3': mix(darken(BG, 40%), AC, a3),
-            '4': mix(darken(BG, 65%), AC, a4),
-            '5': mix(darken(BG, 50%), AC, a5),
+            '1': mix(mix_base(40%), AC, a1),
+            '2': mix(mix_base(40%), AC, a2),
+            '3': mix(mix_base(40%), AC, a3),
+            '4': mix(mix_base(65%), AC, a4),
+            '5': mix(mix_base(50%), AC, a5),
         },
         ig: {
             '0':        IM,
@@ -251,65 +252,65 @@ OM = _omsg
             '0': spin(_red,  0deg - 0%)
             '1': spin(_red, 15deg - s1)
             '2': spin(_red, 30deg - s2)
-            '3': mix(darken(BG, 20%), _red, s3)
-            '4': mix(darken(BG, 40%), _red, s4)
-            '5': mix(darken(BG, 40%), _red, s5)
+            '3': mix(mix_base(20%), _red, s3)
+            '4': mix(mix_base(40%), _red, s4)
+            '5': mix(mix_base(40%), _red, s5)
         },
         b2: {
             '0': spin(_orange,  0deg - 0%)
             '1': spin(_orange, 15deg - s1)
             '2': spin(_orange, 30deg - s2)
-            '3': mix(darken(BG, 20%), _orange, s3)
-            '4': mix(darken(BG, 40%), _orange, s4)
-            '5': mix(darken(BG, 40%), _orange, s5)
+            '3': mix(mix_base(20%), _orange, s3)
+            '4': mix(mix_base(40%), _orange, s4)
+            '5': mix(mix_base(40%), _orange, s5)
         },
         b3: {
             '0': spin(_yellow,  0deg - 0%)
             '1': spin(_yellow, 15deg - s1)
             '2': spin(_yellow, 30deg - s2)
-            '3': mix(darken(BG, 20%), _yellow, s3)
-            '4': mix(darken(BG, 40%), _yellow, s4)
-            '5': mix(darken(BG, 40%), _yellow, s5)
+            '3': mix(mix_base(20%), _yellow, s3)
+            '4': mix(mix_base(40%), _yellow, s4)
+            '5': mix(mix_base(40%), _yellow, s5)
         },
         b4: {
             '0': spin(_green,  0deg - 0%)
             '1': spin(_green, 15deg - s1)
             '2': spin(_green, 30deg - s2)
-            '3': mix(darken(BG, 20%), _green, s3)
-            '4': mix(darken(BG, 40%), _green, s4)
-            '5': mix(darken(BG, 40%), _green, s5)
+            '3': mix(mix_base(20%), _green, s3)
+            '4': mix(mix_base(40%), _green, s4)
+            '5': mix(mix_base(40%), _green, s5)
         },
         b5: {
             '0': spin(_cyan,  0deg - 0%)
             '1': spin(_cyan, 15deg - s1)
             '2': spin(_cyan, 30deg - s2)
-            '3': mix(darken(BG, 20%), _cyan, s3)
-            '4': mix(darken(BG, 40%), _cyan, s4)
-            '5': mix(darken(BG, 40%), _cyan, s5)
+            '3': mix(mix_base(20%), _cyan, s3)
+            '4': mix(mix_base(40%), _cyan, s4)
+            '5': mix(mix_base(40%), _cyan, s5)
         },
         b6: {
             '0': spin(_blue,  0deg - 0%)
             '1': spin(_blue, 15deg - s1)
             '2': spin(_blue, 30deg - s2)
-            '3': mix(darken(BG, 20%), _blue, s3)
-            '4': mix(darken(BG, 40%), _blue, s4)
-            '5': mix(darken(BG, 40%), _blue, s5)
+            '3': mix(mix_base(20%), _blue, s3)
+            '4': mix(mix_base(40%), _blue, s4)
+            '5': mix(mix_base(40%), _blue, s5)
         },
         b7: {
             '0': spin(_magenta,  0deg - 0%)
             '1': spin(_magenta, 15deg - s1)
             '2': spin(_magenta, 30deg - s2)
-            '3': mix(darken(BG, 20%), _magenta, s3)
-            '4': mix(darken(BG, 40%), _magenta, s4)
-            '5': mix(darken(BG, 40%), _magenta, s5)
+            '3': mix(mix_base(20%), _magenta, s3)
+            '4': mix(mix_base(40%), _magenta, s4)
+            '5': mix(mix_base(40%), _magenta, s5)
         },
         b8: {
             '0': spin(_violet,  0deg - 0%)
             '1': spin(_violet, 15deg - s1)
             '2': spin(_violet, 30deg - s2)
-            '3': mix(darken(BG, 20%), _violet, s3)
-            '4': mix(darken(BG, 40%), _violet, s4)
-            '5': mix(darken(BG, 40%), _violet, s5)
+            '3': mix(mix_base(20%), _violet, s3)
+            '4': mix(mix_base(40%), _violet, s4)
+            '5': mix(mix_base(40%), _violet, s5)
         }
     }
 
@@ -342,29 +343,21 @@ OM = _omsg
     define('b8' + key, s('var(--b8-%s)', unquote(key)), g) for key, val in C.b8
 }
 
-msg  = "Still looking for someone to help maintain Dark-WhatsApp. I will try "
-msg += "to maintain it until a big breaking update. Also, check out my other "
-msg += "project related to userstyles:\A\A 🌟 https://userstyles.world 🌟\A\A "
-msg += "Changelog: https://github.com/vednoc/dark-whatsapp\A"
-msg += "P.S. CSS can not create clickable links."
-
 @-moz-document domain('web.whatsapp.com') {
     :root:not(#z), .dark:not(#z) {
-        /// Userstyle info.
-        --version: '🌚 Dark-WhatsApp v3.7.2 — March 31st, 2023'
-
         /// UI font.
         --ui-font: ui_font, Segoe UI, Helvetica Neue, Helvetica, Lucida Grande,
                    Arial, Ubuntu, Cantarell, Fira Sans, sans-serif
 
         /// Rounded corners.
-        --r-menus:   radius_m
-        --r-inputs:  radius_i
         --r-avatars: radius_a
 
         /// Compact mode.
         --c-m-hover: compact_hi
         --c-m-delay: compact_ho
+
+        /// Blurred contacts.
+        --blur-contacts: chat_b_c_i
 
         /// Blurred media.
         --blur-in:  chat_b_in
@@ -376,29 +369,6 @@ msg += "P.S. CSS can not create clickable links."
         /// Emoji opacity.
         --emoji-o: emoji_o
 
-        /// App background.
-        image_path  = 'https://raw.githubusercontent.com/'
-        image_path += 'vednoc/dark-whatsapp/master/images/bg-blur'
-        if (app_image == 'bg-high') {
-            --bg-image: url(image_path + '-high.jpg')
-        } else if (app_image == 'bg-low') {
-            --bg-image: url(image_path + '-low.jpg')
-        } else if (app_image == 'bg-none') {
-            --bg-image: url(image_path + '-none.jpg')
-        } else if (app_image == 'custom') {
-            --bg-image: image_url
-        } else {
-            --bg-image: none
-        }
-        --bg-opacity: bg_opacity
-        --bg-blur:    bg_blur
-        --bg-blur-s:  calc(-2 * var(--bg-blur))
-        --bg-hue:     bg_hue
-        --bg-invert:  bg_invert
-        --bg-size:    bg_size
-        --bg-pos:     bg_pos
-        --bg-rep:     bg_rep
-
         /// Chat background.
         --chat-image: chat_image
         --chat-bg-o:  chat_bg_o
@@ -407,507 +377,203 @@ msg += "P.S. CSS can not create clickable links."
         --chat-bg-p:  chat_bg_p
         --chat-bg-r:  chat_bg_r
 
+        /// Startup splash. WA sets these inline on <html>, so only !important beats them.
+        --splashscreen-startup-background-plain: bg-0 i
+        --splashscreen-startup-background: bg-0 i
+        --splashscreen-startup-background-rgb: to_rgb(bg-0) i
+        --splashscreen-startup-content-deemphasized: fg-3 i
+        --splashscreen-startup-icon: fg-5 i
+        --splashscreen-primary-title: fg-1 i
+        --splashscreen-secondary-lighter: fg-3 i
+        --splashscreen-progress-primary: ac-0 i
+        --splashscreen-progress-background: bg-3 i
+
         /// Override incoming message bubble colors.
-        --msg-in-0:     (ow_imsg) ? ig-0         : var(--bg-4)
-        --msg-in-0-rgb: (ow_imsg) ? to_rgb(ig-0) : var(--bg-4-rgb)
-        --msg-in-1:     (ow_imsg) ? ig-1         : var(--bg-3)
-        --msg-in-1-rgb: (ow_imsg) ? to_rgb(ig-1) : var(--bg-3-rgb)
+        in_tone = dark(BG) ? 'bg-4' : 'bg-2'
+        --msg-in-0:     (ow_imsg) ? ig-0         : s('var(--%s)', unquote(in_tone))
+        --msg-in-0-rgb: (ow_imsg) ? to_rgb(ig-0) : s('var(--%s-rgb)', unquote(in_tone))
 
         /// Override outgoing message bubble colors.
         --msg-out-0:     (ow_omsg) ? og-0         : var(--ac-4)
         --msg-out-0-rgb: (ow_omsg) ? to_rgb(og-0) : var(--ac-4-rgb)
-        --msg-out-1:     (ow_omsg) ? og-1         : var(--ac-5)
-        --msg-out-1-rgb: (ow_omsg) ? to_rgb(og-1) : var(--ac-5-rgb)
+
+        /// Override system message background color.
+        --msg-sys:     (ow_sys_msg) ? sys_msg_bg         : var(--bg-2)
+        --msg-sys-rgb: (ow_sys_msg) ? to_rgb(sys_msg_bg) : var(--bg-2-rgb)
+
+        /// Accent as text on regular surfaces.
+        --ac-tx:     mix(AC, FG, 70%)
+        --ac-tx-rgb: to_rgb(mix(AC, FG, 70%))
+
+        /// Text on accent-deemphasized: accent pulled towards the foreground.
+        --ac-em:     mix(AC, FG, 30%)
+        --ac-em-rgb: to_rgb(mix(AC, FG, 30%))
+
+        /// Text on accent: pick whichever side of 0.179 luminance contrasts more.
+        on_ac = (luminosity(AC) > 0.179) ? (dark(BG) ? bg-0 : #000) : _white
+        --on-ac:     on_ac
+        --on-ac-rgb: to_rgb(on_ac)
 
         /// Override seen message icon color.
-        --msg-ack:     (ow_ack) ? _ack         : var(--ac-0)
-        --msg-ack-rgb: (ow_ack) ? to_rgb(_ack) : var(--ac-0-rgb)
+        --msg-ack:     (ow_ack) ? _ack         : var(--b5-0)
+        --msg-ack-rgb: (ow_ack) ? to_rgb(_ack) : var(--b5-0-rgb)
 
-        /// WA variables.
-        --gray-30: var(--bg-5) //#f7f7f7;
-        --gray-30-rgb: var(--bg-5-rgb) //247,247,247;
-        --gray-700: var(--fg-4) // #4a4a4a;
-        --gray-700-rgb: var(--fg-4-rgb) // 74,74,74;
-        --pale-blue-green: var(--b6-4) //#ecfaf5;
-        --pale-blue-green-rgb: var(--b6-4-rgb) //236,250,245;
-        --pale-green: var(--b4-4) //#dcf8c6;
-        --pale-green-rgb: var(--b4-4-rgb) //220,248,198;
-        --pale-yellow: var(--b3-4) //#fff5c4;
-        --pale-yellow-rgb: var(--b3-4-rgb) //255,245,196;
-        --teal: var(--ac-0) //#009688;
-        --teal-rgb: var(--ac-0-rgb) //0,150,136;
-        --teal-light: var(--ac-1) //#1de9b6;
-        --teal-light-rgb: var(--ac-1-rgb) //29,233,182;
-        --teal-lighter: var(--ac-2) //#00bfa5;
-        --teal-lighter-rgb: var(--ac-2) //0,191,165;
-        --green-deep: var(--ac-2) //#1b9a59;
-        --green-deep-rgb: var(--ac-2-rgb) //27,154,89;
-        --blue-ocean: var(--bg-2) //#aadaff;
-        --blue-ocean-rgb: var(--bg-2-rgb) //#aadaff;
-        --active-tab-marker: var(--ac-0) //#00af9c;
-        --active-tab-marker-rgb: var(--ac-0-rgb) //0,175,156;
-        --app-background-stripe: var(--bg-1) //#091e1f;
-        --app-background-stripe-rgb: var(--bg-1-rgb) //9,30,31;
-        --app-background: var(--bg-0) //#080e12;
-        --app-background-rgb: var(--bg-0-rgb) //8,14,18;
-        --app-background-deeper: var(--bg-0) //#080e12;
-        --app-background-deeper-rgb: var(--bg-0-rgb) //8,14,18;
-        --attach-media-drop-border: var(--fg-3) //#f1f1f233;
-        --attach-media-drop-border-rgb: var(--fg-3-rgb) //241,241,242;
-        --attach-media-drop-overlay: var(--bg-2) //#383d3f4d;
-        --attach-media-drop-overlay-rgb: var(--bg-2-rgb) //55.76,60.6,63.24;
-        --audio-progress-incoming: var(--b4-0) //#3bb463;
-        --audio-progress-incoming-rgb: var(--b4-0-rgb) //59,180,99;
-        --audio-progress-outgoing: var(--ac-2) //#5f8884;
-        --audio-progress-outgoing-rgb: var(--ac-2-rgb) //95,136,132;
-        --audio-progress-played-incoming: var(--b6-0) //#5ba0c3;
-        --audio-progress-played-incoming-rgb: var(--b6-0-rgb) //91,160,195;
-        --audio-progress-played-outgoing: var(--b6-0) //#55a5c5;
-        --audio-progress-played-outgoing-rgb: var(--b6-0-rgb) //85,165,197;
-        --audio-track-incoming: var(--fg-4) //#374248;
-        --audio-track-incoming-rgb: var(--fg-4-rgb) //55,66,72;
-        --audio-track-outgoing: var(--fg-4) //#1d5852;
-        --audio-track-outgoing-rgb: var(--fg-4-rgb) //29,88,82;
-        --avatar-background: var(--bg-1) //#101d24;
-        --avatar-background-rgb: var(--bg-1-rgb) //16,29,36;
-        --avatar-border: var(--bg-3) //#a5aaad;
-        --avatar-border-rgb: var(--bg-3-rgb) //165,170,173;
-        --avatar-placeholder-background: var(--bg-5) //#6c7478;
-        --avatar-placeholder-background-rgb: var(--bg-5-rgb) //108,116,120;
-        --avatar-placeholder-primary: var(--fg-3) //#d6d8d9;
-        --avatar-placeholder-primary-rgb: var(--fg-3-rgb) //214,216,217;
-        --background-default: var(--bg-2) //#101d24;
-        --background-default-rgb: var(--bg-2-rgb) //16,29,36;
-        --background-default-active: var(--bg-4) //#202c32;
-        --background-default-active-rgb: var(--bg-4-rgb) //32,44,50;
-        --background-default-hover: var(--bg-3) //#17232a;
-        --background-default-hover-rgb: var(--bg-3-rgb) //23,35,42;
-        --border-bubble: var(--shadow) //#f1f1f20f;
-        --border-bubble-rgb: var(--shadow-rgb) //241,241,242;
-        --border-default: var(--bg-3) //#1b282e;
-        --border-default-rgb: var(--bg-3-rgb) //27,40,46;
-        --border-list: var(--bg-3) //#1b282e;
-        --border-list-rgb: var(--bg-3-rgb) //27,40,46;
-        --border-panel: var(--bg-5) //#28333a;
-        --border-panel-rgb: var(--bg-5-rgb) //40,51,58;
-        --border-strong: var(--bg-5) //#343f45;
-        --border-strong-rgb: var(--bg-5-rgb) //52,63,69;
-        --border-stronger: var(--bg-5) //#f1f1f20f;
-        --border-stronger-rgb: var(--fg-5-rgb) //241,241,242;
-        --bubble-meta: var(--fg-3) //#f1f1f299;
-        --bubble-meta-rgb: var(--fg-3-rgb) //241,241,242;
-        --bubble-meta-icon: var(--fg-3) //#f1f1f299;
-        --bubble-meta-icon-rgb: var(--fg-3-rgb) //241,241,242;
-        --butterbar-battery-background: var(--b1-4) //#e05b52;
-        --butterbar-battery-background-rgb: var(--b1-4-rgb) //224,91,82;
-        --butterbar-battery-icon: var(--b1-0) //#f5d6d7;
-        --butterbar-battery-icon-rgb: var(--b1-0-rgb) //245,214,215;
-        --butterbar-battery-primary: var(--fg-0) //#f1f1f2f5;
-        --butterbar-battery-primary-rgb: var(--fg-0-rgb) //241,241,242;
-        --butterbar-battery-secondary: var(--fg-4) //#f1f1f2cc;
-        --butterbar-battery-secondary-rgb: var(--fg-4-rgb) //241,241,242;
-        --butterbar-connection-background: var(--b3-4) //#febc2c;
-        --butterbar-connection-background-rgb: var(--b3-4-rgb) //254,188,44;
-        --butterbar-connection-primary: var(--fg-0) //#1c282ff5;
-        --butterbar-connection-primary-rgb: var(--fg-0-rgb) //28,40,47;
-        --butterbar-connection-secondary: var(--fg-4) //#1c282fd9;
-        --butterbar-connection-secondary-rgb: var(--fg-4-rgb) //28,40,47;
-        --butterbar-default-background: var(--b6-4) //#39c;
-        --butterbar-default-background-rgb: var(--b6-4) //51,153,204;
-        --butterbar-icon: var(--b3-0) //#f1f1f2cc;
-        --butterbar-icon-rgb: var(--b3-0-rgb) //241,241,242;
-        --butterbar-notification-icon: var(--b6-0) //#8eb2be;
-        --butterbar-notification-icon-rgb: var(--b6-0-rgb) //142,178,190;
-        --butterbar-primary: var(--fg-0) //#f1f1f2f5;
-        --butterbar-primary-rgb: var(--fg-0-rgb) //241,241,242;
-        --butterbar-secondary: var(--fg-4) //#f1f1f2d9;
-        --butterbar-secondary-rgb: var(--fg-4-rgb) //241,241,242;
-        --butterbar-update-background: var(--b4-4) //#00af9c;
-        --butterbar-update-background-rgb: var(--b4-4-rgb) //0,175,156;
-        --butterbar-update-icon: var(--b4-0) //#8eafaa;
-        --butterbar-update-icon-rgb: var(--b4-0-rgb) //142,175,170;
-        --button-alternative: var(--ac-1) //#68bbe4;
-        --button-alternative-rgb: var(--ac-1-rgb) //104,187,228;
-        --button-alternative-background: var(--bg-3) //#222e35;
-        --button-alternative-background-rgb: var(--bg-3-rgb) //34,46,53;
-        --button-background-disabled: var(--bg-2) //#253137;
-        --button-background-disabled-rgb: var(--bg-2-rgb) //37,49,55;
-        --button-bubble: var(--ac-0) //#00af9cb3;
-        --button-bubble-rgb: var(--ac-0-rgb) //0,175,156;
-        --button-plain-background: var(--bg-4) //#2f3437;
-        --button-plain-background-rgb: var(--bg-4-rgb) //47.1,51.86667,54.9;
-        --button-primary: var(--white) //#101d24;
-        --button-primary-rgb: var(--white-rgb) //16,29,36;
-        --button-primary-background: var(--ac-0) //#00af9c;
-        --button-primary-background-rgb: var(--ac-0-rgb) //0,175,156;
-        --button-primary-background-hover: var(--ac-3) //#00c3ae;
-        --button-primary-background-hover-rgb: var(--ac-3-rgb) //0,195.4,174.18514;
-        --button-round-background: var(--ac-0) //#00af9c;
-        --button-round-background-rgb: var(--ac-0-rgb) //0,175,156;
-        --button-secondary: var(--ac-0) //#00af9c;
-        --button-secondary-rgb: var(--ac-0-rgb) //0,175,156;
-        --button-secondary-background: transparent;
-        --button-secondary-background-rgb: 0,0,0;
-        --button-secondary-background-hover: #f1f1f20d;
-        --button-secondary-background-hover-rgb: var(--fg-3-rgb) //241,241,242;
-        --button-secondary-hover: var(--ac-0) //#00af9c;
-        --button-secondary-hover-rgb: var(--ac-0-rgb) //0,175,156;
-        --chat-marker: var(--fg-3) //#999;
-        --chat-marker-rgb: var(--fg-3-rgb) //153,153,153;
-        --chat-marker-admin: var(--ac-0) //#00af9c;
-        --chat-marker-admin-rgb: var(--ac-0-rgb) //0,175,156;
-        --chat-marker-admin-border: var(--ac-0) //#00af9cb3;
-        --chat-marker-admin-border-rgb: var(--ac-0-rgb) //0,175,156;
-        --chat-marker-border: var(--fg-3) //#999999b3;
-        --chat-marker-border-rgb: var(--fg-3-rgb) //153,153,153;
-        --chat-meta: var(--fg-3) //hsl(203.1, 12%, 57.6%);
-        --chat-meta-rgb: var(--fg-3-rgb) //134,150,160;
-        --chatlist-icon: var(--fg-5) //#f1f1f299;
-        --chatlist-icon-rgb: var(--fg-5-rgb) //241,241,242;
-        --checkbox-background: var(--ac-0) //#00af9c;
-        --checkbox-background-rgb: var(--ac-0-rgb) //0,175,156;
-        --checkbox-mark: var(--white) //#101d24;
-        --checkbox-mark-rgb: var(--white-rgb) //16,29,36;
-        --chevron-button-background: var(--bg-3) //#f1f1f259;
-        --chevron-button-background-rgb: var(--bg-3-rgb) //241,241,242;
-        --compose-input-background-focused: var(--bg-0) //#3f5560;
-        --compose-input-background-focused-rgb: var(--bg-0-rgb) //63,85,96;
-        --compose-input-background: var(--bg-1) //#33383b;
-        --compose-input-background-rgb: var(--bg-1-rgb) //51.22296,56.04619,58.67704;
-        --compose-input-border: var(--bg-5) //#33383b;
-        --compose-input-border-rgb: var(--bg-5-rgb) //51.22296,56.04619,58.67704;
-        --compose-input-border-focused: var(--bg-5) //#415a67;
-        --compose-input-border-focused-rgb: var(--bg-5-rgb) //65,90,103;
-        --compose-panel-background: var(--bg-3) //#1e2428;
-        --compose-panel-background-rgb: var(--bg-3-rgb) //29.591,36.36026,40.309;
-        --compose-panel-background-hover: var(--bg-4) //#151e23;
-        --compose-panel-background-hover-rgb: var(--ac-4-rgb) //21,30,35;
-        --compose-primary: var(--fg-1) //#f1f1f2;
-        --compose-primary-rgb: var(--fg-1-rgb) //241,241,242;
-        --conversation-panel-background: var(--bg-1) //#0b1419;
-        --conversation-panel-background-rgb: var(--bg-1-rgb) //11.29231,20.46731,25.40769;
-        --conversation-panel-border: var(--bg-5) //#f1f1f214;
-        --conversation-panel-border-rgb: var(--fg-3-rgb) //241,241,242;
-        --danger: var(--b1-0) //#ef697a;
-        --danger-rgb: var(--b1-0-rgb) //239,105,122;
-        --drawer-background: var(--bg-1) //#101d24;
-        --drawer-background-rgb: var(--bg-1-rgb) //16,29,36;
-        --drawer-background-deep: var(--bg-0) //#080e12;
-        --drawer-background-deep-rgb: var(--bg-0-rgb) //8,14,18;
-        --drawer-gallery-background: var(--bg-1) //#101d24;
-        --drawer-gallery-background-rgb: var(--bg-1-rgb) //16,29,36;
-        --drawer-gallery-background-active: var(--bg-0) //#0d1418;
-        --drawer-gallery-background-active-rgb: var(--bg-0-rgb) //13.12731,19.91681,23.57269;
-        --drawer-gallery-background-hover: var(--bg-0) //#0d1418;
-        --drawer-gallery-background-hover-rgb: var(--bg-0-rgb) //13.12731,19.91681,23.57269;
-        --drawer-header-title: var(--fg-1) //#d6d8d9;
-        --drawer-header-title-rgb: var(--fg-1-rgb) //214,216,217;
-        --drawer-section-background: var(--bg-2) //#101d24;
-        --drawer-section-background-rgb: var(--bg-2-rgb) //16,29,36;
-        --dropdown-background: var(--bg-2) //#253137;
-        --dropdown-background-rgb: var(--bg-2-rgb) //37,49,55;
-        --dropdown-background-hover: var(--bg-3) //#202c33;
-        --dropdown-background-hover-rgb: var(--bg-3-rgb) //32,44,51;
-        --empty-state-background: var(--bg-3) //#1c282f;
-        --empty-state-background-rgb: var(--bg-3-rgb) //28,40,47;
-        --empty-state-icon: var(--fg-4) //#757c81;
-        --empty-state-icon-rgb: var(--fg-4-rgb) //117,124,129;
-        --focus: var(--ac-3) //#68bbe4;
-        --focus-rgb: var(--ac-3-rgb) //104,187,228;
-        --focus-animation: var(--ac-3) //#68bbe442;
-        --focus-animation-rgb: var(--ac-3-rgb) //104,187,228;
-        --focus-animation-deeper: var(--ac-3) //#68bbe452;
-        --focus-animation-deeper-rgb: var(--ac-3-rgb) //104,187,228;
-        --focus-lighter: var(--ac-3) //#68bbe41f;
-        --focus-lighter-rgb: var(--ac-3-rgb) //104,187,228;
-        --highlight: var(--ac-0) //#00af9c;
-        --highlight-rgb: var(--ac-0-rgb) //0,175,156;
-        --icon: var(--fg-3) //#80868b;
-        --icon-rgb: var(--fg-3-rgb) //128,134,139;
-        --icon-ack: var(--msg-ack) //#34b7f1;
-        --icon-ack-rgb: var(--msg-ack-rgb) //52,183,241;
-        --icon-disabled: var(--fg-5) //#3c464c;
-        --icon-disabled-rgb: var(--fg-5-rgb) //60,70,76;
-        --icon-fixed: var(--fg-3) //#80868b;
-        --icon-fixed-rgb: var(--fg-3-rgb) //128,134,139;
-        --icon-lighter: var(--fg-5) //#f1f1f245;
-        --icon-lighter-rgb: var(--fg-0-rgb) //241,241,242;
-        --icon-search-back: var(--ac-2) //#71787d;
-        --icon-search-back-rgb: var(--ac-2-rgb) //113,120,125;
-        --icon-strong: var(--fg-1) //#c4c7c9;
-        --icon-strong-rgb: var(--fg-1-rgb) //196,199,201;
-        --incoming-background: var(--msg-in-0) //#222e35;
-        --incoming-background-rgb: var(--msg-in-0-rgb) //34,46,53;
-        --incoming-background-deeper: var(--msg-in-1) //#1d272e;
-        --incoming-background-deeper-rgb: var(--msg-in-1-rgb) //29,39,46;
-        --incoming-background-highlight: #ccc;
-        --incoming-background-highlight-rgb: 204,204,204;
-        --incoming-primary: var(--fg-3) //#777d81;
-        --incoming-primary-rgb: var(--fg-3-rgb) //119,125,129;
-        --input-border-active: var(--ac-0) //#00af9c;
-        --input-border-active-rgb: var(--ac-0-rgb) //0,175,156;
-        --input-placeholder: var(--fg-4) //#6a7276;
-        --input-placeholder-rgb: var(--fg-4) //106,114,118;
-        --intro-background: var(--bg-1) //#222e35;
-        --intro-background-rgb: var(--bg-1-rgb) //34,46,53;
-        --intro-border: var(--ac-2) //#054740;
-        --intro-border-rgb: var(--ac-2-rgb) //5,71,64;
-        --intro-logo: var(--fg-3) //rgba(241,241,242,0.26);
-        --intro-logo-rgb: var(--fg-3-rgb) //241,241,242;
-        --intro-secondary: var(--fg-3) //#a6a8aa;
-        --intro-secondary-rgb: var(--fg-3-rgb) //166,168,170;
-        --inverse: var(--fg-0) //#f1f1f2;
-        --inverse-rgb: var(--fg-0-rgb) //241,241,242;
-        --labels-icon: #f1f1f266;
-        --labels-icon-rgb: var(--fg-3-rgb) //241,241,242;
-        --link: var(--ac-0) //#68bbe4;
-        --link-rgb: var(--ac-0-rgb) //104,187,228;
-        --live-location-footer-background: var(--bg-2) //#101d24e6;
-        --live-location-footer-background-rgb: var(--bg-2-rgb) //16,29,36;
-        --live-location-glow: to_rgba('ac-1', 0.5) //#25d3664d;
-        --live-location-glow-rgb: var(--ac-1-rgb) //37,211,102;
-        --live-location-glow-stale: to_rgba('red', 0.5) //#ff001f4d;
-        --live-location-glow-stale-rgb: var(--b1-0-rgb) //255,0,31;
-        --location-cluster-background: var(--bg-1) //#101d24;
-        --location-cluster-background-rgb: var(--bg-1-rgb) //16,29,36;
-        --media-editor-control: #1c313f;
-        --media-editor-control-rgb: 28,49,63;
-        --media-viewer-background: to_rgba('bg-1', 0.80) //#101d24fa;
-        --media-viewer-background-rgb: var(--bg-1-rgb) //16,29,36;
-        --media-viewer-button-background: var(--bg-3) //#1c282f;
-        --media-viewer-button-background-rgb: var(--bg-3-rgb) //28,40,47;
-        --media-viewer-button-icon: #f1f1f2;
-        --media-viewer-button-icon-rgb: var(--fg-3-rgb) //241,241,242;
-        --menu-tabs-list-active: var(--ac-0) //#00af9c;
-        --menu-tabs-list-active-rgb: var(--ac-0-rgb) //0,175,156;
-        --message-background-deep: var(--bg-0) //#080e1259;
-        --message-background-deep-rgb: var(--bg-0-rgb) //8,14,18;
-        --message-placeholder-icon: var(--fg-3) //#cccccc4d;
-        --message-placeholder-icon-rgb: var(--fg-3-rgb) //204,204,204;
-        --message-primary: var(--fg-1) //#f1f1f2f2;
-        --message-primary-rgb: var(--fg-1-rgb) //241,241,242;
-        --message-selection-highlight: to_rgba('ac-0', 0.1) //#f1f1f20d;
-        --message-selection-highlight-rgb: var(--ac-0-rgb) //241,241,242;
-        --modal-backdrop: to_rgba('bg-1', 0.70) //#080e12d9;
-        --modal-backdrop-rgb: var(--bg-0-rgb) //8,14,18;
-        --modal-backdrop-solid: var(--bg-0) //#1c282f;
-        --modal-backdrop-solid-rgb: var(--bg-0-rgb) //28,40,47;
-        --modal-background: var(--bg-2) //#364147;
-        --modal-background-rgb: var(--bg-2-rgb) //54,65,71;
-        --notification-biz-background: var(--b5-5) //#1c282f;
-        --notification-biz-background-rgb: var(--b5-5-rgb) //28,40,47;
-        --notification-biz-text: var(--b5-0) //#55fad9;
-        --notification-biz-text-rgb: var(--b5-0-rgb) //85,250,217;
-        --notification-e2e-background: var(--b3-5) //#1c282f;
-        --notification-e2e-background-rgb: var(--b3-5-rgb) //28,40,47;
-        --notification-e2e-icon: var(--b3-1) //#fad964;
-        --notification-e2e-icon-rgb: var(--b3-1-rgb) //250,217,100;
-        --notification-e2e-text: var(--b3-0) //#fad964;
-        --notification-e2e-text-rgb: var(--b3-0-rgb) //250,217,100;
-        --notification-text: var(--fg-3) //#f1f1f266;
-        --notification-text-rgb: var(--fg-3-rgb) //241,241,242;
-        --outgoing-background: var(--msg-out-0) //#054740;
-        --outgoing-background-rgb: var(--msg-out-0-rgb) //5,71,64;
-        --outgoing-background-deeper: var(--msg-out-1) //#063b36;
-        --outgoing-background-deeper-rgb: var(--msg-out-1-rgb) //6,59,54;
-        --outgoing-background-highlight: #ccc;
-        --outgoing-background-highlight-rgb: 204,204,204;
-        --overlay: var(--bg-0) //#080e12;
-        --overlay-rgb: var(--bg-0-rgb) //8,14,18;
-        --panel-background: var(--bg-3) //#1c282f;
-        --panel-background-rgb: var(--bg-3-rgb) //28,40,47;
-        --panel-background-active: #1a262d;
-        --panel-background-active-rgb: 26,38,45;
-        --panel-background-colored: var(--bg-3) //#222e35;
-        --panel-background-colored-rgb: var(--bg-3-rgb) //34,46,53;
-        --panel-background-colored-deeper: var(--bg-3) //#222e35;
-        --panel-background-colored-deeper-rgb: var(--bg-3-rgb) //34,46,53;
-        --panel-background-deep: var(--bg-2) //#162026;
-        --panel-background-deep-rgb: var(--bg-2-rgb) //22,32,38;
-        --panel-background-deeper: var(--bg-3) //#1a252c;
-        --panel-background-deeper-rgb: var(--bg-3-rgb) //26,37,44;
-        --panel-background-hover: var(--bg-4) //#1b272e;
-        --panel-background-hover-rgb: var(--bg-4-rgb) //27,39,46;
-        --panel-background-lighter: var(--bg-3) //#1a252c;
-        --panel-background-lighter-rgb: var(--bg-3-rgb) //26,37,44;
-        --panel-header-background: var(--bg-3) //#222e35;
-        --panel-header-background-rgb: var(--bg-3-rgb) //34,46,53;
-        --panel-header-icon: var(--fg-3) //#9ea3a6;
-        --panel-header-icon-rgb: var(--fg-3-rgb) //158,163,166;
-        --panel-input-background: var(--bg-2) //#262d31;
-        --panel-input-background-rgb: var(--bg-2-rgb) //38.35,44.85526,48.65;
-        --panel-primary: var(--fg-3) //#f1f1f259;
-        --panel-primary-rgb: var(--fg-3-rgb) //241,241,242;
-        --payment-amount: #00a593;
-        --payment-amount-rgb: 0,164.8,146.90743;
-        --payment-status-failed: #ef697a;
-        --payment-status-failed-rgb: 239,105,122;
-        --payment-status-processing: var(--fg-1) //#f1f1f273;
-        --payment-status-processing-rgb: var(--fg-3-rgb) //241,241,242;
-        --payment-status-success: #40cf6c;
-        --payment-status-success-rgb: 64,207,108;
-        --payment-status-waiting: var(--fg-1) //#f1f1f273;
-        --payment-status-waiting-rgb: var(--fg-3-rgb) //241,241,242;
-        --photopicker-overlay-background: to_rgba('bg-3', 0.8) //#212c31cc;
-        --photopicker-overlay-background-rgb: var(--bg-3-rgb) //33,44,49;
-        --picker-background: var(--bg-2) //#2a2f32;
-        --picker-background-rgb: var(--bg-2-rgb) //41.6,47.46667,50.4;
-        --popup-panel-background: var(--bg-2) //#080e1233;
-        --popup-panel-background-rgb: var(--bg-2-rgb) //8,14,18;
-        --primary: var(--fg-2) //#a5aaad;
-        --primary-rgb: var(--fg-2-rgb) //165,170,173;
-        --primary-strong: var(--fg-1) //#d4d5d7;
-        --primary-strong-rgb: var(--fg-1-rgb) //212,213,215;
-        --primary-stronger: var(--fg-0) //#f1f1f2de;
-        --primary-stronger-rgb: var(--fg-0-rgb) //241,241,242;
-        --primary-strongest: var(--fg-0) //#fff;
-        --primary-strongest-rgb: var(--fg-0-rgb) //255,255,255;
-        --primary-title: var(--fg-2) //#d4d5d7f7;
-        --primary-title-rgb: var(--fg-2-rgb) //212,213,215;
-        --product-image-button-background: var(--bg-4) //#f1f1f259;
-        --product-image-button-background-rgb: var(--bg-4-rgb) //241,241,242;
-        --product-thumb-background: var(--bg-3) //#1c282f;
-        --product-thumb-background-rgb: var(--bg-3-rgb) //28,40,47;
-        --product-thumb-background-deeper: var(--bg-2) //#2b3e49;
-        --product-thumb-background-deeper-rgb: var(--bg-2-rgb) //43.232,61.76,72.568;
-        --progress-background: var(--bg-2) //#2a2f32;
-        --progress-background-rgb: var(--bg-2-rgb) //41.6,47.46667,50.4;
-        --progress-primary: var(--ac-0) //#0c897c;
-        --progress-primary-rgb: var(--ac-0) //12,137,124;
-        --ptt-blue: var(--b6-0) //#4fc3f7;
-        --ptt-blue-rgb: var(--b6-0-rgb) //79,195,247;
-        --ptt-button-cancel: var(--b1-0) //#e53935cc;
-        --ptt-button-cancel-rgb: var(--b1-0-rgb) //229,57,53;
-        --ptt-button-send: var(--b4-0) //#09d261cc;
-        --ptt-button-send-rgb: var(--b4-0-rgb) //9,210,97;
-        --ptt-gray: var(--fg-4) //#f1f1f266;
-        --ptt-gray-rgb: var(--fg-4-rgb) //241,241,242;
-        --ptt-green: var(--b4-0) //#09d261;
-        --ptt-green-rgb: var(--b4-rgb) //9,210,97;
-        --ptt-message-blue: var(--b6-0) //#68bbe4;
-        --ptt-message-blue-rgb: var(--b6-0-rgb) //104,187,228;
-        --quick-action-button: to_rgba('fg-3', 0.8) //#f1f1f280;
-        --quick-action-button-rgb: var(--fg-3-rgb) //241,241,242;
-        --quick-action-button-background: var(--bg-4) //#080e1299;
-        --quick-action-button-background-rgb: var(--bg-4-rgb) //8,14,18;
-        --round-entry-point-background-color: var(--bg-4) //hsla(0, 0%, 0%, 0.7);
-        --round-entry-point-background-color-rgb: var(--bg-4-rgb) //0,0,0;
-        --quoted-message-text: var(--fg-2) //hsla(0,0%,100%,0.6);
-        --quoted-message-text-rgb: var(--fg-2-rgb) //255,255,255;
-        --rich-text-panel-background: var(--bg-3) //#1c282f;
-        --rich-text-panel-background-rgb: var(--bg-3-rgb) //28,40,47;
-        --search-container-background: var(--bg-2) //#131c21;
-        --search-container-background-rgb: var(--bg-2-rgb) //18.6,28.22,33.4;
-        --search-input-background: var(--bg-3) //#2a2f32;
-        --search-input-background-rgb: var(--bg-3-rgb) //41.6,47.46667,50.4;
-        --secondary: var(--fg-3) //#f1f1f299;
-        --secondary-rgb: var(--fg-3-rgb) //241,241,242;
-        --secondary-light: var(--fg-2) //#f1f1f240;
-        --secondary-light-rgb: var(--fg-2-rgb) //241,241,242;
-        --secondary-lighter: var(--fg-3) //#f1f1f273;
-        --secondary-lighter-rgb: var(--fg-3-rgb) //241,241,242;
-        --secondary-stronger: var(--fg-3) //#f1f1f2cc;
-        --secondary-stronger-rgb: var(--fg-3-rgb) //241,241,242;
-        --shadow: var(--sh) //#000;
-        --shadow-rgb: var(--sh-rgb) //0,0,0;
-        --shadow-light: var(--sh) //#00000014;
-        --shadow-light-rgb: var(--sh-rgb) //0,0,0;
-        --spinner-default: var(--fg-3) //#75787a;
-        --spinner-default-rgb: var(--fg-3-rgb) //117,120,122;
-        --spinner-highlight: var(--ac-0) //#00af9c;
-        --spinner-highlight-rgb: var(--ac-0-rgb) //0,175,156;
-        --spinner-incoming: var(--fg-5) //#60696e;
-        --spinner-incoming-rgb: var(--fg-5-rgb) //96,105,110;
-        --spinner-outgoing: var(--ac-5) //#4c7a75;
-        --spinner-outgoing-rgb: var(--ac-5-rgb) //76,122,117;
-        --startup-background: var(--bg-0) //#131c21;
-        --startup-background-rgb: var(--bg-0-rgb) //18.6,28.22,33.4;
-        --startup-icon: var(--fg-3) //#6c7175;
-        --startup-icon-rgb: var(--fg-3-rgb) //108,113,117;
-        --status-background: var(--bg-1) //#000;
-        --status-background-rgb: var(--bg-1-rgb) //0,0,0;
-        --status-background-hover: var(--bg-2) //#242424;
-        --status-background-hover-rgb: var(--bg-2-rgb) //36,36,36;
-        --status-primary: var(--fg-1) //#fff;
-        --status-primary-rgb: var(--fg-1-rgb) //255,255,255;
-        --status-secondary: var(--fg-4) //#ffffff8c;
-        --status-secondary-rgb: var(--fg-4-rgb) //255,255,255;
-        --status-secondary-stronger: var(--fg-5) //#b3b3b3;
-        --status-secondary-stronger-rgb: var(--fg-5-rgb) //179,179,179;
-        --success: var(--ac-0) //#00af9c;
-        --success-rgb: var(--ac-0-rgb) //0,175,156;
-        --suspicious-background: #ef697acc;
-        --suspicious-background-rgb: 239,105,122;
-        --system-message-background: (ow_sys_msg) ? sys_msg_bg : var(--b6-4) //#1e2a30;
-        --system-message-background-rgb: (ow_sys_msg) ? to_rgb(sys_msg_bg) : var(--b6-4-rgb) //30,42,48;
-        --system-message-text: to_rgba('fg-1', 0.87) //#f1f1f2de;
-        --system-message-text-rgb: var(--fg-1-rgb) //241,241,242;
-        --teal-hover: var(--ac-0) //#00b7a1;
-        --teal-hover-rgb: var(--ac-0-rgb) //0,183,161;
-        --teal-pale: var(--ac-3) //#5fc8bc;
-        --teal-pale-rgb: var(--ac-3-rgb) //95,200,188;
-        --text-muted: var(--fg-4) //hsl(203.1, 12%, 57.6%);
-        --text-muted-rgb: var(--fg-4-rgb) //134,150,160;
-        --thumb-border-active: var(--bg-2) //#75787a;
-        --thumb-border-active-rgb: var(--bg-2-rgb) //117,120,122;
-        --thumb-border-active-new-media-editor: var(--fg-4) //#f1f1f2;
-        --thumb-border-active-new-media-editor-rgb: var(--fg-4-rgb) //241,241,242;
-        --thumb-border-viewer-active: var(--fg-3) //#75787a;
-        --thumb-border-viewer-active-rgb: var(--fg-3-rgb) //117,120,122;
-        --toast-background: to_rgba('bg-3', 0.96) //#080e12f5;
-        --toast-background-rgb: var(--bg-3-rgb) //8,14,18;
-        --tooltip-text: var(--fg-1) //hsl(0, 0%, 0%);
-        --tooltip-text-rgb: var(--fg-1-rgb) //0,0,0;
-        --tooltip-background: to_rgba('bg-4', 0.85) //#fff;
-        --tooltip-background-rgb: var(--bg-4) //255,255,255;
-        --typing: var(--ac-0) //#00af9c;
-        --typing-rgb: var(--ac-0-rgb) //0,175,156;
-        --unread-background: var(--bg-3) //#1c282f;
-        --unread-background-rgb: var(--bg-3-rgb) //28,40,47;
-        --unread-bar-background: to_rgba('bg-0', 0.7) //#080e124d;
-        --unread-bar-background-rgb: var(--bg-0-rgb) //8,14,18;
-        --unread-timestamp: var(--ac-0) //hsl(167.1, 100%, 32.9%);
-        --unread-timestamp-rgb: var(--ac-0-rgb) //0,168,132;
-        --unread-marker-background: var(--ac-0) //#00af9c;
-        --unread-marker-background-rgb: var(--ac-0-rgb) //0,175,156;
-        --unread-marker-text: var(--white) //#101d24;
-        --unread-marker-text-rgb: var(--white-rgb) //16,29,36;
-        --video-player-background: #000;
-        --video-player-background-rgb: 0,0,0;
-        --video-primary: #fff;
-        --video-primary-rgb: 255,255,255;
-        --voip-accept-background: #70db91;
-        --voip-accept-background-rgb: 112,219,145;
-        --voip-background: #262626;
-        --voip-background-rgb: 38,38,38;
-        --voip-background-deep: #000;
-        --voip-background-deep-rgb: 0,0,0;
-        --voip-primary: #fff;
-        --voip-primary-rgb: 255,255,255;
-        --voip-reject-background: #e54b40;
-        --voip-reject-background-rgb: 229,75,64;
-        --wallpaper-background: var(--bg-1) //#2b93ce;
-        --wallpaper-background-rgb: var(--bg-1-rgb) //13.12731,19.91681,23.57269;
-        --wallpaper-thumb-border-active: var(--bg-5) //#75787a;
-        --wallpaper-thumb-border-active-rgb: var(--bg-5-rgb) //117,120,122;
-        --wallpaper-thumb-border-hover: var(--bg-4) //#3b4042;
-        --wallpaper-thumb-border-hover-rgb: var(--bg-4-rgb) //59,63.52941,66;
-        --win32-title-primary: var(--fg-1) //#fff;
-        --win32-title-primary-rgb: var(--fg-1-rgb) //255,255,255;
-        --reactions-tray-background: var(--bg-3) //hsl(202.1, 21.8%, 17.1%);
-        --reactions-tray-background-rgb: var(--bg-3-rgb) //34,46,53;
-        --reactions-tray-active-round-background: var(--bg-5) //hsl(204, 17.5%, 28%);
-        --reactions-tray-active-round-background-rgb: var(--bg-5-rgb) //59,74,84;
-        --reactions-picker-bg: var(--bg-4) //hsl(202.2, 11.7%, 45.3%);
-        --reactions-picker-bg-rgb: var(--bg-4-rgb) //102,119,129;
-        --svg-gray-button: var(--fg-3) //hsl(204, 22.7%, 17.3%);
-        --svg-gray-button-rgb: var(--fg-3-rgb) //34,46,54;
-        --text-primary-strong: var(--fg-1) //hsl(200, 15.8%, 92.5%);
-        --text-primary-strong-rgb: var(--fg-1-rgb) //233,237,239;
-        --text-secondary-lighter: var(--fg-2) //hsl(203.1, 12%, 57.6%);
-        --text-secondary-lighter-rgb: var(--fg-2-rgb) //134,150,160;
-        --text-medium-emphasis: var(--fg-3) //hsl(203.1, 12%, 57.6%);
-        --text-medium-emphasis-rgb: var(--fg-3-rgb) //134,150,160;
+        /// WA design tokens. Every current surface resolves through these; the
+        /// `.x…` theme classes on <html> set them, `:not(#z)` outranks those.
+        wds('background-wash-plain', 'bg-0')
+        wds('background-wash-inset', 'bg-0')
+        wds('background-elevated-wash-plain', 'bg-2')
+        wds('background-elevated-wash-inset', 'bg-2')
+        wds('surface-default', 'bg-1')
+        wds('surface-emphasized', 'bg-2')
+        wds('surface-elevated-default', 'bg-2')
+        wds('surface-elevated-emphasized', 'bg-3')
+        wds('surface-inverse', 'fg-1')
+        wds('content-default', 'fg-1')
+        wds('content-deemphasized', 'fg-3')
+        wds('content-disabled', 'fg-5')
+        wds('content-inverse', 'bg-1')
+        wds('content-on-accent', 'on-ac')
+        wds('content-action-default', 'fg-1')
+        wds('lines-divider', 'bg-4')
+        wds('lines-outline-deemphasized', 'bg-5')
+        wds('lines-outline-default', 'fg-5')
+        wds('persistent-activity-indicator', 'ac-0')
+        wds('persistent-always-branded', 'ac-0')
+        wds('persistent-verified', 'b6-0')
+        wds('secondary-negative', 'b1-0')
+        wds('secondary-negative-deemphasized', 'b1-5')
+        wds('secondary-negative-emphasized', 'b1-1')
+        wds('secondary-positive', 'b4-0')
+        wds('secondary-positive-deemphasized', 'b4-5')
+        wds('secondary-warning', 'b3-0')
+        wds('secondary-warning-deemphasized', 'b3-5')
+        wds('components-filter-surface-selected', 'ac-4')
+        wds('components-surface-nav-bar', 'bg-0')
+        wds('systems-bubble-surface-system', 'msg-sys')
+        wds('systems-bubble-surface-business', 'bg-2')
+        wds('systems-bubble-surface-e2e', 'bg-2')
+        wds('systems-bubble-content-business', 'b5-0')
+        wds('systems-bubble-content-e2e', 'b3-0')
+        wds('systems-chat-surface-composer', 'bg-3')
+        wds('systems-chat-surface-tray', 'bg-1')
+        wds('systems-status-seen', 'fg-5')
+
+        /// Tokens WA also re-declares further down, see `#main:not(#z)`.
+        chat_tokens()
+
+        /// Translucent tokens: state washes that have to sit on any surface.
+        wdsa('surface-highlight', 'fg-1', 0.08)
+        wdsa('surface-pressed', 'fg-1', 0.14)
+        wdsa('components-active-list-row', 'ac-0', 0.18)
+        wdsa('components-badge-muted', 'fg-1', 0.1)
+        wdsa('components-badge-muted-dot', 'fg-1', 0.1)
+        wdsa('components-outline-profile-photo', 'fg-1', 0.08)
+        wdsa('background-dimmer', 'bg-0', 0.6)
+
+        /// Placeholder avatars: palette tone on its own dark mix.
+        wds('components-profile-photo-surface-brown', 'b2-4')
+        wds('components-profile-photo-content-brown', 'b2-0')
+        wds('components-profile-photo-surface-cobalt', 'b6-4')
+        wds('components-profile-photo-content-cobalt', 'b6-0')
+        wds('components-profile-photo-surface-gray', 'bg-4')
+        wds('components-profile-photo-content-gray', 'fg-3')
+        wds('components-profile-photo-surface-green', 'b4-4')
+        wds('components-profile-photo-content-green', 'b4-0')
+        wds('components-profile-photo-surface-orange', 'b2-4')
+        wds('components-profile-photo-content-orange', 'b2-0')
+        wds('components-profile-photo-surface-pink', 'b7-4')
+        wds('components-profile-photo-content-pink', 'b7-0')
+        wds('components-profile-photo-surface-purple', 'b8-4')
+        wds('components-profile-photo-content-purple', 'b8-0')
+        wds('components-profile-photo-surface-red', 'b1-4')
+        wds('components-profile-photo-content-red', 'b1-0')
+        wds('components-profile-photo-surface-sky-blue', 'b5-4')
+        wds('components-profile-photo-content-sky-blue', 'b5-0')
+        wds('components-profile-photo-surface-teal', 'b5-4')
+        wds('components-profile-photo-content-teal', 'b5-0')
+        wds('components-profile-photo-surface-yellow', 'b3-4')
+        wds('components-profile-photo-content-yellow', 'b3-0')
+
+        /// Legacy WA variables still referenced by current CSS.
+        --gray-30: var(--bg-5)
+        --gray-700: var(--fg-4)
+        --teal-rgb: var(--ac-0-rgb)
+        --green-deep: var(--ac-2)
+        --green-deep-rgb: var(--ac-2-rgb)
+        --app-background-stripe: var(--bg-1)
+        --app-background-deeper: var(--bg-0)
+        --attach-media-drop-border: var(--fg-3)
+        --attach-media-drop-overlay: var(--bg-2)
+        --audio-progress-incoming: var(--b4-0)
+        --audio-progress-outgoing: var(--ac-2)
+        --audio-progress-played-incoming: var(--b6-0)
+        --audio-progress-played-outgoing: var(--b6-0)
+        --audio-track-incoming: var(--fg-4)
+        --audio-track-outgoing: var(--fg-4)
+        --avatar-background: var(--bg-1)
+        --avatar-border: var(--bg-3)
+        --background-default-rgb: var(--bg-2-rgb)
+        --background-default-hover-rgb: var(--bg-3-rgb)
+        --button-bubble: var(--ac-0)
+        --chevron-button-background: var(--bg-3)
+        --compose-panel-background-hover: var(--bg-4)
+        --danger-rgb: var(--b1-0-rgb)
+        --dropdown-background: var(--bg-2)
+        --empty-state-background: var(--bg-3)
+        --empty-state-icon: var(--fg-4)
+        --icon-disabled: var(--fg-5)
+        --icon-strong-rgb: var(--fg-1-rgb)
+        --intro-secondary: var(--fg-3)
+        --inverse-rgb: var(--fg-0-rgb)
+        --labels-icon: #f1f1f266
+        --link-rgb: var(--ac-0-rgb)
+        --media-editor-control-rgb: 28,49,63
+        --message-placeholder-icon: var(--fg-3)
+        --message-primary-rgb: var(--fg-1-rgb)
+        --message-selection-highlight: to_rgba('ac-0', 0.1)
+        --modal-backdrop-solid: var(--bg-0)
+        --notification-biz-background: var(--b5-5)
+        --notification-biz-text: var(--b5-0)
+        --overlay: var(--bg-0)
+        --overlay-rgb: var(--bg-0-rgb)
+        --panel-background: var(--bg-3)
+        --panel-background-rgb: var(--bg-3-rgb)
+        --panel-background-deep: var(--bg-2)
+        --panel-input-background: var(--bg-2)
+        --payment-status-failed: #ef697a
+        --payment-status-success: #40cf6c
+        --picker-background: var(--bg-2)
+        --primary-rgb: var(--fg-2-rgb)
+        --primary-strong-rgb: var(--fg-1-rgb)
+        --primary-stronger-rgb: var(--fg-0-rgb)
+        --product-image-button-background: var(--bg-4)
+        --product-thumb-background: var(--bg-3)
+        --product-thumb-background-deeper: var(--bg-2)
+        --progress-background: var(--bg-2)
+        --ptt-blue: var(--b6-0)
+        --ptt-gray: var(--fg-4)
+        --ptt-green: var(--b4-0)
+        --search-input-background: var(--bg-3)
+        --secondary-rgb: var(--fg-3-rgb)
+        --shadow-rgb: var(--sh-rgb)
+        --spinner-incoming: var(--fg-5)
+        --spinner-outgoing: var(--ac-5)
+        --startup-icon: var(--fg-3)
+        --status-background-rgb: var(--bg-1-rgb)
+        --status-primary-rgb: var(--fg-1-rgb)
+        --status-secondary: var(--fg-4)
+        --suspicious-background: #ef697acc
+        --text-muted: var(--fg-4)
+        --thumb-border-viewer-active-rgb: var(--fg-3-rgb)
+        --toast-background: to_rgba('bg-3', 0.96)
+        --tooltip-background: to_rgba('bg-4', 0.85)
+        --video-player-background: #000
+        --video-primary: #fff
+        --video-primary-rgb: 255,255,255
+        --voip-primary-rgb: 255,255,255
+        --reactions-tray-active-round-background: var(--bg-5)
+        --text-primary-strong: var(--fg-1)
 
         /// Generate DWA color variables.
         for _v in (bg fg ac b1 b2 b3 b4 b5 b6 b7 b8) {
@@ -930,1066 +596,156 @@ msg += "P.S. CSS can not create clickable links."
         --t:          transparent
         --bshadow:    0 4px 8px 2px var(--shadow)
 
-        /// Theme intro colors.
-        svg_bg = to_svg(bg-2)
-        svg_ac = to_svg(ac-0)
-
-        /// Theme intro image.
-        _1  = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' "
-        _1 += "height='256' width='256'><g stroke='"
-        _2  = "'><path d='M128.4901 30.8659a95.4375 95.4375 0 00-95.4375 95.4375"
-        _2 += " 95.4375 95.4375 0 0014.168 50.0332L35.6698 221.276l44.7989-12.49"
-        _2 += "8a95.4375 95.4375 0 0048.0214 12.9629 95.4375 95.4375 0 0095.4375"
-        _2 += "-95.4375 95.4375 95.4375 0 00-95.4375-95.4375z' fill='"
-        _3  = "' fill-rule='evenodd' stroke-width='18' stroke-linecap='square'/>"
-        _3 += "<path d='M97.8104 79.8463c-4.9671.0406-13.5028 2.0796-17.7812 14."
-        _3 += "8946-6.8318 20.4631 12.5737 43.3028 27.2438 57.4735 14.7975 14.29"
-        _3 += "38 43.1559 26.507 58.0098 21.08 20.5566-8.9065 15.2475-22.9479 15"
-        _3 += ".2475-22.9479l-22.9727-11.0878s-2.062-1.206-3.4146.5737c-1.0042 1"
-        _3 += ".3213-9.4409 11.3755-9.4409 11.3755s-1.449 1.668-3.827.7402c-5.75"
-        _3 += "74-2.2462-14.2018-7.4856-18.5314-10.7795-6.8875-5.2399-12.957-13."
-        _3 += "0846-16.9473-19.668-1.2556-2.5597.6953-4.709.6953-4.709s6.0303-8."
-        _3 += "2629 7.0176-9.5566c1.0068-1.3194.2539-3.3633.2539-3.3633l-10.539-"
-        _3 += "23.2285s-2.0334-.8212-5.0138-.7969z' fill='"
-        _4  = "' stroke-linejoin='round'/></g></svg>"
-        _i = s('url("%s%s%s%s%s%s%s")', unquote(_1), svg_ac, unquote(_2), svg_bg,
-                                        unquote(_3), svg_ac, unquote(_4))
-        --intro-image: _i
     }
 
-    // Animation for 'Typing...' indicator.
-    if (compact_mode) {
-        @keyframes aBorder {
-            40% { opacity: 0 }
-            80% { opacity: 1 }
-        }
-    }
-
-    // Feat -> Animate emojis.
-    if (emoji_a) {
-        @keyframes aPulse {
-          0%   { transform: scale(.9) }
-          50%  { transform: scale(1)  }
-          100% { transform: scale(.9) }
-        }
-
-        @keyframes aKiss {
-          0%   { transform: scale(.7) }
-          50%  { transform: scale(.8) }
-          80%  { transform: scale(1) rotate(-30deg) }
-          100% { transform: scale(.7) }
-        }
+    // Chat themes outrank :root in their subtree, so the theme has to be set there too.
+    /// `.xoeyzqq` marks every such scope, popovers included. It's a build hash: if it
+    /// changes, popovers go back to WA's accent, #main still holds.
+    #main:not(#z), .xoeyzqq:not(#z) {
+        chat_tokens()
     }
 
     // Global styles.
     html > body {
-        background-image: none i
         c: fg0 0 bg0
 
-        option { c: fg1 0 bg3 }
-
-        /// Feat -> Custom font.
-        &, button, input { font-family: var(--ui-font) }
-
-        /// Toast notifications.
-        ._1Ftww {
-            c: fg1
-            border: 1px solid bg5 i
-            button:nth-child(2) { c: ac1 }
-            button:nth-child(3) { c: fg4 }
-        }
-
-        /// Intro -> Image.
-        [data-testid^="intro-md-beta-logo-"] {
-            padding: 8rem
-            background-image: var(--intro-image)
-            > svg { display: none }
-        }
-
-        /// Intro -> Version.
-        [data-testid="intro-title"] {
-            font-size: 0px i
-            &::before {
-                content: var(--version)
-                font-size: 1.5rem
-            }
-        }
-
-        /// Intro -> Announcements.
-        [data-testid="intro-text"] {
-            font-size: 0px i
-            &::before {
-                content: msg
-                white-space: pre-wrap
-                font-size: 0.875rem
-            }
-        }
-
-        /// Settings -> Tweaks for 'Set Chat Wallpaper' area. #149
-        /.Iwkc0 {
-            position: relative
-
-            /// Override selected wallpaper.
-            --blue-light: ac3
-            --inverse: ac3
-
-            /// Expand default chat wallpaper.
-            &:first-child {
-                &, &::after { width: calc(100% + 8px) }
-
-                /// Add chat image.
-                &::before {
-                    content: ''
-                    filter: invert(var(--chat-bg-i)) opacity(var(--chat-bg-o))
-                    background: var(--chat-image) i
-                    position: absolute
-                    height: 100%
-                    width: 100%
-                }
-
-                /// Add pseudo text.
-                span {
-                    font-size: 0 i
-                    &::before {
-                        content: 'Use this with Dark-WhatsApp'
-                        font-size: 16px i
-                    }
-                }
-            }
-        }
-
-        /// Global -> Scrollbar styles.
-        /\* {
-            /// Scrollbar colors.
-            @supports (scrollbar-width: thin) {
-                scrollbar-color: ac2 var(--shadow) i
-            }
-            &::-webkit-scrollbar {
-                &-thumb { c: 0 0 ac2 }
-                &-track { c: 0 0 var(--shadow) }
-            }
-        }
-
-        /// Feat -> Hide profile pictures.
-        if (chat_h_p_p) {
-            /img[src*='whatsapp.com/pp?'] { display: none i }
-        }
-
-        /// Loading page.
-        /// NOTE: Keep it because there are two `startup` states; one of them
-        /// is *not* styled by default, so it leads to white background flash.
-        /[id*='startup'] {
-            c: 0 0 bg0
-            .graphic::after {
-                opacity: 0.6 i
-                background: linear-gradient(to right, bg0 0%, bg0 33%, t 44%, t 55%, bg0 66%, bg0 100%) i
-            }
-        }
-
-        /// Progress bars.
-        /// NOTE: There is still flashing of unstyled content. Sigh.
-        /progress {
-            c: 0 0 bg2
-            &[value]::-moz-progress-bar { c: 0 0 ac0 }
-            /::-moz-progress-bar { c: 0 0 bg4 }
-            /::-webkit-progress {
-                &-bar { c: 0 0 bg4 }
-                &-value { c: 0 0 ac0 }
-            }
+        /// Feat -> Custom font. Leave WA's own typeface alone unless one is set.
+        if (ui_font != 'font_name') {
+            &, button, input { font-family: var(--ui-font) }
         }
     }
 
-    // Feat -> Rounded corners for avatars.
-    ._3g4Pn[style] {
-        /// Global/shared contacts.
-        &, /._3PdFH { c: 0 0 bg5 }
+    // Scrollbars.
+    * { scrollbar-color: ac2 t i }
 
-        /// Avatars/images/new group/contact avatar/your avatar.
-        &, > img, /img.o2zu3hjb, /._1jLYl, /._1PAkz {
-            rad: var(--r-avatars) i
-        }
+    // Modals. Elevated surfaces are close in tone to the dimmed app behind them.
+    [data-animate-modal-popup] { border: 1px solid bg5 }
 
-        /// Fix 'New group' bottom divider to hide drawer background-color.
-        /[data-list-scroll-offset] > div:first-child > div:last-child {
-            margin-left: 0 i
-        }
-
-        /// Tweak default icons.
-        if (radius_a != '50%') {
-            /[style *= 'width:'][style *= 'height:'] {
-                [data-icon = 'default-user'] svg,
-                [data-icon = 'default-group'] svg {
-                    background-color: bg5
-                    border-radius: var(--r-avatars) i
-                }
-            }
-        }
+    // Feat -> Rounded corners for avatars, hide profile pictures.
+    /// Group avatars can also be an SVG <image>, which border-radius can't reach.
+    #side img:not(.emoji),
+    #main header img,
+    [data-testid='group-chat-profile-picture'] img,
+    img[src*='pps.whatsapp.net'] {
+        rad: var(--r-avatars) i
+        if (chat_h_p_p) { visibility: hidden i }
+    }
+    if (chat_h_p_p) {
+        image[*|href*='pps.whatsapp.net'] { visibility: hidden i }
     }
 
-    // Emojis -> Custom enhancements.
-    .emojik {
-        transition: transform 0.15s ease i
+    // Feat -> Emoji opacity.
+    img.emoji:not(:hover) { opacity: var(--emoji-o) }
 
-        /// Default opacity.
-        &:not(:hover):not(:focus):not(.selected) {
-            filter: opacity(var(--emoji-o))
-        }
-
-        /// Hovered/focused states.
-        &:hover:not(.selected):not(:focus) {
-            transform: scale(1.2)
-            box-shadow: none i
-            opacity: 1 i
-        }
-
-        /// Selected state. #148
-        &.selected, &:focus { box-shadow: 0 0 0 1px bg3, 0 0 0 3px ac0 i }
+    // Feat -> Alerts.
+    if (app_alerts == 'hide') {
+        [data-testid='chat-butterbar'] { display: none i }
+    } else if (app_alerts == 'notifications') {
+        /// The icon has no data-icon anymore. Matching its path fails safe: if WA
+        /// redraws it, the banner just comes back.
+        [data-testid='chat-butterbar']:has(path[d^='M16.15 19H5']) { display: none i }
     }
 
-    // Modals.
-    .overlay {
-        /// Fix header in media viewer modal. @upstream
-        /[data-animate-media-viewer] > div:first-child{
-            border-bottom: 1px solid bg5 i
-            c: 0 0 bg2
-        }
-
-        /// Remove header in avatar viewer modal.
-        [data-testid='cell-frame-container'] { c: 0 0 t }
-
-        /// Add borders.
-        [data-animate-modal-popup] {
-            box-shadow: var(--bshadow) i
-            border: 1px solid bg5
-            rad: var(--r-menus) i
-
-            .copyable-area {
-                > header { border-bottom: 1px solid bg5 }
-                > span [style *= 'translateY']:not([tabindex]), ._30pU5 {
-                    border-top: 1px solid bg5
-                }
-            }
-        }
-
-        /// Groups -> Search participants.
-        header + div[tabindex] + div div[style] {
-            --background-default: bg1
-            --background-default-hover: bg2
-        }
-
-        /// Fix media selection footer.
-        /._1XWMx { c: 0 bg5 bg2 }
-
-        /// Status area modal.
-        /[data-animate-status-v3-modal-background = 'true'] {
-            c: 0 0 var(--modal-backdrop)
-            /// Main content.
-            > div {
-                c: 0 0 bg1
-
-                /// Sidebar.
-                > div:nth-child(1) {
-                    c: 0 0 bg2
-                    border-right: 1px solid bg5
-                    rad: var(--r-menus) 0 0 var(--r-menus) i
-                }
-
-                /// Large screens.
-                if (!fullscreen) {
-                    @media (min-width: 1441px) {
-                        border: 1px solid bg5 i
-                        rad: var(--r-menus) i
-                    }
-                }
-            }
-
-            /// Background color for author & publish date. @upstream
-            /._2yhFa {
-                margin: auto
-                padding: 5px 8px 8px
-                min-width: 150px
-                rad: var(--r-inputs)
-                background-color: to_rgba('bg-1', 0.5)
-            }
-
-            /// Fill color for unread icon. @upstream
-            /[data-icon = 'status-v3-unread'] {
-                [fill = '#009588'] { fill: ac0 i }
-            }
-        }
-
-        /// 'Allow notifications' modal.
-        /[data-testid="confirm-popup"] {
-            c: 0 0 var(--modal-backdrop)
-            /// Use a proper foreground color.
-            [data-animate-modal-popup] { --white-rgb: var(--fg-1-rgb) }
-        }
-    }
-
-    // Login page.
-    .landing {
-        &-title { c: fg1 }
-        &-wrapper-before { c: 0 0 bg1 }
-        &-header {
-            position: relative
-
-            /// WhatsApp logo.
-            path[fill ^= '#FFF'] { fill: ac0 }
-            path[fill ^= '#00E'] { fill: bg1 }
-            div {
-                text-transform: unset
-                c: fg1
-            }
-
-            /// Userstyle version.
-            &::after {
-                font-size: 14px
-                font-weight: 500
-                position: absolute
-                content: var(--version)
-                /html[dir = 'RTL'] & { left: 0 }
-                /html[dir = 'LTR'] & { right: 0 }
-            }
-        }
-
-        &-window:not(#z) {
-            rad: 4px
-            c: 0 0 bg1
-            box-shadow: 0 0 1px bg5
-        }
-
-        &-main {
-            a { c: ac0 }
-            label { c: fg3 }
-            [fill^='#f2f' i] { fill: bg5 }
-            [fill^='#818' i] { fill: fg1 }
-
-            /// QR code.
-            div[data-ref] {
-                filter: contrast(150%)
-                outline: 4px solid #fff
-                box-shadow: 0 0 0 4px #fff
-                [role='button'] { c: white 0 ac0 }
-            }
-
-            /// Video tutorial.
-            + div {
-                c: 0 0 t
-                img { opacity: 0.3 }
-                /// Reset background on button container.
-                [style *= 'opacity: 1'] { c: 0 0 t }
-            }
-
-            /// 'Keep me signed in' tooltip. #59
-            a[href*='faq.whatsapp.com'] + div > span > div {
-                c: white 0 ac0
-                box-shadow: bsh
-                &::before { border-bottom-color: ac0 i }
-            }
-        }
-    }
-
-    // Various app styles.
-    #app > div {
-        &::after {
-            /// Remove app background in fullscreen mode or low-res screens.
-            @media screen and (min-width: 1441px) {
-                content: (fullscreen || app_image == 'none') ? unset i : '' i
-            }
-
-            /// Feat -> App background.
-            if (app_image != 'none' && app_image != 'default') {
-                s = var(--bg-blur-s)
-                b = blur(var(--bg-blur))
-                o = opacity(var(--bg-opacity))
-                t = invert(var(--bg-invert))
-                h = hue-rotate(var(--bg-hue))
-                top: s; right: s; bottom: s; left: s;
-                height: unset; width: unset;
-                filter: b o t h
-                background-position: var(--bg-pos) i
-                background-image: var(--bg-image) i
-                background-repeat: var(--bg-rep) i
-                background-size: var(--bg-size) i
-                background-color: transparent i
-            } else if (app_image == 'default') {
-                c: 0 0 bg1
-            }
-        }
-
-        /// Right -> Remove top border from the first Links/Docs message.
-        /div, /span {
-            div:first-child > ._36BuW::before { content: none }
-        }
-
-        /// Feat -> Input border radius.
-        .p3_M1 { rad: var(--r-inputs) i }
-
-        /// Dropdowns -> Chat/Header.
-        > span > div, .o--vV {
-            &[style ^= 'transform-origin:'][tabindex] {
-                box-shadow: var(--bshadow) i
-                border: 1px solid bg4
-                rad: var(--r-menus) i
-            }
-        }
-
-        /// Floating emoji picker.
-        > span > ._3IU7z {
-            border: 1px solid bg5 i
-            box-shadow: var(--bshadow) i
-
-            /// Remove borders.
-            div[tabindex='-1'] > div:only-child { border-left: none i }
-
-            > [data-animate-dropdown-nib] {
-                border-bottom: 1px solid bg5
-                border-right: 1px solid bg5
-                rad: 0 0 4px 0
-                bottom: -8px i
-            }
-        }
-    }
-
-    // Shared app drawer styles.
-    #app > div > [tabindex] {
-        c: 0 0 bg1
-
-        @media (min-width: 1441px) {
-            &, /[data-animate-status-v3-modal-background] > div:first-child {
-                /// Feat -> Fullscreen mode.
-                if (fullscreen) {
-                    width: 100% i
-                    max-width: 100% i
-                    height: 100% i
-                    top: unset i
-                } else {
-                    /// Feat -> App width.
-                    width: calc(100% - 38px) i
-                    max-width: var(--app-width) i
-                    rad: var(--r-menus) i
-                    border: 1px solid bg5 i
-                    box-shadow: 0 2px 6px sh i
-                }
-            }
-        }
-
-        /// Odd header-like tall background.
-        &::after { content: unset i }
-
-        /// Global -> Search bar.
-        /[data-testid="chat-list-search-container"] {
-            c: 0 0 bg2
-            border-bottom: 1px solid bg5 i
-            > div {
-                rad: var(--r-inputs) i
-                box-shadow: inset 0 0 0 1px bg4
-            }
-            &:focus-within { box-shadow: var(--bshadow) }
-        }
-
-        /// Left -> Reset header.
-        [data-testid="chatlist-header"] {
-            border-bottom: 1px solid bg5 i
-        }
-
-        /// Left -> Tweak alerts.
-        [data-testid='chat-butterbar'] {
-            border-bottom: 1px solid bg5 i
-
-            /// Close icon for 'low battery' state.
-            [data-icon = 'x'] svg path { fill: fg5 }
-
-            // Feat -> Hide alerts.
-            if (app_alerts == 'hide') {
-                display: none i
-            } else if (app_alerts == 'notifications') {
-                &:has([data-icon='alert-notification']) {
-                    display: none i
-                }
-            }
-        }
-
-        /// Right -> Drawer divider.
-        &.three > [data-testid="drawer-right"] {
-            border-left: 1px solid bg5 i
-
-            /// Remove shadows from drawer sections.
-            section > div { box-shadow: 0 0 0 1px bg4 i }
-
-            /// Remove native dark mode dividers.
-            /.dark .three #main {
-                > *, .copyable-area > div[tabindex='0'] { border-right: none i }
-            }
-        }
-
-        /// Floating drawers.
-        > div:nth-child(2) {
-            /// Left -> Archived contacts.
-            > div:nth-child(1) {
-                > span[class] * {
-                    // c: 0 0 red
-                    [role][aria-selected='false'] > div {
-                        c: 0 0 bg1
-                        &:hover { c: 0 0 bg2 }
-                    }
-                }
-            }
-
-            /// Left -> Settings -> Help.
-            > div:nth-child(1) {
-                .copyable-text ~ div[role='button'] {
-                    --background-default: var(--bg-1)
-                    --background-default-hover: var(--bg-2)
-                }
-            }
-
-            /// Left/Right -> Starred messages.
-            > div:nth-child(1),
-            > div:nth-child(3) {
-                // c: 0 0 blue
-                header + div > span > div > div {
-                    --drawer-gallery-background-hover: var(--bg-2)
-                    --border-panel: b11
-                    /// Always show top border.
-                    &::before { c: 0 0 bg3 }
-                    /// Do not hide bottom border.
-                    &::after { c: 0 0 t }
-                }
-            }
-
-            /// Right -> Invite to group.
-            > div:nth-child(3) {
-                header + div {
-                    > div:first-child.wJ21F, // Invite link wrapper.
-                    > div[role='button'] {
-                        --background-default: bg1
-                        --background-default-hover: bg2
-                    }
-                }
-            }
-        }
-    }
-
-    // Global -> Icons.
-    span[class] {
-        /// Right -> Contact/group selected media drawer.
-        &[data-icon = 'checkbox-round-checked'] {
-            [fill = '#00BFA5'] { fill: ac0 }
-            [fill = '#FFF'] { fill: white }
-        }
-
-        /// Left -> Reset 'connecting' icon background. @upstream
-        &[data-icon] path[fill = '#FFBC00'] { fill: bg3 i }
-
-        /// Chat -> Context menu arrows.
-        &[data-icon = 'down-context'] { c: fg3 }
-
-        /// Hover animation for icons.
-        /#side > header,
-        /#main > div + header,
-        /#main > footer > .copyable-area,
-        /#main > footer + span:not([class]) > div,
-        /.overlay > div:first-child,
-        /.copyable-area > header {
-            button:not([data-animate-menu-icons-item]), [role = 'button'] {
-                [data-icon] { transition: fill-opacity 0.3s ease i }
-                &:not(._3QjfB):hover [data-icon] { fill-opacity: 0.6 i }
-            }
-        }
-    }
-
-    // Feat -> Consistent drawer headers.
-    .copyable-area header[class] {
-        if (app_header) {
-            height: 59px i
-            justify-content: center i
-            border-bottom: 1px solid bg5 i
-
-            /// Reset left drawer inner item.
-            > [data-animate-drawer-title] {
-                height: unset i
-
-                /// Reset header text.
-                > div:nth-child(2) {
-                    margin-top: 1px i
-                    font-size: 18px i
-                    font-weight: normal i
-                }
-            }
-        } else {
-            --panel-background-colored: bg4 i
-        }
-    }
-
-    // Sidebar.
-    #side {
-        /// Feat -> Blur contacts.
-        if (chat_b_c) {
-            [style *= '0s; height'] {
-                /// Remove odd shadow.
-                > [aria-selected = 'true'] {
-                    > div::after { display: none i }
-                }
-
-                /// Do the blur.
-                > :not([aria-selected = 'true']) {
-                    overflow: hidden i
-                    > div { transition: background, filter 300ms ease-in-out i }
-                    &:not(:hover) > div { filter: blur(6px) }
-                    &:hover { filter: blur(0px) }
-                }
-            }
+    // Feat -> Blur contacts.
+    if (chat_b_c) {
+        #pane-side [data-testid='cell-frame-container'] > * { transition: filter 0.2s ease }
+        #pane-side [role='row']:not(:hover):not(:has([aria-selected='true'])) [data-testid='cell-frame-container'] > * {
+            filter: blur(var(--blur-contacts))
         }
     }
 
     // Chat.
-    #main {
-        /// Reset header.
-        > header {
-            border-bottom: 1px solid bg5 i
-            box-shadow: none i
-            c: 0 bg5
-
-            /// Remove border in light mode.
-            &::after { content: unset }
-        }
-
-        /// System messages.
-        .EtBAv {
-            $c = (ow_sys_msg) ? darken(sys_msg_bg, -10%) : b63
-            border: 1px solid $c
-            text-shadow: none i
-
-            /// End-to-end encryption message.
-            &._1p8Qv { border: 1px solid b34 }
-        }
-
-        /// Feat -> Custom chat background.
-        /[data-asset-chat-background-dark],
-        /[data-asset-chat-background-light] {
+    /// Feat -> Chat background. The doodle is a mask over the foreground token.
+    [data-testid^='conversation-background-'] {
+        opacity: 1 i
+        if (!chat_bg) { display: none i }
+        if (chat_image != none) {
+            mask-image: none i
             filter: invert(var(--chat-bg-i)) opacity(var(--chat-bg-o))
+            background-color: t i
             background-image: var(--chat-image) i
             background-position: var(--chat-bg-p) i
             background-repeat: var(--chat-bg-r) i
             background-size: var(--chat-bg-s) i
-            opacity: 1 i
-
-            /// Feat -> Show chat image.
-            if (!chat_bg) { display: none i }
-        }
-
-        /// Tweak 'unread messages' alert.
-        ._5ML0C { border: none i }
-
-        /// Fix context menu background for stickers.
-        [data-js-context-icon] + div[style] { c: 0 0 bg4 }
-
-        /// Add background to media message timestamps.
-        /[style *= 'width'][style *= 'height'] + div {
-            /// Images/gifs.
-            &._2AKAp, &.zE8pI {
-                padding: 2px 4px i
-                background-color: to_rgba('bg-1', 0.7) i
-                rad: 5px i
-            }
-
-            /// Videos.
-            /.video-thumb {
-                /// Length/Timestamp.
-                ._1rd4q, + ._3phU6 {
-                    padding: 2px 4px i
-                    background-color: to_rgba('bg-1', 0.7) i
-                    rad: 5px i
-                }
-
-                /// Timestamps in grouped media.
-                &._3V2jl + ._3phU6 {
-                    right: 5px i
-                    bottom: 3px i
-                }
-            }
-
-            /// Google Maps timestamps.
-            /[style *= 'height'][data-plain-text *= 'maps.google.com'] {
-                + div[class] > [role] {
-                    padding: 2px 4px i
-                    background-color: to_rgba('bg-1', 0.7) i
-                    rad: 5px i
-                }
-
-                /// Live location overlay.
-                /.fMR4l { background-color: to_rgba('bg-4', 0.5) i }
-            }
-        }
-
-        /// Feat -> Blur media.
-        if (chat_b_img) {
-            /[class *= 'message-'] [style *= 'height'] {
-                img:not([src*='/pp?']) {
-                    transition: 0.5s ease
-                    transition-delay: var(--blur-out)
-                    filter: blur(16px) grayscale(100%)
-
-                    &:hover {
-                        transition-delay: var(--blur-in)
-                        filter: none i
-                    }
-                }
-
-                /// Reset blur for avatars in audio messages.
-                &[style *= 'width'] > img._2goTk { filter: none i }
-            }
-
-            /[class *= 'message-'] .video-thumb {
-                [style *= "data:image"] {
-                    transition: 0.5s ease
-                    transition-delay: var(--blur-out)
-                    filter: blur(16px) grayscale(100%)
-                }
-
-                &:hover [style *= "data:image"] {
-                    transition-delay: var(--blur-in)
-                    filter: none i
-                }
-            }
-        }
-
-        /// Footer.
-        > footer {
-            /// Compose border.
-            ../> header ~ div[style *= 'height: 0px'] {
-                border-top: 1px solid bg5 i
-            }
-
-            /// Popover border.
-            .velocity-animating,
-            div[style $= 'translateY(0%);'],
-            div[style $= 'translateY(0px);'] {
-                box-shadow: 0 -1px 0 bg5 i
-            }
-
-            /// Fix borders an unknown contact.
-            ._3ImlL {
-                border-top: none
-                border-bottom: 1px solid bg5
-            }
-
-            /// Groups -> Only admins can send messages.
-            ._31enr {
-                border-top: 1px solid bg5 i
-                border-left: @border-top
-            }
-
-            /// Emoji quick-picker.
-            [data-list-scroll-container] {
-                border-bottom: 1px solid bg5 i
-                box-shadow: 0 -1px bg5 i
-            }
-
-            /// Chat -> Select messages.
-            + span > .OVz7E {
-                border-top: 1px solid bg5 i
-                border-left: 1px solid bg5 i
-            }
-
-            /// Feat -> Input border radius.
-            ._2A8P4 { rad: var(--r-inputs) i }
-        }
-
-        /// Fix styles for Google Maps.
-        img[src *= 'maps.googleapis.com'] {
-            filter: invert(0.8) hue-rotate(180deg) i
-        }
-
-        /// Groups -> Fix opacity for nicknames.
-        /[class *= ' color-'] > span:nth-child(2) { c: fg3 }
-
-        /// Theme colors for replies and member nicknames.
-        for k, v in 0..20 {
-            key = (k < 8) ? k + 1 : (k < 15) ? k + 1 - 8 : k + 1 - 15
-            val = (k < 8) ?     0 : (k < 15) ?         1 :          2
-            .color-{ k } { c: s('var(--b%s-%s)', key, val) }
-            .bg-color-{ k } { c: 0 0 s('var(--b%s-%s)', key, val) }
         }
     }
 
-    // Feat -> Compact mode.
+    /// Location previews are static map images.
+    #main img[src*='maps.googleapis.com'] { filter: invert(0.8) hue-rotate(180deg) }
+
+    /// Feat -> Message tails.
+    if (tail_style != 'default') {
+        [data-icon^='tail-'] {
+            display: none i
+            if (tail_style == 'rounded') {
+                + div { rad: 7.5px i }
+            }
+        }
+    }
+
+    /// Feat -> Blur media. Reveal on bubble hover: overlays can sit on top of the image.
+    if (chat_b_img) {
+        #main [data-testid='msg-container'] img:not(.emoji):not([src*='pps.whatsapp.net']),
+        #main [data-testid='msg-container'] video {
+            transition: filter 0.5s ease var(--blur-out)
+            filter: blur(16px) grayscale(100%)
+        }
+        #main [data-testid='msg-container']:hover img:not(.emoji):not([src*='pps.whatsapp.net']),
+        #main [data-testid='msg-container']:hover video {
+            transition-delay: var(--blur-in)
+            filter: none
+        }
+    }
+
+    // Layout.
+    /// Feat -> App width. WA is always full-bleed now; this is what bounds it.
+    .two, .three {
+        max-width: var(--app-width)
+        margin-inline: auto i
+    }
+
+    /// Feat -> Compact mode. Natively the list keeps 45% and pushes #main off-screen.
     if (compact) {
-        /// Reset height/width if there is an overflow.
-        #app > div > [tabindex] {
-            @media screen and (max-height: 648px) { min-height: auto }
-            @media screen and (max-width: 648px) { min-width: auto }
-            // > div *:hover { box-shadow: inset 0 0 0 1px crimson i }
-        }
-
-        /// Compact mode.
         @media screen and (max-width: compact_mw) {
-            /// Shared drawer styles.
-            .two, .three {
-                /// Left -> Settings/Contacts.
-                > div:nth-child(4) {
-                    flex: 0 0 80px i
-                    transition: 0.2s ease
-                    &:hover, &:focus-within { flex: 0 0 30% i }
-                }
-            }
+            /// WA's own 748px floor is what clips #main on small windows.
+            .two, .three { min-width: 0 i }
 
-            /// Tweaks for two open drawers.
-            .two {
-                /// Reset upload preview.
-                >  div:nth-child(3) > div:nth-child(2) {
-                    flex: 0 0 calc(100% - 80px) i
-                    margin-left: calc(-30% + 80px)
-                }
+            /// This empty layer's divider marks the native 45% split, not ours.
+            [data-testid='drawer-middle'] { border-inline-start: none i }
 
-                /// Expand contacts.
-                > div:nth-child(4) {
-                    min-width: 1px i
-                    transition: 0.3s ease i
-                    transition-delay: var(--c-m-delay) i
+            .two > :has(> #side), .three > :has(> #side) {
+                flex: 0 0 80px i
+                max-width: 80px i
+                overflow: hidden
+                /// Stepped on purpose: the delay is the hover intent, no layout animation.
+                transition: flex-basis 0s var(--c-m-delay), max-width 0s var(--c-m-delay)
 
-                    /// All left drawers should be the same width.
-                    &:hover {
-                        min-width: 349px i
-                        transition-delay: var(--c-m-hover) i
-                        flex: 0 0 30% i
-                    }
+                /// Keep the inner width so rows clip instead of reflowing.
+                > * { min-width: 350px }
+
+                &:hover, &:focus-within {
+                    flex-basis: 350px i
+                    max-width: 350px i
+                    transition-delay: var(--c-m-hover)
                 }
 
-                /// Settings/Starred/Archived drawers.
-                > :nth-child(3) > :nth-child(1) {
-                    z-index: 201 i
-                    flex: 0 0 30% i
-                    min-width: 350px i
-                    [style][tabindex] { border-right: 1px solid bg5 i }
-                }
-            }
-
-            /// Tweaks for three open drawers.
-            .three {
-                /// Reset upload preview drawer.
-                > div:nth-child(3) > div:nth-child(2) {
-                    flex: 0 0 calc(100% - 30% - 81px) i
-                    margin-left: calc(-30% + 80px)
-                }
-
-                /// Do not expand left drawer when right drawer is open.
-                > div:nth-child(4) {
-                    max-width: 80px i
-                    flex: 0 0 80px i
-                }
-            }
-
-            /// Fix left header.
-            [data-testid="chatlist-header"] {
-                display: flex
-                justify-content: start
-                min-height: 59px
-
-                // Workaround for dropdown menus.
-                &:not(:focus-within) { overflow: hidden }
-
-                // Separate header buttons.
-                > div:nth-child(2) { margin-left: 1rem }
-
-                /// Remove notifications.
-                + span { display: none }
-
-                /// Fix search bar width.
-                + span + div:not(:focus-within) {
-                    [data-testid="chat-list-search-container"] > div {
-                        min-width: 60px
-                    }
-                }
-            }
-
-            /// Contacts.
-            #side {
-                unread = '[data-testid="icon-unread-count"]'
-                status = '[data-testid^="status-"]'
-                typing = 'span[title*="…"]'
-
-                /// 'Typing...' status indicator.
-                { typing } {
-                    overflow: unset i
-                    margin-top: -8px i
-                    margin-left: 0px i
-                    position: absolute i
-
-                    &::before {
-                        content: '' i
+                /// Collapsed rail: unread badge on the avatar, drop what can't fit.
+                &:not(:hover):not(:focus-within) {
+                    [data-testid='chat-butterbar'],
+                    [data-testid='chatlist-e2e-message'] { display: none i }
+                    /// Not hidden: they stay focusable, and focus is what expands the list.
+                    > :not(#side) > *,
+                    [data-testid='chat-list-search-container'],
+                    [role='tablist'] { opacity: 0 }
+                    [data-testid='cell-frame-container'] { position: relative }
+                    [data-testid='icon-unread-count'] {
                         position: absolute i
-                        top: -31px i
-                        left: -66px i
-                        height: 53px i
-                        width: 53px i
-                        rad: var(--r-avatars) i
-                        box-shadow: inset 0 0 0 3px b40 i
-                        animation: 2s aBorder infinite i
-
-                        /// Fix RTL layout.
-                        /[dir = 'RTL'] & { left: 63px i }
-                    }
-                }
-
-                /// Move icons to start.
-                n = 'nth-child(2)'
-                [data-testid='cell-frame-container'] > div:{ n } > div:{ n } {
-                    position: relative
-                    flex-direction: row-reverse
-
-                    /// Remove margins.
-                    [role='gridcell'] { margin: 0 i }
-
-                    /// Unread indicator.
-                    { unread } {
-                        left: 44px
-                        z-index: 9999
-                        position: fixed
-                        margin-top: 4px
-                        border: 2px solid bg2 i
-                    }
-
-                    /// Status indicator.
-                    { status } {
-                        left: 44px
-                        z-index: 9999
-                        position: fixed
-                        margin-top: 4px
-                        padding: 3px i
-                        border: 2px solid bg2 i
-                        c: 0 0 bg4
-                        rad: 50%
-
-                        /// Make the icon smaller.
-                        svg {
-                            width: 14px
-                            height: 14px
-                        }
-                    }
-
-                    /// Remove elements.
-                    .status-vcard, // more icons
-                    button[aria-hidden], // context menu
-                    [data-icon]:not([data-icon*='status-']):not([data-icon*='disappearing']) {
-                        display: none
-                    }
-                }
-
-                /// Hover/Active states.
-                &:not(#z) [aria-selected='false'] > div:hover {
-                    { unread }, { status } { c: 0 bg3 }
-                    { status } { c: 0 0 bg5 }
-                }
-                &:not(#z) [aria-selected='true'] > div {
-                    { unread }, { status } { c: 0 bg4 bg1 }
-                }
-
-                // Hide horizontal overflow.
-                > #pane-side { overflow-x: hidden i }
-            }
-
-            // Remove E2E notice.
-            [data-testid="chatlist-e2e-message"] { display: none }
-        }
-    }
-
-    // Main -> Chat message bubbles.
-    .message {
-        &-in, &-out {
-            /// Feat -> Message tails.
-            if (tail_style == 'rounded' || tail_style == 'minimal') {
-                [data-icon *= 'tail'] {
-                    display: none i
-
-                    // Tweak corners in regular/group chats.
-                    if (tail_style == 'rounded') {
-                        + div, + div[data-testid] + div { rad: 7.5px i }
-                    }
-                }
-            }
-
-            /// Feat -> Reduce big emoji size.
-            img {
-                &[alt="❤️"],
-                &[src^='/img'][src$='-40.png'],
-                &[src^='/img'][src$='-64.png'] {
-                    if (emoji_b != "48px") {
-                        width: emoji_b i
-                        height: emoji_b i
-                    }
-                }
-
-                // Add padding before timestamp.
-                ../ .copyable-text.selectable-text {
-                    &:has([src^='/img'][src$='-40.png']),
-                    &:has([src^='/img'][src$='-64.png']) {
-                        margin: 0 57px 0 0 i
+                        top: 8px
+                        left: 46px
+                        z-index: 1
                     }
                 }
             }
         }
-
-        /// Feat -> Swap message bubble positions.
-        if (bubble_in) { &-in { align-items: flex-end i }}
-        if (bubble_out) { &-out { align-items: flex-start i }}
-
-        /// Feat -> Animate emojis.
-        if (emoji_a) {
-            emoji_k = (emoji_k == '') ? () : emoji_k
-            emoji_p = (emoji_p == '') ? () : emoji_p
-
-            /// Generate Kiss/Pulse emoji styles.
-            /[class*='message-'] img[src$='-64.png'] {
-                for emoji in emoji_k {
-                    &[alt={ '%s' % emoji }] {
-                        +cache('aKiss') { animation: aKiss 1.5s infinite }
-                    }
-                }
-                for emoji in emoji_p {
-                    &[alt={ '%s' % emoji }] {
-                        +cache('aPulse') { animation: aPulse 1.5s infinite }
-                    }
-                }
-            }
-        }
-    }
-
-    // Right -> Maps.
-    .gm-style {
-        img {
-            /// 1: Logo; 2: Full map; 3: Map tiles.
-            &[src *= 'images/google']
-            &[src *= 'maps.googleapis.com'],
-            &[style *= 'width: 256px'][style *= 'height: 256px'] {
-                filter: invert(0.8) hue-rotate(180deg) contrast(120%) i
-            }
-
-            /// Reset avatars.
-            &[src *= 'com/pp?'],
-            ../ [style *= 'height: 40px; width: 40px'] {
-                rad: 50% i
-            }
-        }
-
-        /// Map controls.
-        [controlwidth = '40'] * {
-            filter: invert(0.9) i
-            [style *= 'd-color: rgb(255\, 255\, 255)'] { c: 0 0 bg0 }
-        }
-
-        /// Map copyright/ToS.
-        [style *= 'd-color: rgb(245\, 245\, 245)'] { c: 0 0 bg4 }
-        [style *= ' color: rgb(68\, 68\, 68)'] { c: fg3 }
-
-        /// Popout arrow.
-        .BPkae { border-top-color: var(--modal-background) i }
-
-        /// Location pin.
-        ._3Q8RX { c: 0 0 ac1 }
-
-        /// Footer border.
-        /._3nNEI { box-shadow: 0 -1px bg3 i }
     }
 }
