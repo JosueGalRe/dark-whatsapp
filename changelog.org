@@ -1,6 +1,14 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.8 [2026-11-08 Sun]
+*** Fixed
+- Message times stuck out of the bubbles in channels up to 900px: the 85% limit from
+  4.2.4 shrank the bubble but not its contents. It now applies only to chats with a
+  composer, since channels have no sides to tell apart.
+- The status viewer's progress bar ran off the window below 500px and under its back
+  and close buttons below 632px. It now fits between them.
+
 ** 4.2.7 [2026-11-08 Sun]
 *** Fixed
 - Below 601px Calls, Status, Channels, Communities and your profile split into two

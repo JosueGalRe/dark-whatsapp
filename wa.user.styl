@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.7
+@version      4.2.8
 @license      MIT
 @preprocessor stylus
 
@@ -897,6 +897,9 @@ mix_base(amount) {
             /// Over the chat, but under the open list and the left drawers, which it can reach.
             .three > [data-testid='drawer-right'] { z-index: 199 }
 
+            /// A fixed 500px in the status viewer, level with its back and close buttons.
+            :has(> [data-testid='status-progress-bar-segment']) { max-width: calc(100% - 128px) }
+
             /// This empty layer's divider marks the native split, not ours.
             [data-testid='drawer-middle'] { border-inline-start: none i }
 
@@ -1099,9 +1102,10 @@ mix_base(amount) {
         }
 
         /// With small gutters a full-width bubble doesn't read as coming from either side.
-        /// WA's own limit here is 95%, and it steps down on its own above 900px.
+        /// WA's own limit here is 95%, and it steps down on its own above 900px. Channels have
+        /// no composer and no sides, and their rows fit the message: a percentage overflows.
         @media screen and (max-width: compact_mw) and (max-width: 900px) {
-            #main [data-testid='msg-container'] { max-width: 85% }
+            #main:has([data-testid='compose-box']) [data-testid='msg-container'] { max-width: 85% }
         }
 
         @media screen and (max-width: compact_mw) and (max-width: 735px) {
