@@ -1,6 +1,12 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.10 [2026-11-08 Sun]
+*** Fixed
+- The media viewer's toolbar ran off the left edge below 748px when opened from the
+  Media panel, where it has 11 buttons, hiding the first ones and the sender. Its
+  buttons now give way to fit, and the sender takes whatever room is left.
+
 ** 4.2.9 [2026-11-08 Sun]
 *** Fixed
 - Below 748px WhatsApp's dialogs were pushed off the right edge of the window, leaving

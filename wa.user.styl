@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.9
+@version      4.2.10
 @license      MIT
 @preprocessor stylus
 
@@ -1042,6 +1042,34 @@ mix_base(amount) {
             [data-testid='media-hub-thumb'] div {
                 min-width: 0 i
                 max-width: 100% i
+            }
+
+            /// The media viewer's toolbar has up to 11 buttons and won't shrink, so it runs off
+            /// the left edge, taking the sender with it. Its cells give way when they have to,
+            /// and the sender only takes what's left. Their pitch stays WA's 48px otherwise.
+            [data-testid='media-viewer-modal'] > :first-child {
+                > :first-child {
+                    flex: 1 1 0 i
+                    min-width: 0
+                    margin-inline-end: 8px i
+                }
+
+                > :last-child {
+                    flex-shrink: 1 i
+                    min-width: 0
+                }
+
+                > :last-child > * {
+                    gap: 0
+                }
+
+                > :last-child > * > * {
+                    flex: 0 1 auto
+                    width: 48px
+                    display: flex
+                    justify-content: center
+                    min-width: 0
+                }
             }
 
             .two > [data-testid='drawer-right'] { transform: translateX(100%) }
