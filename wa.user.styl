@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.2
+@version      4.0.3
 @license      MIT
 @preprocessor stylus
 
@@ -357,6 +357,7 @@ mix_base(amount) {
         --c-m-delay: compact_ho
         --c-m-open: unquote('inset(0 -290px 0 0)')
         --c-m-row: unquote('inset(0 calc(100% - 74px) 0 0 round 12px)')
+        --c-m-search: unquote('inset(0 calc(100% - 46px) 0 6px round 20px)')
         --c-m-new: -263px
         --c-m-menu: 49px
 
@@ -725,6 +726,7 @@ mix_base(amount) {
             html[dir='rtl']:not(#z) {
                 --c-m-open: unquote('inset(0 0 0 -290px)')
                 --c-m-row: unquote('inset(0 0 0 calc(100% - 74px) round 12px)')
+                --c-m-search: unquote('inset(0 6px 0 calc(100% - 46px) round 20px)')
                 --c-m-new: 263px
                 --c-m-menu: -49px
             }
@@ -769,12 +771,10 @@ mix_base(amount) {
                     transition: opacity 0.2s ease var(--c-m-delay)
                 }
 
-                /// The rail keeps the search icon, it already sits on the rail's axis.
-                [data-testid='chat-list-search-container'] * {
-                    transition: background-color 0.2s ease var(--c-m-delay)
-                }
-                &:not(:hover):not(:focus-within) [data-testid='chat-list-search-container'] * {
-                    background-color: t
+                /// The search pill shrinks to a circle around its icon, on the rail's axis.
+                [data-testid='chat-list-search-container'] > div {
+                    clip-path: var(--c-m-search)
+                    transition: clip-path 0.2s ease var(--c-m-delay)
                 }
 
                 /// New chat lives on the rail's axis, open or closed, so it's never a
@@ -821,9 +821,14 @@ mix_base(amount) {
                     [data-testid='drawer-title-body'],
                     [data-testid='chat-list-search-container'] input,
                     [role='tablist'],
-                    [data-testid='chatlist-e2e-message'],
-                    [data-testid='chat-list-search-container'] * {
+                    [data-testid='chatlist-e2e-message'] {
                         opacity: 1
+                        transition-delay: var(--c-m-hover)
+                    }
+
+                    /// Past the pill's edge, so the focus ring isn't clipped.
+                    [data-testid='chat-list-search-container'] > div {
+                        clip-path: inset(-4px round 24px)
                         transition-delay: var(--c-m-hover)
                     }
 

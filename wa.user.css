@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.2
+@version      4.0.3
 @license      MIT
 ==/UserStyle== */
 /*
@@ -22,6 +22,7 @@
     --c-m-delay: 0.25s;
     --c-m-open: inset(0 -290px 0 0);
     --c-m-row: inset(0 calc(100% - 74px) 0 0 round 12px);
+    --c-m-search: inset(0 calc(100% - 46px) 0 6px round 20px);
     --c-m-new: -263px;
     --c-m-menu: 49px;
     --blur-contacts: 6px;
@@ -504,6 +505,7 @@
     html[dir='rtl']:not(#z) {
       --c-m-open: inset(0 0 0 -290px);
       --c-m-row: inset(0 0 0 calc(100% - 74px) round 12px);
+      --c-m-search: inset(0 6px 0 calc(100% - 46px) round 20px);
       --c-m-new: 263px;
       --c-m-menu: -49px;
     }
@@ -549,13 +551,10 @@
       opacity: 0;
       transition: opacity 0.2s ease var(--c-m-delay);
     }
-    .two > :has(> #side) [data-testid='chat-list-search-container'] *,
-    .three > :has(> #side) [data-testid='chat-list-search-container'] * {
-      transition: background-color 0.2s ease var(--c-m-delay);
-    }
-    .two > :has(> #side):not(:hover):not(:focus-within) [data-testid='chat-list-search-container'] *,
-    .three > :has(> #side):not(:hover):not(:focus-within) [data-testid='chat-list-search-container'] * {
-      background-color: transparent;
+    .two > :has(> #side) [data-testid='chat-list-search-container'] > div,
+    .three > :has(> #side) [data-testid='chat-list-search-container'] > div {
+      clip-path: var(--c-m-search);
+      transition: clip-path 0.2s ease var(--c-m-delay);
     }
     .two > :has(> #side) [aria-label='New chat'],
     .three > :has(> #side) [aria-label='New chat'] {
@@ -619,12 +618,15 @@
     .two > :has(> #side):hover [data-testid='chatlist-e2e-message'],
     .three > :has(> #side):hover [data-testid='chatlist-e2e-message'],
     .two > :has(> #side):focus-within [data-testid='chatlist-e2e-message'],
-    .three > :has(> #side):focus-within [data-testid='chatlist-e2e-message'],
-    .two > :has(> #side):hover [data-testid='chat-list-search-container'] *,
-    .three > :has(> #side):hover [data-testid='chat-list-search-container'] *,
-    .two > :has(> #side):focus-within [data-testid='chat-list-search-container'] *,
-    .three > :has(> #side):focus-within [data-testid='chat-list-search-container'] * {
+    .three > :has(> #side):focus-within [data-testid='chatlist-e2e-message'] {
       opacity: 1;
+      transition-delay: var(--c-m-hover);
+    }
+    .two > :has(> #side):hover [data-testid='chat-list-search-container'] > div,
+    .three > :has(> #side):hover [data-testid='chat-list-search-container'] > div,
+    .two > :has(> #side):focus-within [data-testid='chat-list-search-container'] > div,
+    .three > :has(> #side):focus-within [data-testid='chat-list-search-container'] > div {
+      clip-path: inset(-4px round 24px);
       transition-delay: var(--c-m-hover);
     }
     .two > :has(> #side):hover [data-testid='cell-frame-container'],

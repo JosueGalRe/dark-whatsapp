@@ -1,6 +1,11 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.0.3 [2026-11-08 Sun]
+*** Changed
+- In the closed compact rail the search pill shrinks to a circle around its icon,
+  and grows back when the list opens
+
 ** 4.0.2 [2026-11-08 Sun]
 *** Changed
 - The closed compact rail starts with New chat and the search icon instead of an
