@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.1
+@version      4.2.2
 @license      MIT
 @preprocessor stylus
 
@@ -854,6 +854,10 @@ mix_base(amount) {
             /// WA's own 748px floor is what clips #main on small windows.
             .two, .three { min-width: 0 i }
 
+            /// Voice notes and the like declare `width: 336px; max-width: 100%`, but that 100%
+            /// is of a box sized by its content. Without WA's floor they overflow the chat.
+            [data-testid='msg-container'] { max-width: 100% }
+
             /// This empty layer's divider marks the native split, not ours.
             [data-testid='drawer-middle'] { border-inline-start: none i }
 
@@ -984,6 +988,10 @@ mix_base(amount) {
                 flex-basis: 0 i
                 max-width: 0 i
             }
+
+            /// WA reserves 57px beside every message for the reaction button, a fifth of
+            /// the chat here. The button stays reachable, if clipped on the widest bubbles.
+            .focusable-list-item { padding-inline-end: 20px i }
 
             /// Only with the left drawer empty: Calls, New chat and the like render there,
             /// with the chat list left behind them.

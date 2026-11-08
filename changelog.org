@@ -1,6 +1,12 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.2 [2026-11-08 Sun]
+*** Fixed
+- Voice notes overflowed the chat on narrow windows and gave it a horizontal scroll
+- Below 600px, messages get back most of the 57px WhatsApp reserves next to them. The
+  reaction button can end up clipped on the widest bubbles there.
+
 ** 4.2.1 [2026-11-08 Sun]
 *** Changed
 - Below 600px the compact list drops its avatar rail, which left the chat title
