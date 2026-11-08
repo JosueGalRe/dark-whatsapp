@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.10
+@version      4.2.11
 @license      MIT
 @preprocessor stylus
 
@@ -1134,8 +1134,11 @@ mix_base(amount) {
                 border-inline-end: 1px solid var(--WDS-lines-divider)
                 box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.4)
             }
+            /// The list too: what opens from it, like Archived, starts under the pointer there.
             .two > header:hover ~ * > [data-testid='drawer-left'],
             .three > header:hover ~ * > [data-testid='drawer-left'],
+            .two:has(> * > #side:hover) > * > [data-testid='drawer-left'],
+            .three:has(> * > #side:hover) > * > [data-testid='drawer-left'],
             [data-testid='drawer-left']:hover,
             [data-testid='drawer-left']:has(:focus-visible) {
                 clip-path: inset(-40px) i

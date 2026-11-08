@@ -1,6 +1,12 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.11 [2026-11-08 Sun]
+*** Fixed
+- Below 601px, Archived, Starred messages and whatever else opens from the chat list
+  stayed hidden until the pointer left and came back, a regression from 4.2.7. They
+  now show as soon as they open.
+
 ** 4.2.10 [2026-11-08 Sun]
 *** Fixed
 - The media viewer's toolbar ran off the left edge below 748px when opened from the
