@@ -1,6 +1,13 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.12 [2026-11-08 Sun]
+*** Fixed
+- The typing and recording indicator could end up half hidden behind the composer when
+  the chat wasn't scrolled all the way down, since it lives at the end of the scrolling
+  content. It now holds at the visible edge, including while reading older messages,
+  and lets clicks through to whatever it floats over.
+
 ** 4.2.11 [2026-11-08 Sun]
 *** Fixed
 - Below 601px, Archived, Starred messages and whatever else opens from the chat list
