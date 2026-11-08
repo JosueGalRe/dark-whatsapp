@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.0
+@version      4.2.1
 @license      MIT
 @preprocessor stylus
 
@@ -146,6 +146,31 @@ chat_tokens() {
     wds('systems-chat-background-wallpaper', 'bg-1')
     wdsa('systems-bubble-surface-overlay', 'bg-0', 0.25)
     wdsa('systems-chat-foreground-wallpaper', 'fg-1', chat_bg_o)
+}
+
+/// The open state of the compact list.
+compact_open() {
+    clip-path: var(--c-m-open)
+    transition-delay: var(--c-m-hover)
+
+    [data-testid='drawer-title-body'],
+    [data-testid='chat-list-search-container'] input,
+    [role='tablist'],
+    [data-testid='chatlist-e2e-message'] {
+        opacity: 1
+        transition-delay: var(--c-m-hover)
+    }
+
+    /// Past the pill's edge, so the focus ring isn't clipped.
+    [data-testid='chat-list-search-container'] > div {
+        clip-path: inset(-4px round 24px)
+        transition-delay: var(--c-m-hover)
+    }
+
+    [data-testid='cell-frame-container'] {
+        clip-path: inset(0 0 0 0 round 12px)
+        transition-delay: var(--c-m-hover)
+    }
 }
 
 // Rounded corners mixin.
@@ -835,7 +860,8 @@ mix_base(amount) {
             /// A permanent nag, and showing it only when open would shift every row.
             [data-testid='chat-butterbar']:has(path[d^='M16.15 19H5']) { display: none i }
 
-            html[dir='rtl']:not(#z) {
+            /// `.dark` too: the variables are also set on <body>, which would shadow these.
+            html[dir='rtl']:not(#z), html[dir='rtl'] .dark:not(#z) {
                 --c-m-open: unquote('inset(0 0 0 -290px)')
                 --c-m-row: unquote('inset(0 0 0 calc(100% - 74px) round 12px)')
                 --c-m-search: unquote('inset(2px 6px 2px calc(100% - 46px) round 20px)')
@@ -935,37 +961,43 @@ mix_base(amount) {
                 }
 
                 &:hover, &:focus-within {
-                    clip-path: var(--c-m-open)
-                    transition-delay: var(--c-m-hover)
-
-                    [data-testid='drawer-title-body'],
-                    [data-testid='chat-list-search-container'] input,
-                    [role='tablist'],
-                    [data-testid='chatlist-e2e-message'] {
-                        opacity: 1
-                        transition-delay: var(--c-m-hover)
-                    }
-
-                    /// Past the pill's edge, so the focus ring isn't clipped.
-                    [data-testid='chat-list-search-container'] > div {
-                        clip-path: inset(-4px round 24px)
-                        transition-delay: var(--c-m-hover)
-                    }
-
-                    [data-testid='cell-frame-container'] {
-                        clip-path: inset(0 0 0 0 round 12px)
-                        transition-delay: var(--c-m-hover)
-                    }
+                    compact_open()
                 }
-
             }
 
-            @media (prefers-reduced-motion: reduce) {
-                .two > :has(> #side),
-                .two > :has(> #side) *,
-                .three > :has(> #side),
-                .three > :has(> #side) * { transition: none i }
+        }
+
+        /// These stay siblings: Stylus hoists a nested @media out of @-moz-document,
+        /// which turns it into a global rule.
+
+        /// Very small windows: two rails would take a third of the chat. The list drops
+        /// its rail and opens from the navigation, which already shows the unread count.
+        @media screen and (max-width: compact_mw) and (max-width: 600px) {
+            :root:not(#z), .dark:not(#z) {
+                --c-m-open: unquote('inset(0 -386px 0 0)')
             }
+            html[dir='rtl']:not(#z), html[dir='rtl'] .dark:not(#z) {
+                --c-m-open: unquote('inset(0 0 0 -386px)')
+            }
+
+            .two > :has(> #side), .three > :has(> #side) {
+                flex-basis: 0 i
+                max-width: 0 i
+            }
+
+            /// Only with the left drawer empty: Calls, New chat and the like render there,
+            /// with the chat list left behind them.
+            .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side),
+            .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) {
+                compact_open()
+            }
+        }
+
+        @media screen and (max-width: compact_mw) and (prefers-reduced-motion: reduce) {
+            .two > :has(> #side),
+            .two > :has(> #side) *,
+            .three > :has(> #side),
+            .three > :has(> #side) * { transition: none i }
         }
     }
 }

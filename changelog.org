@@ -1,6 +1,16 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.1 [2026-11-08 Sun]
+*** Changed
+- Below 600px the compact list drops its avatar rail, which left the chat title
+  12px wide at 470px, and opens from the navigation in the Chats section
+
+*** Fixed
+- The reduced motion rule ended up outside =@-moz-document=, making it global: Stylus
+  hoists a nested =@media= out of it
+- The RTL values of compact mode never applied, shadowed by the ones on =<body>=
+
 ** 4.2.0 [2026-11-08 Sun]
 *** Added
 - WhatsApp default palette: sets no colors at all, so it keeps WhatsApp's own

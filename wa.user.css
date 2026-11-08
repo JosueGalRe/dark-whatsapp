@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.0
+@version      4.2.1
 @license      MIT
 ==/UserStyle== */
 /*
@@ -504,7 +504,8 @@
     [data-testid='chat-butterbar']:has(path[d^='M16.15 19H5']) {
       display: none !important;
     }
-    html[dir='rtl']:not(#z) {
+    html[dir='rtl']:not(#z),
+    html[dir='rtl'] .dark:not(#z) {
       --c-m-open: inset(0 0 0 -290px);
       --c-m-row: inset(0 0 0 calc(100% - 74px) round 12px);
       --c-m-search: inset(2px 6px 2px calc(100% - 46px) round 20px);
@@ -640,12 +641,53 @@
       transition-delay: var(--c-m-hover);
     }
 }
+@media screen and (max-width: 9999px) and (max-width: 600px) {
+    :root:not(#z),
+    .dark:not(#z) {
+      --c-m-open: inset(0 -386px 0 0);
+    }
+    html[dir='rtl']:not(#z),
+    html[dir='rtl'] .dark:not(#z) {
+      --c-m-open: inset(0 0 0 -386px);
+    }
+    .two > :has(> #side),
+    .three > :has(> #side) {
+      flex-basis: 0 !important;
+      max-width: 0 !important;
+    }
+    .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side),
+    .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) {
+      clip-path: var(--c-m-open);
+      transition-delay: var(--c-m-hover);
+    }
+    .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='drawer-title-body'],
+    .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='drawer-title-body'],
+    .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='chat-list-search-container'] input,
+    .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='chat-list-search-container'] input,
+    .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [role='tablist'],
+    .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [role='tablist'],
+    .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='chatlist-e2e-message'],
+    .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='chatlist-e2e-message'] {
+      opacity: 1;
+      transition-delay: var(--c-m-hover);
+    }
+    .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='chat-list-search-container'] > div,
+    .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='chat-list-search-container'] > div {
+      clip-path: inset(-4px round 24px);
+      transition-delay: var(--c-m-hover);
+    }
+    .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='cell-frame-container'],
+    .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='cell-frame-container'] {
+      clip-path: inset(0 0 0 0 round 12px);
+      transition-delay: var(--c-m-hover);
+    }
 }
 @media screen and (max-width: 9999px) and (prefers-reduced-motion: reduce) {
-  .two > :has(> #side),
-  .two > :has(> #side) *,
-  .three > :has(> #side),
-  .three > :has(> #side) * {
-    transition: none !important;
-  }
+    .two > :has(> #side),
+    .two > :has(> #side) *,
+    .three > :has(> #side),
+    .three > :has(> #side) * {
+      transition: none !important;
+    }
+}
 }
