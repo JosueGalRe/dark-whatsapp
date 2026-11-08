@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.1
+@version      4.0.2
 @license      MIT
 ==/UserStyle== */
 /*
@@ -22,6 +22,8 @@
     --c-m-delay: 0.25s;
     --c-m-open: inset(0 -290px 0 0);
     --c-m-row: inset(0 calc(100% - 74px) 0 0 round 12px);
+    --c-m-new: -263px;
+    --c-m-menu: 49px;
     --blur-contacts: 6px;
     --blur-in: 0.4s;
     --blur-out: 0.2s;
@@ -502,6 +504,8 @@
     html[dir='rtl']:not(#z) {
       --c-m-open: inset(0 0 0 -290px);
       --c-m-row: inset(0 0 0 calc(100% - 74px) round 12px);
+      --c-m-new: 263px;
+      --c-m-menu: -49px;
     }
     .two > :has(> #side),
     .three > :has(> #side) {
@@ -534,10 +538,10 @@
       background-color: var(--bg-4);
       box-shadow: 0 0 24px 6px rgba(0,0,0,0.4);
     }
-    .two > :has(> #side) > :not(#side) > *,
-    .three > :has(> #side) > :not(#side) > *,
-    .two > :has(> #side) [data-testid='chat-list-search-container'],
-    .three > :has(> #side) [data-testid='chat-list-search-container'],
+    .two > :has(> #side) [data-testid='drawer-title-body'],
+    .three > :has(> #side) [data-testid='drawer-title-body'],
+    .two > :has(> #side) [data-testid='chat-list-search-container'] input,
+    .three > :has(> #side) [data-testid='chat-list-search-container'] input,
     .two > :has(> #side) [role='tablist'],
     .three > :has(> #side) [role='tablist'],
     .two > :has(> #side) [data-testid='chatlist-e2e-message'],
@@ -545,18 +549,53 @@
       opacity: 0;
       transition: opacity 0.2s ease var(--c-m-delay);
     }
+    .two > :has(> #side) [data-testid='chat-list-search-container'] *,
+    .three > :has(> #side) [data-testid='chat-list-search-container'] * {
+      transition: background-color 0.2s ease var(--c-m-delay);
+    }
+    .two > :has(> #side):not(:hover):not(:focus-within) [data-testid='chat-list-search-container'] *,
+    .three > :has(> #side):not(:hover):not(:focus-within) [data-testid='chat-list-search-container'] * {
+      background-color: transparent;
+    }
+    .two > :has(> #side) [aria-label='New chat'],
+    .three > :has(> #side) [aria-label='New chat'] {
+      transform: translateX(var(--c-m-new));
+    }
+    .two > :has(> #side) [aria-label='Menu'],
+    .three > :has(> #side) [aria-label='Menu'] {
+      transform: translateX(var(--c-m-menu));
+    }
+    .two > :has(> #side) header:has([aria-label='New chat']) [data-testid='drawer-title-body'],
+    .three > :has(> #side) header:has([aria-label='New chat']) [data-testid='drawer-title-body'] {
+      margin-inline-start: 60px;
+    }
     .two > :has(> #side) [data-testid='cell-frame-container'],
     .three > :has(> #side) [data-testid='cell-frame-container'] {
       position: relative;
       clip-path: var(--c-m-row);
       transition: clip-path 0.2s ease var(--c-m-delay);
     }
-    .two > :has(> #side) [data-testid='icon-unread-count'],
-    .three > :has(> #side) [data-testid='icon-unread-count'] {
+    .two > :has(> #side) [role='row'] [data-testid='icon-unread-count'],
+    .three > :has(> #side) [role='row'] [data-testid='icon-unread-count'],
+    .two > :has(> #side) [data-testid='chatlist-panel-archived-button'] [data-testid='icon-unread-count'],
+    .three > :has(> #side) [data-testid='chatlist-panel-archived-button'] [data-testid='icon-unread-count'] {
       position: absolute !important;
       top: 8px;
       inset-inline-start: 46px;
       z-index: 1;
+    }
+    .two > :has(> #side) [data-testid='chatlist-panel-archived-button'] [data-testid='icon-unread-count'],
+    .three > :has(> #side) [data-testid='chatlist-panel-archived-button'] [data-testid='icon-unread-count'] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
+      font-size: 11px;
+      border-radius: 9px;
+      color: var(--fg-3) !important;
+      background-color: var(--WDS-components-badge-muted) !important;
     }
     .two > :has(> #side):hover,
     .three > :has(> #side):hover,
@@ -565,14 +604,14 @@
       clip-path: var(--c-m-open);
       transition-delay: var(--c-m-hover);
     }
-    .two > :has(> #side):hover > :not(#side) > *,
-    .three > :has(> #side):hover > :not(#side) > *,
-    .two > :has(> #side):focus-within > :not(#side) > *,
-    .three > :has(> #side):focus-within > :not(#side) > *,
-    .two > :has(> #side):hover [data-testid='chat-list-search-container'],
-    .three > :has(> #side):hover [data-testid='chat-list-search-container'],
-    .two > :has(> #side):focus-within [data-testid='chat-list-search-container'],
-    .three > :has(> #side):focus-within [data-testid='chat-list-search-container'],
+    .two > :has(> #side):hover [data-testid='drawer-title-body'],
+    .three > :has(> #side):hover [data-testid='drawer-title-body'],
+    .two > :has(> #side):focus-within [data-testid='drawer-title-body'],
+    .three > :has(> #side):focus-within [data-testid='drawer-title-body'],
+    .two > :has(> #side):hover [data-testid='chat-list-search-container'] input,
+    .three > :has(> #side):hover [data-testid='chat-list-search-container'] input,
+    .two > :has(> #side):focus-within [data-testid='chat-list-search-container'] input,
+    .three > :has(> #side):focus-within [data-testid='chat-list-search-container'] input,
     .two > :has(> #side):hover [role='tablist'],
     .three > :has(> #side):hover [role='tablist'],
     .two > :has(> #side):focus-within [role='tablist'],
@@ -580,7 +619,11 @@
     .two > :has(> #side):hover [data-testid='chatlist-e2e-message'],
     .three > :has(> #side):hover [data-testid='chatlist-e2e-message'],
     .two > :has(> #side):focus-within [data-testid='chatlist-e2e-message'],
-    .three > :has(> #side):focus-within [data-testid='chatlist-e2e-message'] {
+    .three > :has(> #side):focus-within [data-testid='chatlist-e2e-message'],
+    .two > :has(> #side):hover [data-testid='chat-list-search-container'] *,
+    .three > :has(> #side):hover [data-testid='chat-list-search-container'] *,
+    .two > :has(> #side):focus-within [data-testid='chat-list-search-container'] *,
+    .three > :has(> #side):focus-within [data-testid='chat-list-search-container'] * {
       opacity: 1;
       transition-delay: var(--c-m-hover);
     }

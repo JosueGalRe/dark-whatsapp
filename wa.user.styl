@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.1
+@version      4.0.2
 @license      MIT
 @preprocessor stylus
 
@@ -357,6 +357,8 @@ mix_base(amount) {
         --c-m-delay: compact_ho
         --c-m-open: unquote('inset(0 -290px 0 0)')
         --c-m-row: unquote('inset(0 calc(100% - 74px) 0 0 round 12px)')
+        --c-m-new: -263px
+        --c-m-menu: 49px
 
         /// Blurred contacts.
         --blur-contacts: chat_b_c_i
@@ -723,6 +725,8 @@ mix_base(amount) {
             html[dir='rtl']:not(#z) {
                 --c-m-open: unquote('inset(0 0 0 -290px)')
                 --c-m-row: unquote('inset(0 0 0 calc(100% - 74px) round 12px)')
+                --c-m-new: 263px
+                --c-m-menu: -49px
             }
 
             .two > :has(> #side), .three > :has(> #side) {
@@ -757,12 +761,28 @@ mix_base(amount) {
 
                 /// Fades instead of leaving the layout: they stay focusable, and
                 /// focus is what opens the list from the keyboard.
-                > :not(#side) > *,
-                [data-testid='chat-list-search-container'],
+                [data-testid='drawer-title-body'],
+                [data-testid='chat-list-search-container'] input,
                 [role='tablist'],
                 [data-testid='chatlist-e2e-message'] {
                     opacity: 0
                     transition: opacity 0.2s ease var(--c-m-delay)
+                }
+
+                /// The rail keeps the search icon, it already sits on the rail's axis.
+                [data-testid='chat-list-search-container'] * {
+                    transition: background-color 0.2s ease var(--c-m-delay)
+                }
+                &:not(:hover):not(:focus-within) [data-testid='chat-list-search-container'] * {
+                    background-color: t
+                }
+
+                /// New chat lives on the rail's axis, open or closed, so it's never a
+                /// moving target. The labels are localized: on a miss the header stays native.
+                [aria-label='New chat'] { transform: translateX(var(--c-m-new)) }
+                [aria-label='Menu'] { transform: translateX(var(--c-m-menu)) }
+                header:has([aria-label='New chat']) [data-testid='drawer-title-body'] {
+                    margin-inline-start: 60px
                 }
 
                 /// Row highlight as a pill around the avatar.
@@ -772,22 +792,37 @@ mix_base(amount) {
                     transition: clip-path 0.2s ease var(--c-m-delay)
                 }
 
-                /// Same spot open or closed, so the badge never jumps.
-                [data-testid='icon-unread-count'] {
+                /// Same spot open or closed, so the badges never jump.
+                [role='row'] [data-testid='icon-unread-count'],
+                [data-testid='chatlist-panel-archived-button'] [data-testid='icon-unread-count'] {
                     position: absolute i
                     top: 8px
                     inset-inline-start: 46px
                     z-index: 1
                 }
 
+                /// Natively bare text at the far end of the row.
+                [data-testid='chatlist-panel-archived-button'] [data-testid='icon-unread-count'] {
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    min-width: 18px
+                    height: 18px
+                    padding: 0 4px
+                    font-size: 11px
+                    rad: 9px
+                    c: fg3 0 var(--WDS-components-badge-muted)
+                }
+
                 &:hover, &:focus-within {
                     clip-path: var(--c-m-open)
                     transition-delay: var(--c-m-hover)
 
-                    > :not(#side) > *,
-                    [data-testid='chat-list-search-container'],
+                    [data-testid='drawer-title-body'],
+                    [data-testid='chat-list-search-container'] input,
                     [role='tablist'],
-                    [data-testid='chatlist-e2e-message'] {
+                    [data-testid='chatlist-e2e-message'],
+                    [data-testid='chat-list-search-container'] * {
                         opacity: 1
                         transition-delay: var(--c-m-hover)
                     }

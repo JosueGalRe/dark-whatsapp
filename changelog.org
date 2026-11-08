@@ -1,6 +1,19 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.0.2 [2026-11-08 Sun]
+*** Changed
+- The closed compact rail starts with New chat and the search icon instead of an
+  empty band. New chat stays on the rail's axis when the list is open too, with the
+  title next to it, so it never moves.
+
+*** Fixed
+- The archived count was caught by the unread badge rule and floated next to the
+  icon as bare text. It's now a muted badge on the icon.
+
+*** Known limits
+- New chat is matched by its =aria-label=, so outside English the header stays native
+
 ** 4.0.1 [2026-11-08 Sun]
 Rework of compact mode, which was limited to small windows and jumped between
 states without any transition.
