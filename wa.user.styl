@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.4
+@version      4.1.0
 @license      MIT
 @preprocessor stylus
 
@@ -14,6 +14,13 @@
     'Custom colors   *': 'custom',
     'Dark blue (old)  ': 'old',
     'Dark gray (new)  ': 'new',
+    'Nord             ': 'nord',
+    'Catppuccin Mocha ': 'mocha',
+    'Catppuccin Latte ': 'latte',
+    'Dracula          ': 'dracula',
+    'Gruvbox Dark     ': 'gruvbox',
+    'Tokyo Night      ': 'tokyo',
+    'Rosé Pine        ': 'rose',
 }
 
 @var color    _bg        'Base background color        ' #1f232a
@@ -134,7 +141,7 @@ chat_tokens() {
     wds('content-read', 'msg-ack')
     wds('systems-bubble-surface-incoming', 'msg-in-0')
     wds('systems-bubble-surface-outgoing', 'msg-out-0')
-    wds('systems-bubble-content-deemphasized', 'fg-3')
+    wds('systems-bubble-content-deemphasized', 'fg-dim')
     wds('systems-chat-background-wallpaper', 'bg-1')
     wdsa('systems-bubble-surface-overlay', 'bg-0', 0.25)
     wdsa('systems-chat-foreground-wallpaper', 'fg-1', chat_bg_o)
@@ -175,6 +182,90 @@ if (theme == 'custom') {
     _blue    = #6699cc
     _magenta = #cc99cc
     _violet  = #aa99cc
+} else if (theme == 'nord') {
+    BG       = #2e3440
+    FG       = #eceff4
+    AC       = #88c0d0
+    _red     = #bf616a
+    _orange  = #d08770
+    _yellow  = #ebcb8b
+    _green   = #a3be8c
+    _cyan    = #8fbcbb
+    _blue    = #81a1c1
+    _magenta = #b48ead
+    _violet  = #5e81ac
+} else if (theme == 'mocha') {
+    BG       = #1e1e2e
+    FG       = #cdd6f4
+    AC       = #cba6f7
+    _red     = #f38ba8
+    _orange  = #fab387
+    _yellow  = #f9e2af
+    _green   = #a6e3a1
+    _cyan    = #89dceb
+    _blue    = #89b4fa
+    _magenta = #f5c2e7
+    _violet  = #b4befe
+} else if (theme == 'latte') {
+    BG       = #eff1f5
+    FG       = #4c4f69
+    AC       = #8839ef
+    _red     = #d20f39
+    _orange  = #fe640b
+    _yellow  = #df8e1d
+    _green   = #40a02b
+    _cyan    = #1e66f5
+    _blue    = #1e66f5
+    _magenta = #ea76cb
+    _violet  = #7287fd
+} else if (theme == 'dracula') {
+    BG       = #282a36
+    FG       = #f8f8f2
+    AC       = #bd93f9
+    _red     = #ff5555
+    _orange  = #ffb86c
+    _yellow  = #f1fa8c
+    _green   = #50fa7b
+    _cyan    = #8be9fd
+    _blue    = #bd93f9
+    _magenta = #ff79c6
+    _violet  = #bd93f9
+} else if (theme == 'gruvbox') {
+    BG       = #282828
+    FG       = #ebdbb2
+    AC       = #fe8019
+    _red     = #fb4934
+    _orange  = #fe8019
+    _yellow  = #fabd2f
+    _green   = #b8bb26
+    _cyan    = #8ec07c
+    _blue    = #83a598
+    _magenta = #d3869b
+    _violet  = #d3869b
+} else if (theme == 'tokyo') {
+    BG       = #1a1b26
+    FG       = #c0caf5
+    AC       = #7aa2f7
+    _red     = #f7768e
+    _orange  = #ff9e64
+    _yellow  = #e0af68
+    _green   = #9ece6a
+    _cyan    = #7dcfff
+    _blue    = #7aa2f7
+    _magenta = #bb9af7
+    _violet  = #9d7cd8
+} else if (theme == 'rose') {
+    BG       = #191724
+    FG       = #e0def4
+    AC       = #c4a7e7
+    _red     = #eb6f92
+    _orange  = #ebbcba
+    _yellow  = #f6c177
+    _green   = #9ccfd8
+    _cyan    = #9ccfd8
+    _blue    = #31748f
+    _magenta = #c4a7e7
+    _violet  = #c4a7e7
 }
 
 /// Helpers.
@@ -204,7 +295,8 @@ mix_base(amount) {
         b1 = (BA + 10); b2 = (BA - 05); b3 = (BA - 10); b4 = (BA - 15); b5 = (BA - 20)
         f1 = (FA - 10); f2 = (FA + 10); f3 = (FA + 20); f4 = (FA + 30); f5 = (FA + 40)
     } else {
-        a1 = (AA + 15); a2 = (AA + 30); a3 = (AA + 45); a4 = (AA + 65); a5 = (AA + 75)
+        /// On a light page these are how much page is left, so text stays on a light tint.
+        a1 = (AA + 15); a2 = (AA + 30); a3 = (AA + 45); a4 = (AA + 85); a5 = (AA + 92)
         s1 = (SA + 15); s2 = (SA + 30); s3 = (SA + 45); s4 = (SA + 65); s5 = (SA + 75)
         b1 = (BA - 10); b2 = (BA + 08); b3 = (BA + 16); b4 = (BA + 24); b5 = (BA + 32)
         f1 = (FA - 05); f2 = (FA - 10); f3 = (FA - 15); f4 = (FA - 20); f5 = (FA - 30)
@@ -406,6 +498,12 @@ mix_base(amount) {
         --msg-sys:     (ow_sys_msg) ? sys_msg_bg         : var(--bg-2)
         --msg-sys-rgb: (ow_sys_msg) ? to_rgb(sys_msg_bg) : var(--bg-2-rgb)
 
+        /// Secondary text. Mixed towards the page because darkening a tinted foreground
+        /// saturates it, and it has to hold up on bubbles too.
+        fg_dim = mix(FG, BG, dark(BG) ? 82% : 95%)
+        --fg-dim:     fg_dim
+        --fg-dim-rgb: to_rgb(fg_dim)
+
         /// Accent as text on regular surfaces.
         --ac-tx:     mix(AC, FG, 70%)
         --ac-tx-rgb: to_rgb(mix(AC, FG, 70%))
@@ -435,7 +533,7 @@ mix_base(amount) {
         wds('surface-elevated-emphasized', 'bg-3')
         wds('surface-inverse', 'fg-1')
         wds('content-default', 'fg-1')
-        wds('content-deemphasized', 'fg-3')
+        wds('content-deemphasized', 'fg-dim')
         wds('content-disabled', 'fg-5')
         wds('content-inverse', 'bg-1')
         wds('content-on-accent', 'on-ac')
@@ -460,7 +558,7 @@ mix_base(amount) {
         wds('systems-bubble-surface-e2e', 'bg-2')
         wds('systems-bubble-content-business', 'b5-0')
         wds('systems-bubble-content-e2e', 'b3-0')
-        wds('systems-chat-surface-composer', 'bg-3')
+        wds('systems-chat-surface-composer', dark(BG) ? 'bg-3' : 'bg-2')
         wds('systems-chat-surface-tray', 'bg-1')
         wds('systems-status-seen', 'fg-5')
 

@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.4
+@version      4.1.0
 @license      MIT
 ==/UserStyle== */
 /*
@@ -51,6 +51,8 @@
     --msg-out-0-rgb: var(--ac-4-rgb);
     --msg-sys: var(--bg-2);
     --msg-sys-rgb: var(--bg-2-rgb);
+    --fg-dim: #c8c9ca;
+    --fg-dim-rgb: 200,201,202;
     --ac-tx: #97a7e0;
     --ac-tx-rgb: 151,167,224;
     --ac-em: #c8cfe8;
@@ -79,8 +81,8 @@
     --WDS-surface-inverse-RGB: var(--fg-1-rgb);
     --WDS-content-default: var(--fg-1);
     --WDS-content-default-RGB: var(--fg-1-rgb);
-    --WDS-content-deemphasized: var(--fg-3);
-    --WDS-content-deemphasized-RGB: var(--fg-3-rgb);
+    --WDS-content-deemphasized: var(--fg-dim);
+    --WDS-content-deemphasized-RGB: var(--fg-dim-rgb);
     --WDS-content-disabled: var(--fg-5);
     --WDS-content-disabled-RGB: var(--fg-5-rgb);
     --WDS-content-inverse: var(--bg-1);
@@ -151,8 +153,8 @@
     --WDS-systems-bubble-surface-incoming-RGB: var(--msg-in-0-rgb);
     --WDS-systems-bubble-surface-outgoing: var(--msg-out-0);
     --WDS-systems-bubble-surface-outgoing-RGB: var(--msg-out-0-rgb);
-    --WDS-systems-bubble-content-deemphasized: var(--fg-3);
-    --WDS-systems-bubble-content-deemphasized-RGB: var(--fg-3-rgb);
+    --WDS-systems-bubble-content-deemphasized: var(--fg-dim);
+    --WDS-systems-bubble-content-deemphasized-RGB: var(--fg-dim-rgb);
     --WDS-systems-chat-background-wallpaper: var(--bg-1);
     --WDS-systems-chat-background-wallpaper-RGB: var(--bg-1-rgb);
     --WDS-systems-bubble-surface-overlay: rgba(var(--bg-0-rgb), 0.25);
@@ -452,8 +454,8 @@
     --WDS-systems-bubble-surface-incoming-RGB: var(--msg-in-0-rgb);
     --WDS-systems-bubble-surface-outgoing: var(--msg-out-0);
     --WDS-systems-bubble-surface-outgoing-RGB: var(--msg-out-0-rgb);
-    --WDS-systems-bubble-content-deemphasized: var(--fg-3);
-    --WDS-systems-bubble-content-deemphasized-RGB: var(--fg-3-rgb);
+    --WDS-systems-bubble-content-deemphasized: var(--fg-dim);
+    --WDS-systems-bubble-content-deemphasized-RGB: var(--fg-dim-rgb);
     --WDS-systems-chat-background-wallpaper: var(--bg-1);
     --WDS-systems-chat-background-wallpaper-RGB: var(--bg-1-rgb);
     --WDS-systems-bubble-surface-overlay: rgba(var(--bg-0-rgb), 0.25);

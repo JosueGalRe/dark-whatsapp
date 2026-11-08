@@ -1,6 +1,19 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.1.0 [2026-11-08 Sun]
+*** Added
+- Palettes: Nord, Catppuccin Mocha, Catppuccin Latte, Dracula, Gruvbox Dark, Tokyo
+  Night and Rosé Pine
+
+*** Changed
+- Secondary text is mixed towards the background instead of darkened, which
+  oversaturated tinted foregrounds and fell under 4.5:1 on bubbles
+
+*** Fixed
+- Light palettes: outgoing bubbles landed on a mid tone that dark text and links
+  couldn't read on, and the composer was too dark
+
 ** 4.0.4 [2026-11-08 Sun]
 *** Fixed
 - The compact header buttons moved without their hit area: the Menu tooltip showed
