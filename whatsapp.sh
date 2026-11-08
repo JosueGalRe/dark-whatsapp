@@ -68,7 +68,7 @@ compile() {
         output="custom.user.css"
     fi
 
-    sed -n '/^\/\//,$p; 1i @import("metadata.styl");' $input > $temp
+    { echo '@import("metadata.styl");'; sed -n '/^\/\//,$p' $input; } > $temp
 
     if command -v stylus >/dev/null; then
         stylus $temp -o $output
