@@ -1,6 +1,13 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.4 [2026-11-08 Sun]
+*** Changed
+- Message gutters shrink with the window instead of staying fixed at 62px and 57px,
+  down to 16px. Group chats keep 46px on the left, moving the avatars along.
+- Up to 900px bubbles take at most 85% of the row instead of 95%, so a long message
+  or voice note still reads as coming from one side
+
 ** 4.2.3 [2026-11-08 Sun]
 *** Fixed
 - The emoji, GIF and sticker panel was cut off on the left at any window width in

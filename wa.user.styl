@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.3
+@version      4.2.4
 @license      MIT
 @preprocessor stylus
 
@@ -858,6 +858,26 @@ mix_base(amount) {
             /// is of a box sized by its content. Without WA's floor they overflow the chat.
             [data-testid='msg-container'] { max-width: 100% }
 
+            /// WA's gutters are fixed, and the left one is for group avatars. Shrink both with
+            /// the window. Groups keep room for the avatar, which moves along with the bubbles.
+            #main {
+                --c-m-gut-base: unquote('clamp(16px, calc(16px + (100vw - 600px) * 0.115), 62px)')
+                --c-m-gut: var(--c-m-gut-base)
+                --c-m-gut-end: unquote('clamp(16px, calc(16px + (100vw - 600px) * 0.1025), 57px)')
+            }
+            #main:has([data-testid='group-chat-profile-picture']) {
+                --c-m-gut: unquote('max(46px, var(--c-m-gut-base))')
+            }
+            #main .focusable-list-item {
+                padding-inline: var(--c-m-gut) var(--c-m-gut-end) i
+            }
+            [data-testid='group-chat-profile-picture'] {
+                transform: translateX(calc(var(--c-m-gut) - 62px))
+            }
+            html[dir='rtl'] [data-testid='group-chat-profile-picture'] {
+                transform: translateX(calc(62px - var(--c-m-gut)))
+            }
+
             /// WA centers the expressions panel on its button, which the rail leaves so far
             /// left that the panel gets cut off at any width. Start it with the chat instead.
             #expressions-panel-container [role='application'] {
@@ -995,16 +1015,18 @@ mix_base(amount) {
                 max-width: 0 i
             }
 
-            /// WA reserves 57px beside every message for the reaction button, a fifth of
-            /// the chat here. The button stays reachable, if clipped on the widest bubbles.
-            .focusable-list-item { padding-inline-end: 20px i }
-
             /// Only with the left drawer empty: Calls, New chat and the like render there,
             /// with the chat list left behind them.
             .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side),
             .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) {
                 compact_open()
             }
+        }
+
+        /// With small gutters a full-width bubble doesn't read as coming from either side.
+        /// WA's own limit here is 95%, and it steps down on its own above 900px.
+        @media screen and (max-width: compact_mw) and (max-width: 900px) {
+            #main [data-testid='msg-container'] { max-width: 85% }
         }
 
         @media screen and (max-width: compact_mw) and (max-width: 735px) {

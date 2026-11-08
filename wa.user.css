@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.3
+@version      4.2.4
 @license      MIT
 ==/UserStyle== */
 /*
@@ -501,6 +501,23 @@
     [data-testid='msg-container'] {
       max-width: 100%;
     }
+    #main {
+      --c-m-gut-base: clamp(16px, calc(16px + (100vw - 600px) * 0.115), 62px);
+      --c-m-gut: var(--c-m-gut-base);
+      --c-m-gut-end: clamp(16px, calc(16px + (100vw - 600px) * 0.1025), 57px);
+    }
+    #main:has([data-testid='group-chat-profile-picture']) {
+      --c-m-gut: max(46px, var(--c-m-gut-base));
+    }
+    #main .focusable-list-item {
+      padding-inline: var(--c-m-gut) var(--c-m-gut-end) !important;
+    }
+    [data-testid='group-chat-profile-picture'] {
+      transform: translateX(calc(var(--c-m-gut) - 62px));
+    }
+    html[dir='rtl'] [data-testid='group-chat-profile-picture'] {
+      transform: translateX(calc(62px - var(--c-m-gut)));
+    }
     #expressions-panel-container [role='application'] {
       inset-inline-start: 168px !important;
     }
@@ -661,9 +678,6 @@
       flex-basis: 0 !important;
       max-width: 0 !important;
     }
-    .focusable-list-item {
-      padding-inline-end: 20px !important;
-    }
     .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side),
     .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) {
       clip-path: var(--c-m-open);
@@ -689,6 +703,11 @@
     .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='cell-frame-container'] {
       clip-path: inset(0 0 0 0 round 12px);
       transition-delay: var(--c-m-hover);
+    }
+}
+@media screen and (max-width: 9999px) and (max-width: 900px) {
+    #main [data-testid='msg-container'] {
+      max-width: 85%;
     }
 }
 @media screen and (max-width: 9999px) and (max-width: 735px) {
