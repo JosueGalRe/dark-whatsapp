@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.8
+@version      4.2.9
 @license      MIT
 ==/UserStyle== */
 /*
@@ -683,6 +683,21 @@
     }
 }
 @media screen and (max-width: 9999px) and (max-width: 747px) {
+    [role='dialog'] {
+      min-width: 0 !important;
+    }
+    [role='dialog'] > * {
+      max-width: calc(100vw - 16px) !important;
+    }
+    [data-testid='media-hub-modal'] {
+      width: min(700px, 100vw - 16px) !important;
+      min-width: 0 !important;
+      max-width: none !important;
+    }
+    [data-testid='media-hub-thumb'] div {
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
     .two > [data-testid='drawer-right'] {
       transform: translateX(100%);
     }
@@ -712,6 +727,9 @@
     }
     .three > [data-testid='drawer-right'] {
       width: calc(100% - var(--navbar-width)) !important;
+    }
+    [data-testid='media-hub-modal'] [data-testid='popup-contents'] > :has([role='tablist']) > :first-child {
+      display: none;
     }
     [data-testid='drawer-left']:has(> * > * > *) {
       position: absolute;

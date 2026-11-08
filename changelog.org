@@ -1,6 +1,14 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.9 [2026-11-08 Sun]
+*** Fixed
+- Below 748px WhatsApp's dialogs were pushed off the right edge of the window, leaving
+  buttons like Export out of reach. They now stay centered and fit inside it.
+- The Media panel kept its 700px width on narrower windows, cutting off its grid and
+  tabs. It now fits, its sender labels truncate, and below 601px it drops the title so
+  the tabs and buttons don't overlap
+
 ** 4.2.8 [2026-11-08 Sun]
 *** Fixed
 - Message times stuck out of the bubbles in channels up to 900px: the 85% limit from

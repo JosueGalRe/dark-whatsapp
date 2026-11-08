@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.8
+@version      4.2.9
 @license      MIT
 @preprocessor stylus
 
@@ -1028,6 +1028,22 @@ mix_base(amount) {
         /// WA's own opening animates flex-basis, which does nothing for an absolute panel, and
         /// a one-frame pop is jarring at this size. Slide it in from just the closed state.
         @media screen and (max-width: compact_mw) and (max-width: 747px) {
+            /// WA centers its dialogs in 748px, which pushes them off the right edge here.
+            [role='dialog'] { min-width: 0 i }
+            [role='dialog'] > * { max-width: calc(100vw - 16px) i }
+
+            /// Media from all chats. WA's JS sizes the grid to fit, with the 122px labels on
+            /// top: those need to give way to it, and truncate on their own from then on.
+            [data-testid='media-hub-modal'] {
+                width: unquote('min(700px, 100vw - 16px)') i
+                min-width: 0 i
+                max-width: none i
+            }
+            [data-testid='media-hub-thumb'] div {
+                min-width: 0 i
+                max-width: 100% i
+            }
+
             .two > [data-testid='drawer-right'] { transform: translateX(100%) }
             html[dir='rtl'] .two > [data-testid='drawer-right'] { transform: translateX(-100%) }
 
@@ -1056,6 +1072,11 @@ mix_base(amount) {
 
             .three > [data-testid='drawer-right'] {
                 width: calc(100% - var(--navbar-width)) i
+            }
+
+            /// Its tabs and buttons need the whole row, and the tabs already say what this is.
+            [data-testid='media-hub-modal'] [data-testid='popup-contents'] > :has([role='tablist']) > :first-child {
+                display: none
             }
 
             /// One column for Calls, Status and the like: WA's 45% and the rest crush both of
