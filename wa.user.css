@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.2
+@version      4.2.3
 @license      MIT
 ==/UserStyle== */
 /*
@@ -501,6 +501,9 @@
     [data-testid='msg-container'] {
       max-width: 100%;
     }
+    #expressions-panel-container [role='application'] {
+      inset-inline-start: 168px !important;
+    }
     [data-testid='drawer-middle'] {
       border-inline-start: none !important;
     }
@@ -686,6 +689,43 @@
     .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) [data-testid='cell-frame-container'] {
       clip-path: inset(0 0 0 0 round 12px);
       transition-delay: var(--c-m-hover);
+    }
+}
+@media screen and (max-width: 9999px) and (max-width: 735px) {
+    #expressions-panel-container [role='application'] {
+      inset-inline-start: 8px !important;
+    }
+}
+@media screen and (max-width: 9999px) and (max-width: 575px) {
+    #expressions-panel-container {
+      --c-m-panel: 0.9;
+    }
+    #expressions-panel-container [role='application'] {
+      transform-origin: left bottom !important;
+      scale: var(--c-m-panel);
+    }
+    html[dir='rtl'] #expressions-panel-container [role='application'] {
+      transform-origin: right bottom !important;
+    }
+}
+@media screen and (max-width: 9999px) and (max-width: 519px) {
+    #expressions-panel-container {
+      --c-m-panel: 0.8;
+    }
+}
+@media screen and (max-width: 9999px) and (max-width: 463px) {
+    #expressions-panel-container {
+      --c-m-panel: 0.7;
+    }
+}
+@media screen and (max-width: 9999px) and (max-width: 407px) {
+    #expressions-panel-container {
+      --c-m-panel: 0.6;
+    }
+}
+@media screen and (max-width: 9999px) and (max-width: 351px) {
+    #expressions-panel-container {
+      --c-m-panel: 0.5;
     }
 }
 @media screen and (max-width: 9999px) and (prefers-reduced-motion: reduce) {

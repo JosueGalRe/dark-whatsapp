@@ -1,6 +1,13 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.3 [2026-11-08 Sun]
+*** Fixed
+- The emoji, GIF and sticker panel was cut off on the left at any window width in
+  compact mode: WhatsApp centers it on its button, which the rail leaves far to the
+  left. It now starts with the chat, or at the window's edge if there's no room.
+- Below 576px that panel scales down, since its rows of 12 cells don't reflow
+
 ** 4.2.2 [2026-11-08 Sun]
 *** Fixed
 - Voice notes overflowed the chat on narrow windows and gave it a horizontal scroll

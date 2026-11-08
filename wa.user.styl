@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.2
+@version      4.2.3
 @license      MIT
 @preprocessor stylus
 
@@ -858,6 +858,12 @@ mix_base(amount) {
             /// is of a box sized by its content. Without WA's floor they overflow the chat.
             [data-testid='msg-container'] { max-width: 100% }
 
+            /// WA centers the expressions panel on its button, which the rail leaves so far
+            /// left that the panel gets cut off at any width. Start it with the chat instead.
+            #expressions-panel-container [role='application'] {
+                inset-inline-start: 168px i
+            }
+
             /// This empty layer's divider marks the native split, not ours.
             [data-testid='drawer-middle'] { border-inline-start: none i }
 
@@ -998,6 +1004,48 @@ mix_base(amount) {
             .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side),
             .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) {
                 compact_open()
+            }
+        }
+
+        @media screen and (max-width: compact_mw) and (max-width: 735px) {
+            #expressions-panel-container [role='application'] {
+                inset-inline-start: 8px i
+            }
+        }
+
+        /// The expressions panel is 560px, with rows of 12 cells that WA lays out in JS and
+        /// won't reflow, so narrowing it would just clip them. Scale it down instead.
+        @media screen and (max-width: compact_mw) and (max-width: 575px) {
+            #expressions-panel-container {
+                --c-m-panel: 0.9
+            }
+            #expressions-panel-container [role='application'] {
+                /// WA sets it inline for its opening animation, from the center.
+                transform-origin: left bottom i
+                scale: var(--c-m-panel)
+            }
+            html[dir='rtl'] #expressions-panel-container [role='application'] {
+                transform-origin: right bottom i
+            }
+        }
+        @media screen and (max-width: compact_mw) and (max-width: 519px) {
+            #expressions-panel-container {
+                --c-m-panel: 0.8
+            }
+        }
+        @media screen and (max-width: compact_mw) and (max-width: 463px) {
+            #expressions-panel-container {
+                --c-m-panel: 0.7
+            }
+        }
+        @media screen and (max-width: compact_mw) and (max-width: 407px) {
+            #expressions-panel-container {
+                --c-m-panel: 0.6
+            }
+        }
+        @media screen and (max-width: compact_mw) and (max-width: 351px) {
+            #expressions-panel-container {
+                --c-m-panel: 0.5
             }
         }
 
