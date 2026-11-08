@@ -1,6 +1,14 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.6 [2026-11-08 Sun]
+*** Fixed
+- The right panel (contact and group info, message search and the like) got crushed
+  below 748px, breaking its text letter by letter. There it now covers the chat, up
+  to the rail or, below 601px, up to the navigation, and slides in.
+- In compact mode the open chat list and the left drawers, like New chat, stay above
+  the right panel instead of behind it
+
 ** 4.2.5 [2026-11-08 Sun]
 *** Fixed
 - Unread badges that arrived while WhatsApp was open landed in the row's bottom-right

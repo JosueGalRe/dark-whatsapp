@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.5
+@version      4.2.6
 @license      MIT
 @preprocessor stylus
 
@@ -893,6 +893,9 @@ mix_base(amount) {
                 inset-inline-start: 168px i
             }
 
+            /// Over the chat, but under the open list and the left drawers, which it can reach.
+            .three > [data-testid='drawer-right'] { z-index: 199 }
+
             /// This empty layer's divider marks the native split, not ours.
             [data-testid='drawer-middle'] { border-inline-start: none i }
 
@@ -1015,6 +1018,22 @@ mix_base(amount) {
         /// These stay siblings: Stylus hoists a nested @media out of @-moz-document,
         /// which turns it into a global rule.
 
+        /// WA's 55% for the right panel only reads well thanks to the 748px floor we removed,
+        /// and there'd be no useful chat left beside it. Cover the chat instead.
+        /// WA's own opening animates flex-basis, which does nothing for an absolute panel, and
+        /// a one-frame pop is jarring at this size. Slide it in from just the closed state.
+        @media screen and (max-width: compact_mw) and (max-width: 747px) {
+            .two > [data-testid='drawer-right'] { transform: translateX(100%) }
+            html[dir='rtl'] .two > [data-testid='drawer-right'] { transform: translateX(-100%) }
+
+            .three > [data-testid='drawer-right'] {
+                width: calc(100% - var(--navbar-width) - 96px) i
+                max-width: none i
+                border-inline-start: 1px solid var(--WDS-lines-divider)
+                transition: transform 0.2s ease
+            }
+        }
+
         /// Very small windows: two rails would take a third of the chat. The list drops
         /// its rail and opens from the navigation, which already shows the unread count.
         @media screen and (max-width: compact_mw) and (max-width: 600px) {
@@ -1028,6 +1047,10 @@ mix_base(amount) {
             .two > :has(> #side), .three > :has(> #side) {
                 flex-basis: 0 i
                 max-width: 0 i
+            }
+
+            .three > [data-testid='drawer-right'] {
+                width: calc(100% - var(--navbar-width)) i
             }
 
             /// Only with the left drawer empty: Calls, New chat and the like render there,
@@ -1090,7 +1113,8 @@ mix_base(amount) {
             .two > :has(> #side),
             .two > :has(> #side) *,
             .three > :has(> #side),
-            .three > :has(> #side) * { transition: none i }
+            .three > :has(> #side) *,
+            .three > [data-testid='drawer-right'] { transition: none i }
         }
     }
 }

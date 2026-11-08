@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.5
+@version      4.2.6
 @license      MIT
 ==/UserStyle== */
 /*
@@ -527,6 +527,9 @@
     #expressions-panel-container [role='application'] {
       inset-inline-start: 168px !important;
     }
+    .three > [data-testid='drawer-right'] {
+      z-index: 199;
+    }
     [data-testid='drawer-middle'] {
       border-inline-start: none !important;
     }
@@ -674,6 +677,20 @@
       transition-delay: var(--c-m-hover);
     }
 }
+@media screen and (max-width: 9999px) and (max-width: 747px) {
+    .two > [data-testid='drawer-right'] {
+      transform: translateX(100%);
+    }
+    html[dir='rtl'] .two > [data-testid='drawer-right'] {
+      transform: translateX(-100%);
+    }
+    .three > [data-testid='drawer-right'] {
+      width: calc(100% - var(--navbar-width) - 96px) !important;
+      max-width: none !important;
+      border-inline-start: 1px solid var(--WDS-lines-divider);
+      transition: transform 0.2s ease;
+    }
+}
 @media screen and (max-width: 9999px) and (max-width: 600px) {
     :root:not(#z),
     .dark:not(#z) {
@@ -687,6 +704,9 @@
     .three > :has(> #side) {
       flex-basis: 0 !important;
       max-width: 0 !important;
+    }
+    .three > [data-testid='drawer-right'] {
+      width: calc(100% - var(--navbar-width)) !important;
     }
     .two:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side),
     .three:not(:has([data-testid='drawer-left'] > * > * > *)) > header:hover ~ :has(> #side) {
@@ -761,7 +781,8 @@
     .two > :has(> #side),
     .two > :has(> #side) *,
     .three > :has(> #side),
-    .three > :has(> #side) * {
+    .three > :has(> #side) *,
+    .three > [data-testid='drawer-right'] {
       transition: none !important;
     }
 }
