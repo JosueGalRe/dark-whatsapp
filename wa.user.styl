@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.4
+@version      4.2.5
 @license      MIT
 @preprocessor stylus
 
@@ -878,6 +878,15 @@ mix_base(amount) {
                 transform: translateX(calc(62px - var(--c-m-gut)))
             }
 
+            /// WA pads the typing indicator on its own, so it needs to follow them too. Its
+            /// bubble starts 7px past the padding, or 39px with the group's avatars before it.
+            #main [data-testid='typing-indicator'] {
+                padding-inline-start: calc(var(--c-m-gut) - 39px) i
+            }
+            #main [data-testid='typing-indicator']:has(> span:first-child) {
+                padding-inline-start: calc(var(--c-m-gut) - 7px) i
+            }
+
             /// WA centers the expressions panel on its button, which the rail leaves so far
             /// left that the panel gets cut off at any width. Start it with the chat instead.
             #expressions-panel-container [role='application'] {
@@ -975,6 +984,12 @@ mix_base(amount) {
                     top: 8px
                     inset-inline-start: 46px
                     z-index: 1
+                }
+
+                /// A badge that arrives live pops in, and WA leaves that transform on its
+                /// wrapper. That would make it the badge's containing block instead of the row.
+                [data-testid='cell-frame-container'] :has(> [data-testid='icon-unread-count']) {
+                    transform: none i
                 }
 
                 /// Natively bare text at the far end of the row.

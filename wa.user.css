@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.4
+@version      4.2.5
 @license      MIT
 ==/UserStyle== */
 /*
@@ -518,6 +518,12 @@
     html[dir='rtl'] [data-testid='group-chat-profile-picture'] {
       transform: translateX(calc(62px - var(--c-m-gut)));
     }
+    #main [data-testid='typing-indicator'] {
+      padding-inline-start: calc(var(--c-m-gut) - 39px) !important;
+    }
+    #main [data-testid='typing-indicator']:has(> span:first-child) {
+      padding-inline-start: calc(var(--c-m-gut) - 7px) !important;
+    }
     #expressions-panel-container [role='application'] {
       inset-inline-start: 168px !important;
     }
@@ -609,6 +615,10 @@
       top: 8px;
       inset-inline-start: 46px;
       z-index: 1;
+    }
+    .two > :has(> #side) [data-testid='cell-frame-container'] :has(> [data-testid='icon-unread-count']),
+    .three > :has(> #side) [data-testid='cell-frame-container'] :has(> [data-testid='icon-unread-count']) {
+      transform: none !important;
     }
     .two > :has(> #side) [data-testid='chatlist-panel-archived-button'] [data-testid='icon-unread-count'],
     .three > :has(> #side) [data-testid='chatlist-panel-archived-button'] [data-testid='icon-unread-count'] {

@@ -1,6 +1,14 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.5 [2026-11-08 Sun]
+*** Fixed
+- Unread badges that arrived while WhatsApp was open landed in the row's bottom-right
+  corner, clipped, and couldn't be seen on the rail. They now sit on the avatar like
+  the rest, without WhatsApp's small scale-in.
+- The typing and recording indicator kept its own 57px offset instead of following
+  the message gutters, so it floated away from the bubbles on narrow windows
+
 ** 4.2.4 [2026-11-08 Sun]
 *** Changed
 - Message gutters shrink with the window instead of staying fixed at 62px and 57px,
