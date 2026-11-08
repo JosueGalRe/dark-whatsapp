@@ -1,6 +1,13 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.0.4 [2026-11-08 Sun]
+*** Fixed
+- The compact header buttons moved without their hit area: the Menu tooltip showed
+  up where nothing was, and New chat's empty wrapper took clicks meant for Menu
+- The open list's shadow and divider were cut into strips by its z-indexed parts
+- The search icon's circle in the rail was slightly oval
+
 ** 4.0.3 [2026-11-08 Sun]
 *** Changed
 - In the closed compact rail the search pill shrinks to a circle around its icon,

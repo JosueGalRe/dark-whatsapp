@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.3
+@version      4.0.4
 @license      MIT
 @preprocessor stylus
 
@@ -357,9 +357,9 @@ mix_base(amount) {
         --c-m-delay: compact_ho
         --c-m-open: unquote('inset(0 -290px 0 0)')
         --c-m-row: unquote('inset(0 calc(100% - 74px) 0 0 round 12px)')
-        --c-m-search: unquote('inset(0 calc(100% - 46px) 0 6px round 20px)')
+        --c-m-search: unquote('inset(2px calc(100% - 46px) 2px 6px round 20px)')
         --c-m-new: -263px
-        --c-m-menu: 49px
+        --c-m-menu: 48px
 
         /// Blurred contacts.
         --blur-contacts: chat_b_c_i
@@ -726,9 +726,9 @@ mix_base(amount) {
             html[dir='rtl']:not(#z) {
                 --c-m-open: unquote('inset(0 0 0 -290px)')
                 --c-m-row: unquote('inset(0 0 0 calc(100% - 74px) round 12px)')
-                --c-m-search: unquote('inset(0 6px 0 calc(100% - 46px) round 20px)')
+                --c-m-search: unquote('inset(2px 6px 2px calc(100% - 46px) round 20px)')
                 --c-m-new: 263px
-                --c-m-menu: -49px
+                --c-m-menu: -48px
             }
 
             .two > :has(> #side), .three > :has(> #side) {
@@ -749,12 +749,14 @@ mix_base(amount) {
                 + div { border-inline-start: 1px solid bg4 }
 
                 /// Edge of the open list, past the rail so collapsing clips it away.
+                /// Behind the list, or its z-indexed parts cut it and the shadow into strips.
                 &::after {
                     content: ''
                     position: absolute
-                    top: 0
-                    bottom: 0
-                    inset-inline-start: 350px
+                    z-index: -1
+                    top: -40px
+                    bottom: -40px
+                    inset-inline-start: 351px
                     width: 1px
                     pointer-events: none
                     background-color: bg4
@@ -778,9 +780,15 @@ mix_base(amount) {
                 }
 
                 /// New chat lives on the rail's axis, open or closed, so it's never a
-                /// moving target. The labels are localized: on a miss the header stays native.
-                [aria-label='New chat'] { transform: translateX(var(--c-m-new)) }
-                [aria-label='Menu'] { transform: translateX(var(--c-m-menu)) }
+                /// moving target. The labels are on the inner buttons, but the hit area and
+                /// tooltip belong to the wrappers: move the outermost one that holds just
+                /// that button. The labels are localized: on a miss the header stays native.
+                :has([aria-label='Menu']) > :has([aria-label='New chat']):not(:has([aria-label='Menu'])) {
+                    transform: translateX(var(--c-m-new))
+                }
+                :has([aria-label='New chat']) > :has([aria-label='Menu']):not(:has([aria-label='New chat'])) {
+                    transform: translateX(var(--c-m-menu))
+                }
                 header:has([aria-label='New chat']) [data-testid='drawer-title-body'] {
                     margin-inline-start: 60px
                 }

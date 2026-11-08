@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.0.3
+@version      4.0.4
 @license      MIT
 ==/UserStyle== */
 /*
@@ -22,9 +22,9 @@
     --c-m-delay: 0.25s;
     --c-m-open: inset(0 -290px 0 0);
     --c-m-row: inset(0 calc(100% - 74px) 0 0 round 12px);
-    --c-m-search: inset(0 calc(100% - 46px) 0 6px round 20px);
+    --c-m-search: inset(2px calc(100% - 46px) 2px 6px round 20px);
     --c-m-new: -263px;
-    --c-m-menu: 49px;
+    --c-m-menu: 48px;
     --blur-contacts: 6px;
     --blur-in: 0.4s;
     --blur-out: 0.2s;
@@ -505,9 +505,9 @@
     html[dir='rtl']:not(#z) {
       --c-m-open: inset(0 0 0 -290px);
       --c-m-row: inset(0 0 0 calc(100% - 74px) round 12px);
-      --c-m-search: inset(0 6px 0 calc(100% - 46px) round 20px);
+      --c-m-search: inset(2px 6px 2px calc(100% - 46px) round 20px);
       --c-m-new: 263px;
-      --c-m-menu: -49px;
+      --c-m-menu: -48px;
     }
     .two > :has(> #side),
     .three > :has(> #side) {
@@ -532,9 +532,10 @@
     .three > :has(> #side)::after {
       content: '';
       position: absolute;
-      top: 0;
-      bottom: 0;
-      inset-inline-start: 350px;
+      z-index: -1;
+      top: -40px;
+      bottom: -40px;
+      inset-inline-start: 351px;
       width: 1px;
       pointer-events: none;
       background-color: var(--bg-4);
@@ -556,12 +557,12 @@
       clip-path: var(--c-m-search);
       transition: clip-path 0.2s ease var(--c-m-delay);
     }
-    .two > :has(> #side) [aria-label='New chat'],
-    .three > :has(> #side) [aria-label='New chat'] {
+    .two > :has(> #side) :has([aria-label='Menu']) > :has([aria-label='New chat']):not(:has([aria-label='Menu'])),
+    .three > :has(> #side) :has([aria-label='Menu']) > :has([aria-label='New chat']):not(:has([aria-label='Menu'])) {
       transform: translateX(var(--c-m-new));
     }
-    .two > :has(> #side) [aria-label='Menu'],
-    .three > :has(> #side) [aria-label='Menu'] {
+    .two > :has(> #side) :has([aria-label='New chat']) > :has([aria-label='Menu']):not(:has([aria-label='New chat'])),
+    .three > :has(> #side) :has([aria-label='New chat']) > :has([aria-label='Menu']):not(:has([aria-label='New chat'])) {
       transform: translateX(var(--c-m-menu));
     }
     .two > :has(> #side) header:has([aria-label='New chat']) [data-testid='drawer-title-body'],
