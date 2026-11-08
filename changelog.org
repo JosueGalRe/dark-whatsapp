@@ -1,6 +1,43 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.0.0 [2026-11-08 Sun]
+WhatsApp Web moved to atomic classes and a semantic =--WDS-*= token set, and only
+98 of the theme's 528 variables were still around. This release remaps the colors
+to those tokens and rebuilds every other rule on hooks checked against the live
+app, instead of adding to the old selectors.
+
+*** Fixed
+- Sidebar, search bar and filters no longer stay unstyled (#208, #212)
+- Compact mode expands and is clickable again (#205); WhatsApp's 748px minimum
+  width no longer clips the chat on small windows
+- Blurred contacts works again, with a new intensity option
+- Avatars and media are matched through current hooks; blurred media now reveals
+  on bubble hover
+- Dialogs that turned transparent because of a removed variable
+- Chat themes overriding the palette inside the chat and in popovers
+- Light palettes: accent tones mixed towards black, leaving dark text on dark bubbles
+- WhatsApp's own font being replaced when no custom font was set
+- Seen icon and links on outgoing bubbles (about 2.4:1 contrast before)
+
+*** Added
+- =tools/check-tokens.py= to catch unmapped tokens after a WhatsApp update
+
+*** Removed
+Options with nothing left to attach to:
+- App background image and its settings, and fullscreen mode: the app is always
+  full-bleed, and its CSP blocks those image hosts. =app_width= still bounds it.
+- Swapping bubble sides: no stable hook tells incoming from outgoing messages
+- Big emoji size and emoji animations: no stable hook for big emoji
+- Rounded menus and inputs, consistent drawer headers: native now
+- Theme version and notes on the intro screen
+
+*** Known limits
+- The login page stays native
+- Sender name colors and the wordmark follow WhatsApp's own theme setting
+- =.xoeyzqq= is a build hash: if it changes, popovers get WhatsApp's accent back
+- Blurred media isn't verified on videos and audio message avatars
+
 ** 3.7.2 [2023-03-31 Fri]
 Yet another maintenance release to fix compact mode, rounded avatars, alerts,
 big emoji size, and message tails features.  Starting from alerts and going

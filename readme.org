@@ -6,67 +6,56 @@
 Complete dark mode implementation for [[https://web.whatsapp.com][WhatsApp Web]] with many improvements and
 customizable options.
 
-[[https://github.com/vednoc/dark-whatsapp/blob/master/changelog.org][https://img.shields.io/github/v/tag/vednoc/dark-whatsapp.svg?label=version&style=flat]]
-[[https://github.com/vednoc/dark-whatsapp/stargazers][https://img.shields.io/github/stars/vednoc/dark-whatsapp.svg?style=flat]]
-[[https://github.com/vednoc/dark-whatsapp/network][https://img.shields.io/github/forks/vednoc/dark-whatsapp.svg?color=007ec6&style=flat]]
-[[https://github.com/vednoc/dark-whatsapp/wiki][https://img.shields.io/badge/docs-on%20GitHub-007ec6.svg?&style=flat]]
-[[https://raw.githubusercontent.com/vednoc/dark-whatsapp/master/wa.user.styl][https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat]]
-[[https://discord.gg/NpT8PzA][https://img.shields.io/discord/272011641694978048.svg?longCache=true&colorB=7289da&logo=discord&style=flat]]
+Maintained fork of [[https://github.com/vednoc/dark-whatsapp][vednoc/dark-whatsapp]], rebuilt on the design tokens WhatsApp Web uses today.
 
-#+HTML: <img src="https://raw.githubusercontent.com/vednoc/dark-whatsapp/master/images/preview.png" width="100%"/>
-
-/Version 3.0.0 with [[https://github.com/rsms/inter/][Inter]] as the custom font, and hidden notification alerts.
-Check [[https://github.com/vednoc/dark-whatsapp/wiki/Configuration][Configuration page]] on project/ wiki to get started customizing your
-Dark-WhatsApp. See more examples in the [[https://github.com/vednoc/dark-whatsapp/issues/178][Screenshot thread]].
+[[https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl][https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg?longCache=true&style=flat]]
 
 #+HTML: </div>
 
 ** Features
-- Complete dark mode — utilizing WhatsApp's native CSS variables
-- Customizable base colors — light/dark color-schemes are fully supported
+- Complete recolor through WhatsApp's own =--WDS-*= tokens, popovers included
+- Customizable base colors — light/dark color-schemes are supported
 - Private mode — blurring contacts and/or chat media until you hover over them
-- Compact mode for small resolutions (optional, very hacky; works well though)
-- Fullscreen mode — if you prefer not wasting any available space
-- Custom background options for app/chat background images
-- Custom message bubble colors and/or their positions
-- Custom emoji opacity and unified big emoji sizes
-- Various styles and options for message tails
-- Custom chat window width, UI font, and more!
-
-Visit [[https://github.com/vednoc/dark-whatsapp/wiki/Configuration][configuration page]] to see the full list of features and how to use them.
+- Compact mode for small windows — the chat list collapses to avatars with unread
+  badges and expands on hover or focus
+- Custom chat background: doodle opacity or your own image
+- Custom message bubble, seen icon and system message colors
+- Custom emoji opacity and styles for message tails
+- App width, UI font, avatar shape, and alerts
 
 ** Installation
 You have to install [[https://add0n.com/stylus.html][Stylus]] and then click on the install link below.
 
-[[https://raw.githubusercontent.com/vednoc/dark-whatsapp/master/wa.user.styl][https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg]]
+[[https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl][https://img.shields.io/badge/Install%20directly%20with-Stylus-116b59.svg]]
 
-*** Other ways to install this userstyle
-For userstyle managers other than Stylus or a custom-compiled version, see
-[[https://github.com/vednoc/dark-whatsapp/wiki/Installation][installation page]].
+All options are in the style's settings in Stylus.
 
 ** Getting Started
-If you have a question, make sure to see [[https://github.com/vednoc/dark-whatsapp/wiki/FAQ][FAQ page]] first in order to see if your
-question has already been answered.
+Set WhatsApp's own theme (Settings > Chats > Theme) to match your palette: dark
+for a dark palette, light for a light one. The wordmark and sender name colors
+don't go through the tokens and follow that setting.
 
-To learn more about using this theme and customizing it for your personal use,
-visit the [[https://github.com/vednoc/dark-whatsapp/wiki/Configuration][configuration page]].
+The login page is left as is. It paints literal colors, and the QR code needs a
+light background anyway.
+
+*** When WhatsApp ships an update
+=tools/check-tokens.py= compares the theme with WhatsApp's stylesheet and fails
+when a token isn't mapped:
+
+#+begin_src sh
+curl -o wa.css <url of the stylesheet in the page's link tags>
+python3 tools/check-tokens.py wa.css
+#+end_src
 
 ** Contributions
-Any contribution is greatly appreciated.
-
-If you'd like to contribute code, please make sure to read the [[https://github.com/vednoc/dark-whatsapp/blob/master/contributing.org][contribution
+If you'd like to contribute code, please make sure to read the [[https://github.com/JosueGalRe/dark-whatsapp/blob/master/contributing.org][contribution
 guidelines]].
-
-If you really like this project and would like to tip me for my work, then you
-can:
-- Buy me a coffee over at [[https://ko-fi.com/vednoc][ko-fi]]
-- Support me over at [[https://liberapay.com/vednoc][LiberaPay]]
 
 ** Credits
 This project wouldn't be possible without:
+- [[https://github.com/vednoc][vednoc]], who created Dark-WhatsApp. You can tip them on [[https://ko-fi.com/vednoc][ko-fi]] or [[https://liberapay.com/vednoc][LiberaPay]]
 - [[https://github.com/erelado][erelado]] for making wiki pages, testing and reporting/fixing bugs
 - [[https://github.com/StylishThemes/][StylishThemes]] team for inspiration and documentation templates
-- [[https://unsplash.com/@totem_phillip][Phillip Sauerbeck]] for the gorgeous [[https://unsplash.com/photos/Tmk0MkQVwwA][background image]]
 - Everyone that helped with [[https://github.com/vednoc/dark-whatsapp/issues][issues]] and/or [[https://github.com/vednoc/dark-whatsapp/pulls][code]]
 
 Similar open-source projects:
