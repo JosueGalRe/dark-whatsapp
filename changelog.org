@@ -1,6 +1,13 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.14 [2026-11-08 Sun]
+*** Fixed
+- The editor that opens when attaching files only took the part of the chat left over
+  from the list's native width, crushing its caption and cutting off its tools, 198px
+  at a 477px window. It now covers the whole chat at any width, and its tools wrap
+  when they don't fit.
+
 ** 4.2.13 [2026-11-08 Sun]
 *** Fixed
 - The typing indicator floated over the chat while scrolling up since 4.2.12, and in

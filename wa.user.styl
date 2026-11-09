@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.13
+@version      4.2.14
 @license      MIT
 @preprocessor stylus
 
@@ -917,6 +917,13 @@ mix_base(amount) {
                 inset-inline-start: 168px i
             }
 
+            /// Empty, it still spaces out the middle drawer, where the media editor opens, as if
+            /// the list had its native width. Match the rail so that covers just the chat.
+            [data-testid='drawer-left']:not(:has(> * > * > *)) {
+                flex-basis: 96px i
+                max-width: 96px i
+            }
+
             /// Over the chat, but under the open list and the left drawers, which it can reach.
             .three > [data-testid='drawer-right'] { z-index: 199 }
 
@@ -1067,6 +1074,19 @@ mix_base(amount) {
                 max-width: 100% i
             }
 
+            /// The media editor's tools sit in a fixed row wider than it is here, and close and
+            /// undo above them in three 150px cells. Let the tools wrap and the cells shrink.
+            :has(> * > [data-testid='media-editor-copy-button']) > * {
+                max-width: 100%
+            }
+            :has(> * > [data-testid='media-editor-copy-button']) > :nth-child(2) {
+                flex-wrap: wrap
+            }
+            :has(> * > [data-testid='media-editor-copy-button']) > :first-child > * {
+                flex: 0 1 150px
+                min-width: 0
+            }
+
             /// The media viewer's toolbar has up to 11 buttons and won't shrink, so it runs off
             /// the left edge, taking the sender with it. Its cells give way when they have to,
             /// and the sender only takes what's left. Their pitch stays WA's 48px otherwise.
@@ -1128,6 +1148,11 @@ mix_base(amount) {
             /// Its tabs and buttons need the whole row, and the tabs already say what this is.
             [data-testid='media-hub-modal'] [data-testid='popup-contents'] > :has([role='tablist']) > :first-child {
                 display: none
+            }
+
+            [data-testid='drawer-left']:not(:has(> * > * > *)) {
+                flex-basis: 0 i
+                max-width: 0 i
             }
 
             /// One column for Calls, Status and the like: WA's 45% and the rest crush both of
