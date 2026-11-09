@@ -6,7 +6,7 @@
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @updateURL    https://raw.githubusercontent.com/JosueGalRe/dark-whatsapp/master/wa.user.styl
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.12
+@version      4.2.13
 @license      MIT
 @preprocessor stylus
 
@@ -848,13 +848,26 @@ mix_base(amount) {
     }
 
     /// The typing indicator sits at the end of the scrolling content, past a spacer that
-    /// grows 24px when it shows. If the scroll doesn't follow, it ends up under the composer,
-    /// so hold it at the visible edge. It can float over messages then: let clicks through.
+    /// grows 24px when it shows. If the scroll doesn't follow, it ends up under the composer.
+    /// Sticky lifts it back, and this 64px box, 40px of it plus those 24px, stops it there:
+    /// any further and it scrolls away instead of floating over the messages. The negative
+    /// margin keeps the box out of the scroll height, and it needs to beat their tails too.
     [data-testid='conversation-panel-messages'] > :has(> * > [data-testid='typing-indicator']) {
-        position: sticky
-        bottom: 0
-        z-index: 1
+        display: flex
+        flex: none
+        flex-direction: column
+        justify-content: flex-end
+        align-items: flex-start
+        height: 64px
+        margin-top: -64px
+        z-index: 201
         pointer-events: none
+
+        > * {
+            position: sticky i
+            bottom: 0
+            flex: none
+        }
     }
 
     /// Feat -> Compact mode. The list stays an avatar rail in the layout and floats

@@ -5,7 +5,7 @@
 @homepageURL  https://github.com/JosueGalRe/dark-whatsapp
 @supportURL   https://github.com/JosueGalRe/dark-whatsapp/issues
 @author       vednoc <vednoc@pm.me> (https://github.com/vednoc)
-@version      4.2.12
+@version      4.2.13
 @license      MIT
 ==/UserStyle== */
 /*
@@ -495,10 +495,20 @@
     margin-inline: auto !important;
   }
   [data-testid='conversation-panel-messages'] > :has(> * > [data-testid='typing-indicator']) {
-    position: sticky;
-    bottom: 0;
-    z-index: 1;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 64px;
+    margin-top: -64px;
+    z-index: 201;
     pointer-events: none;
+  }
+  [data-testid='conversation-panel-messages'] > :has(> * > [data-testid='typing-indicator']) > * {
+    position: sticky !important;
+    bottom: 0;
+    flex: none;
   }
 @media screen and (max-width: 9999px) {
     .two,

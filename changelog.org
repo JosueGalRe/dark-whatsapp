@@ -1,6 +1,13 @@
 #+STARTUP: nofold
 
 * Changelog
+** 4.2.13 [2026-11-08 Sun]
+*** Fixed
+- The typing indicator floated over the chat while scrolling up since 4.2.12, and in
+  Firefox-based browsers it went behind incoming bubbles, leaving just its avatar and
+  tail sticking out. It now only lifts the 24px it needs to clear the composer, scrolls
+  away past that like it does natively, and stays above the bubbles while it's there.
+
 ** 4.2.12 [2026-11-08 Sun]
 *** Fixed
 - The typing and recording indicator could end up half hidden behind the composer when
